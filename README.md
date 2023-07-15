@@ -1,16 +1,20 @@
-# laborus_app
 
-A new Flutter project.
+# Laborus
 
-## Getting Started
+In the Digital Age we live in, many processes have become easier and accessible with just one click.
 
-This project is a starting point for a Flutter application.
+However, in the job market, things remain up-to-date and many professionals at the beginning of their careers face difficulties in entering the corporate world or improving their skills in the areas in which they want to work. In this way, the academic social network LABORUS can contribute to solving these problems, acting as a mediator in the communication between students and educational institutions. 
 
-A few resources to get you started if this is your first Flutter project:
+We offer a modern platform to facilitate access to important information and employment opportunities, contributing to achieving Sustainable Development Goal 4 (SDG 4).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Tech Stack
+
+* Dart / Flutter
+* MongoDB
+
+## Author
+
+[@Laborus](https://github.com/Laborus/Laborus_Application.git)
+
