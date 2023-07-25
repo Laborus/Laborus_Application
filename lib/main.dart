@@ -1,9 +1,15 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/home/home.dart';
+import 'package:laborus_app/utils/database.dart';
 import 'package:laborus_app/utils/theme/dark_theme.dart';
 import 'package:laborus_app/utils/theme/light_theme.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MongoDatabase.connect();
+  
   runApp(const MyApp());
 }
 
