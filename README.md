@@ -1,20 +1,23 @@
 
-# Laborus
+<img src="./assets/img/laborus_extended_light.png" width="250">
 
-In the Digital Age we live in, many processes have become easier and accessible with just one click.
+## Sobre
 
-However, in the job market, things remain up-to-date and many professionals at the beginning of their careers face difficulties in entering the corporate world or improving their skills in the areas in which they want to work. In this way, the academic social network LABORUS can contribute to solving these problems, acting as a mediator in the communication between students and educational institutions. 
+Na Era Digital em que vivemos, muitos processos ficaram mais fáceis e acessíveis com apenas um clique.
 
-We offer a modern platform to facilitate access to important information and employment opportunities, contributing to achieving Sustainable Development Goal 4 (SDG 4).
+No entanto, no mercado de trabalho, as coisas continuam atualizadas e muitos profissionais em início de carreira enfrentam dificuldades para ingressar no mundo corporativo ou aprimorar suas habilidades nas áreas em que desejam atuar. Dessa forma, a rede social acadêmica LABORUS pode contribuir para a resolução desses problemas, atuando como mediadora na comunicação entre alunos e instituições de ensino.
+
+Oferecemos uma plataforma moderna para facilitar o acesso a informações importantes e oportunidades de emprego, contribuindo para o alcance do Objetivo de Desenvolvimento Sustentável 4 (ODS 4).
 
 
 
-## Tech Stack
+## Tecnologias
 
 * Dart / Flutter
 * MongoDB
+* Javascript / NodeJS / Express
 
-## Author
+## Autor
 
 [@Laborus](https://github.com/Laborus/Laborus_Application.git)
 
