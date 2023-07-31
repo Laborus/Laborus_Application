@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 
 TextTheme font([Color? color,FontWeight? weight]) {
@@ -11,3 +12,5 @@ TextTheme font([Color? color,FontWeight? weight]) {
   bodySmall: TextStyle(fontSize: 12, fontFamily: 'Roboto', fontWeight: weight),
 );
 }
+=======
+>>>>>>> parent of f4c2f73 (🚧 CI (database): add database connection)

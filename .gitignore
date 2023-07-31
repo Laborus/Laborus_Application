@@ -1,7 +1,3 @@
-# Database
-
-lib/utils/constants.dart
-
 # Miscellaneous
 *.class
 *.log

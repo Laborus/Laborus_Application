@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/loading/load.dart';
+import 'package:laborus_app/pages/home/home.dart';
+import 'package:laborus_app/utils/database.dart';
 import 'package:laborus_app/utils/theme/dark_theme.dart';
 import 'package:laborus_app/utils/theme/light_theme.dart';
 
