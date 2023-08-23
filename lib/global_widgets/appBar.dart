@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:laborus_app/utils/routes.dart';
 
 AppBar appbar(int i, BuildContext context) {
   return AppBar(
@@ -48,7 +49,12 @@ Row actions(int i, BuildContext context) {
           backgroundImage: AssetImage('assets/img/profile.jpg'),
           radius: 28,
         ),
-        onPressed: () {},
+        onPressed: () {
+          // Vai para outra tela.
+          Navigator.of(context).pushNamed(
+            AppRoutes.profile,
+          );
+        },
       )
     ],
   );
