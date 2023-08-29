@@ -19,6 +19,7 @@ class ProfileHeader extends StatelessWidget {
               decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/img/profile_banner.png'),
+                    fit: BoxFit.cover
                   ),
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(15),
@@ -29,13 +30,13 @@ class ProfileHeader extends StatelessWidget {
               left: 8,
               child: CircleAvatar(
                 radius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
                 child: IconButton(
                   icon: Padding(
                     padding: const EdgeInsets.only(right: 4.0),
                     child: Icon(
                       Icons.arrow_back_ios_new_rounded,
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).appBarTheme.foregroundColor,
                       size: 25,
                     ),
                   ),
@@ -92,14 +93,14 @@ class ProfileHeader extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.map_sharp),
+                        Icon(Icons.location_on_outlined),
                         SizedBox(width: 5),
                         Text('Osasco'),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(Icons.corporate_fare),
+                        Icon(Icons.corporate_fare_outlined),
                         SizedBox(width: 5),
                         Text('Fatec Carapicuiba'),
                       ],
