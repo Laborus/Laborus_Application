@@ -16,6 +16,6 @@ ThemeData darkTheme = ThemeData(
     error: Color.fromRGBO(255,242,249,1),
     onError: Color.fromRGBO(255,100,124,1),
     surface: Color.fromRGBO(36, 36, 36,1),
-    
+     
   ),
 );

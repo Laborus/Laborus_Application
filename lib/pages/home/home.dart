@@ -10,12 +10,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int i = 1;
-    double? size = navigation().height;
+    double? size = navigation(context).height;
     double height = size! + 30;
 
     return Scaffold(
-      appBar: appbar(i, context),
+      appBar: appbar(context),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(bottom: height),
         child: Column(
@@ -31,7 +30,7 @@ class Home extends StatelessWidget {
         onPressed: () {},
         child: const Icon(Icons.add, color: Colors.white),
       ),
-      bottomNavigationBar: navigation(),
+      bottomNavigationBar: navigation(context),
     );
   }
 
