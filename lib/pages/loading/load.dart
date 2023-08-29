@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/home/home.dart';
 import 'package:laborus_app/utils/routes.dart';
 
 class Load extends StatefulWidget {
