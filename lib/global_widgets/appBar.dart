@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:laborus_app/utils/routes.dart';
 
-AppBar appbar(int i, BuildContext context) {
+AppBar appbar( BuildContext context) {
   return AppBar(
     toolbarHeight: 40 + MediaQuery.of(context).padding.top,
     leadingWidth: double.infinity,
@@ -13,20 +13,22 @@ AppBar appbar(int i, BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           logo(),
-          actions(i, context),
+          actions(context),
         ],
       ),
     ),
   );
 }
 
-Row actions(int i, BuildContext context) {
+Row actions(BuildContext context) {
   return Row(
     children: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.notification);
+        },
         icon: badges.Badge(
-          showBadge: i > 0 ? true : false,
+          
           position: badges.BadgePosition.topStart(top: 2, start: 1),
           badgeStyle: badges.BadgeStyle(
             shape: badges.BadgeShape.circle,
@@ -47,7 +49,7 @@ Row actions(int i, BuildContext context) {
       TextButton(
         child: const CircleAvatar(
           backgroundImage: AssetImage('assets/img/profile.jpg'),
-          radius: 28,
+          radius: 20,
         ),
         onPressed: () {
           // Vai para outra tela.

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/utils/routes.dart';
 
-BottomAppBar navigation() {
+BottomAppBar navigation(ctx) {
   return BottomAppBar(
-    height: 80 ,
+    height: 80,
     shape: const CircularNotchedRectangle(),
     color: const Color.fromRGBO(30, 30, 30, 1),
     child: IconTheme(
@@ -15,7 +16,9 @@ BottomAppBar navigation() {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(ctx).pushNamed(AppRoutes.home);
+              },
               child: const Column(
                 children: [
                   Icon(Icons.home, color: Colors.white),
@@ -40,7 +43,9 @@ BottomAppBar navigation() {
               width: 30,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(ctx).pushNamed(AppRoutes.messages);
+              },
               child: const Column(
                 children: [
                   Icon(
@@ -54,7 +59,9 @@ BottomAppBar navigation() {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(ctx).pushNamed(AppRoutes.config);
+              },
               child: const Column(
                 children: [
                   Icon(Icons.settings, color: Colors.white),
