@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/routes.dart';
-import 'package:laborus_app/utils/theme/dark_theme.dart';
-import 'package:laborus_app/utils/theme/light_theme.dart';
+import 'package:laborus_app/utils/routes/routes.dart';
+import 'package:laborus_app/utils/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());

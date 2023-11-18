@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:laborus_app/model/people.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class PersonItem extends StatelessWidget {
   const PersonItem({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class LabelButton extends StatelessWidget {
   const LabelButton({super.key, required this.label, required this.checked});
@@ -39,7 +39,9 @@ class LabelButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 13),
             child: Text(
               label,
-              style: font(Theme.of(context).colorScheme.primary, FontWeight.w700).bodySmall,
+              style:
+                  font(Theme.of(context).colorScheme.primary, FontWeight.w700)
+                      .bodySmall,
             ),
           ),
         ),

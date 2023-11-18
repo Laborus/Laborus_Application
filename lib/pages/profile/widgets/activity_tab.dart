@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/global_widgets/label_button.dart';
-import 'package:laborus_app/global_widgets/post_card.dart';
+import 'package:laborus_app/components/label_button.dart';
+import 'package:laborus_app/components/post_card.dart';
 
 class ActivityTab extends StatelessWidget {
   const ActivityTab({super.key});
@@ -13,7 +13,8 @@ class ActivityTab extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 34, left: 14,right: 14, bottom: 24),
+          padding:
+              const EdgeInsets.only(top: 34, left: 14, right: 14, bottom: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

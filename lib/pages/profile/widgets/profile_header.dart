@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -18,9 +18,8 @@ class ProfileHeader extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/img/profile_banner.png'),
-                    fit: BoxFit.cover
-                  ),
+                      image: AssetImage('assets/img/profile_banner.png'),
+                      fit: BoxFit.cover),
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(15),
                       bottomRight: Radius.circular(15))),
@@ -49,8 +48,7 @@ class ProfileHeader extends StatelessWidget {
           ],
         ),
         Container(
-          margin:
-              const EdgeInsets.symmetric(horizontal: 21, vertical: 13),
+          margin: const EdgeInsets.symmetric(horizontal: 21, vertical: 13),
           child: Column(
             children: [
               Row(
@@ -60,16 +58,13 @@ class ProfileHeader extends StatelessWidget {
                     children: [
                       const CircleAvatar(
                         radius: 30,
-                        backgroundImage:
-                            AssetImage('assets/img/profile.jpg'),
+                        backgroundImage: AssetImage('assets/img/profile.jpg'),
                       ),
                       const SizedBox(width: 13),
                       Text(
                         'Stefan Horvath',
                         style: font(
-                                Theme.of(context)
-                                    .appBarTheme
-                                    .foregroundColor,
+                                Theme.of(context).appBarTheme.foregroundColor,
                                 FontWeight.w700)
                             .headlineSmall,
                         overflow: TextOverflow.ellipsis,
@@ -112,7 +107,6 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
       ],
-
     );
   }
 }

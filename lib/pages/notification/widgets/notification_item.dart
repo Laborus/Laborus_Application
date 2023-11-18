@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class FriendRequestButton extends StatelessWidget {
   const FriendRequestButton(
@@ -59,7 +59,10 @@ class NotificationFriend extends StatelessWidget {
 
 class NotificationDefault extends StatelessWidget {
   const NotificationDefault(
-      {super.key, required this.name, required this.image, required this.notificationMessage});
+      {super.key,
+      required this.name,
+      required this.image,
+      required this.notificationMessage});
   final String name;
   final String image;
   final String notificationMessage;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/global_widgets/input_search.dart';
+import 'package:laborus_app/components/input_search.dart';
 import 'package:laborus_app/pages/chat/widgets/group_list.dart';
 import 'package:laborus_app/pages/chat/widgets/person_list.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});

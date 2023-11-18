@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/global_widgets/label_button.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/components/label_button.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class AboutTab extends StatelessWidget {
   const AboutTab({super.key});

@@ -5,12 +5,14 @@ import 'package:laborus_app/pages/feed/feed_page.dart';
 import 'package:laborus_app/pages/loading/load.dart';
 import 'package:laborus_app/pages/notification/notification_view.dart';
 import 'package:laborus_app/pages/profile/profile.dart';
+import 'package:laborus_app/pages/settings/settings_page.dart';
 import 'package:laborus_app/pages/template/home_template.dart';
 import 'package:laborus_app/pages/welcome/welcome_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _feedNavigatorKey = GlobalKey<NavigatorState>();
 final _messageNavigatorKey = GlobalKey<NavigatorState>();
+final _settingsNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -48,6 +50,16 @@ final _router = GoRouter(
               path: '/chat',
               name: 'chat',
               builder: (context, state) => const ChatPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _settingsNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/settings',
+              name: 'settings',
+              builder: (context, state) => SettingsPage(),
             ),
           ],
         ),

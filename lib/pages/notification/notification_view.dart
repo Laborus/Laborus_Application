@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/notification/widgets/notification_list.dart';
-import 'package:laborus_app/utils/constants.dart';
+import 'package:laborus_app/utils/constants/constants.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});

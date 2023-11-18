@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/global_widgets/post_card.dart';
+import 'package:laborus_app/components/post_card.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});

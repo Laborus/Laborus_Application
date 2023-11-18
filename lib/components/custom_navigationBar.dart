@@ -40,7 +40,7 @@ class CustomBottomAppBar extends StatelessWidget {
               context: context,
               icon: Icons.settings,
               label: 'Config',
-              route: null,
+              route: 'settings',
             ),
           ],
         ),
