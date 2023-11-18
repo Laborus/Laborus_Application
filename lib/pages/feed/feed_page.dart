@@ -7,6 +7,7 @@ class FeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.only(bottom: 80),
       child: Column(
         children: [post(context), post(context)],

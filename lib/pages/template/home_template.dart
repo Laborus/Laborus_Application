@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// ignore: unused_import
-import 'package:laborus_app/utils/constants.dart';
 import 'package:laborus_app/global_widgets/custom_appBar.dart';
 import 'package:laborus_app/global_widgets/custom_navigationBar.dart';
 
@@ -20,6 +18,7 @@ class HomeTemplate extends StatelessWidget {
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
         onPressed: () {},
         child: const Icon(Icons.add, color: Colors.white),
       ),

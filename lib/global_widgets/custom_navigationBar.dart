@@ -14,38 +14,35 @@ class CustomBottomAppBar extends StatelessWidget {
         data: const IconThemeData(
           color: Color.fromRGBO(30, 30, 30, 1),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              buildNavigationButton(
-                context: context,
-                icon: Icons.home,
-                label: 'Home',
-                route: 'feed',
-              ),
-              buildNavigationButton(
-                context: context,
-                icon: Icons.work,
-                label: 'Vagas',
-                route: null,
-              ),
-              const SizedBox(width: 30),
-              buildNavigationButton(
-                context: context,
-                icon: Icons.message,
-                label: 'Mensagens',
-                route: 'chat',
-              ),
-              buildNavigationButton(
-                context: context,
-                icon: Icons.settings,
-                label: 'Config',
-                route: null,
-              ),
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            buildNavigationButton(
+              context: context,
+              icon: Icons.home,
+              label: 'Home',
+              route: 'feed',
+            ),
+            buildNavigationButton(
+              context: context,
+              icon: Icons.work,
+              label: 'Vagas',
+              route: null,
+            ),
+            const SizedBox(width: 30),
+            buildNavigationButton(
+              context: context,
+              icon: Icons.message,
+              label: 'Mensagens',
+              route: 'chat',
+            ),
+            buildNavigationButton(
+              context: context,
+              icon: Icons.settings,
+              label: 'Config',
+              route: null,
+            ),
+          ],
         ),
       ),
     );
