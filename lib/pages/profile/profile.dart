@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/profile/view/widgets/about_tab.dart';
-import 'package:laborus_app/pages/profile/view/widgets/activity_tab.dart';
-import 'package:laborus_app/pages/profile/view/widgets/follow_tab.dart';
-import 'package:laborus_app/pages/profile/view/widgets/profile_header.dart';
-import 'package:laborus_app/pages/profile/view/widgets/save_tab.dart';
+import 'package:laborus_app/pages/profile/widgets/about_tab.dart';
+import 'package:laborus_app/pages/profile/widgets/activity_tab.dart';
+import 'package:laborus_app/pages/profile/widgets/follow_tab.dart';
+import 'package:laborus_app/pages/profile/widgets/profile_header.dart';
+import 'package:laborus_app/pages/profile/widgets/save_tab.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {

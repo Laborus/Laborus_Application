@@ -1,5 +1,5 @@
-import 'package:laborus_app/pages/chat/model/group.dart';
-import 'package:laborus_app/pages/chat/model/people.dart';
+import 'package:laborus_app/model/group.dart';
+import 'package:laborus_app/model/people.dart';
 
 List<People> peoples = [
   People(
@@ -37,7 +37,7 @@ List<People> peoples = [
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
   ),
-   People(
+  People(
     name: 'Calvo Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),

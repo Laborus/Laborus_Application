@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/notification/data.dart';
-import 'package:laborus_app/pages/notification/model/notification.dart';
-import 'package:laborus_app/pages/notification/view/widgets/notification_item.dart';
+import 'package:laborus_app/pages/notification/data/data.dart';
+import 'package:laborus_app/model/notification.dart';
+import 'package:laborus_app/pages/notification/widgets/notification_item.dart';
 
 class NotificationList extends StatefulWidget {
   const NotificationList({super.key});

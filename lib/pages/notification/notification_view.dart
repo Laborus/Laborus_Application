@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/notification/view/widgets/notification_list.dart';
+import 'package:laborus_app/pages/notification/widgets/notification_list.dart';
 import 'package:laborus_app/utils/constants.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({super.key});
+class NotificationPage extends StatefulWidget {
+  const NotificationPage({super.key});
 
   @override
-  State<Notifications> createState() => _NotificationsState();
+  State<NotificationPage> createState() => _NotificationPageState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;

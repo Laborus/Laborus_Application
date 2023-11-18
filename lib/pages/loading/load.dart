@@ -1,23 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 
-class Load extends StatefulWidget {
-  const Load({super.key});
+class LoadPage extends StatefulWidget {
+  const LoadPage({super.key});
 
   @override
-  State<Load> createState() => _LoadState();
+  State<LoadPage> createState() => _LoadPageState();
 }
 
-class _LoadState extends State<Load> {
+class _LoadPageState extends State<LoadPage> {
   @override
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 6), () {
-      // Vai para outra tela.
-      Navigator.of(context).pushNamed(
-        AppRoutes.home,
-      );
+      context.goNamed('welcome');
     });
   }
 
