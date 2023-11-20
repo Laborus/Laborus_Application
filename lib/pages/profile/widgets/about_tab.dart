@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/components/label_button.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class AboutTab extends StatelessWidget {
   const AboutTab({super.key});
@@ -20,9 +19,7 @@ class AboutTab extends StatelessWidget {
               children: [
                 Text(
                   'Interesses',
-                  style: font(Theme.of(context).appBarTheme.foregroundColor,
-                          FontWeight.w700)
-                      .headlineSmall,
+                  style: const TextTheme().headlineSmall,
                 ),
                 const SizedBox(height: 13),
                 const Row(
@@ -42,16 +39,12 @@ class AboutTab extends StatelessWidget {
               children: [
                 Text(
                   'Interesses',
-                  style: font(Theme.of(context).appBarTheme.foregroundColor,
-                          FontWeight.w700)
-                      .headlineSmall,
+                  style: const TextTheme().headlineSmall,
                 ),
                 const SizedBox(height: 13),
                 Text(
                   'Arte é minha maior paixão, eu sou gamada em Fotografia e Design...Marketing também haha me adiciona ai para conversamos! :)',
-                  style: font(Theme.of(context).appBarTheme.foregroundColor,
-                          FontWeight.w500)
-                      .bodyMedium,
+                  style: const TextTheme().bodyMedium,
                 )
               ],
             ),

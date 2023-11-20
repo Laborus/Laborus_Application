@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/components/label_button.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class SaveTab extends StatelessWidget {
   const SaveTab({super.key});
@@ -36,9 +35,7 @@ class SaveTab extends StatelessWidget {
                   child: Text(
                     'Publicações ou vagas de emprego salvas aparecerão aqui...',
                     textAlign: TextAlign.center,
-                    style: font(Theme.of(context).appBarTheme.foregroundColor,
-                            FontWeight.w700)
-                        .titleSmall,
+                    style: TextTheme().titleSmall,
                   ),
                 )
               ],

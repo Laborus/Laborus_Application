@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class FriendRequestButton extends StatelessWidget {
   const FriendRequestButton(
@@ -15,7 +14,7 @@ class FriendRequestButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 13),
         child: Text(
           label,
-          style: font(Colors.white, FontWeight.w700).bodyMedium,
+          style: const TextTheme().bodyMedium,
         ),
       ),
     );
@@ -116,16 +115,10 @@ Text textRich(BuildContext context, String name, [String? text]) {
   return Text.rich(
     TextSpan(
       children: [
-        TextSpan(
-            text: '$name ',
-            style: font(Theme.of(context).appBarTheme.foregroundColor,
-                    FontWeight.w700)
-                .titleSmall),
+        TextSpan(text: '$name ', style: const TextTheme().titleSmall),
         TextSpan(
           text: text ?? 'enviou um pedido de conexão',
-          style: font(Theme.of(context).appBarTheme.foregroundColor,
-                  FontWeight.w500)
-              .titleSmall,
+          style: const TextTheme().titleSmall,
         ),
       ],
     ),

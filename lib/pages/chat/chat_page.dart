@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:laborus_app/components/input_search.dart';
 import 'package:laborus_app/pages/chat/widgets/group_list.dart';
 import 'package:laborus_app/pages/chat/widgets/person_list.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -20,10 +19,7 @@ class ChatPage extends StatelessWidget {
           const SizedBox(height: 13),
           Text(
             'Grupos',
-            style: font(
-              Theme.of(context).appBarTheme.foregroundColor,
-              FontWeight.w700,
-            ).titleMedium,
+            style: const TextTheme().titleMedium,
           ),
           const GroupList(),
           const Expanded(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:laborus_app/model/people.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class PersonItem extends StatelessWidget {
   const PersonItem({
@@ -21,20 +20,18 @@ class PersonItem extends StatelessWidget {
       contentPadding: const EdgeInsets.all(0),
       title: Text(
         people.name,
-        style:
-            font(Theme.of(context).appBarTheme.foregroundColor, FontWeight.w700)
-                .titleMedium,
+        style: const TextTheme().titleMedium,
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         people.name,
-        style: font(Colors.grey, FontWeight.w500).titleSmall,
+        style: const TextTheme().titleSmall,
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(
           DateFormat.jm().format(people.lastVisited),
-          style: font(Colors.grey, FontWeight.w500).bodySmall,
+          style: const TextTheme().bodySmall,
         ),
         Icon(
           Icons.done_all_rounded,

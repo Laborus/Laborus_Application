@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/constants/constants.dart';
 
-// Widget post(Color color) {
-//   return
-// }
 Padding post(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(top: 13, left: 8, right: 8),
@@ -43,7 +39,7 @@ Padding post(BuildContext context) {
                         children: [
                           Text(
                             'Juliana Martins',
-                            style: font().bodyMedium,
+                            style: const TextTheme().bodyMedium,
                           ),
                           const SizedBox(height: 3),
                           Row(
@@ -52,7 +48,7 @@ Padding post(BuildContext context) {
                               const SizedBox(width: 5),
                               Text(
                                 'Fatec Carapicuiba',
-                                style: font().bodySmall,
+                                style: const TextTheme().bodySmall,
                               )
                             ],
                           )
@@ -68,7 +64,7 @@ Padding post(BuildContext context) {
               const SizedBox(height: 10),
               Text(
                 'Eu e meus colegas de turma estamos promovendo uma pesquisa a respeito do aquecimento global. Agradeceria muito se pudessem contribuir com a pesquisa <3',
-                style: font().bodyMedium,
+                style: const TextTheme().bodyMedium,
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 13),

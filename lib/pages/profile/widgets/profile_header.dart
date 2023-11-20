@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -63,10 +62,7 @@ class ProfileHeader extends StatelessWidget {
                       const SizedBox(width: 13),
                       Text(
                         'Stefan Horvath',
-                        style: font(
-                                Theme.of(context).appBarTheme.foregroundColor,
-                                FontWeight.w700)
-                            .headlineSmall,
+                        style: const TextTheme().headlineSmall,
                         overflow: TextOverflow.ellipsis,
                       )
                     ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/components/label_button.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class FollowTab extends StatelessWidget {
   const FollowTab({super.key});
@@ -63,17 +62,13 @@ class ProfileTile extends StatelessWidget {
             children: [
               Text(
                 'Fatec Carapicuíba',
-                style: font(Theme.of(context).appBarTheme.foregroundColor,
-                        FontWeight.w500)
-                    .titleSmall,
+                style: const TextTheme().titleSmall,
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 3),
               Text(
                 'Ensino Superior',
-                style: font(Theme.of(context).appBarTheme.foregroundColor,
-                        FontWeight.w400)
-                    .bodySmall,
+                style: const TextTheme().bodySmall,
                 overflow: TextOverflow.ellipsis,
               )
             ],

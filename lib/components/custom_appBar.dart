@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: double.infinity,
       forceMaterialTransparency: true,
       leading: Container(
-        margin: const EdgeInsets.only(left: 0, right: 0),
+        margin: const EdgeInsets.only(left: 22, right: 22),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -65,13 +65,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  TextButton logo() {
-    return TextButton(
-      onPressed: () => context.goNamed('feed'),
-      child: Image.asset(
-        'assets/img/laborus_dark.png',
-        width: 40,
-        height: 40,
+  GestureDetector logo() {
+    return GestureDetector(
+      onTap: () => context.goNamed('feed'),
+      child: Container(
+        width: 50,
+        height: 50,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(15)),
+        child: Image.asset(
+          'assets/img/appLogo.png',
+          width: 35,
+          height: 35,
+        ),
       ),
     );
   }

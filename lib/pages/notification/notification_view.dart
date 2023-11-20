@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/notification/widgets/notification_list.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -21,9 +20,7 @@ class _NotificationPageState extends State<NotificationPage> {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
             'Notificações',
-            style: font(Theme.of(context).appBarTheme.foregroundColor,
-                    FontWeight.w700)
-                .headlineSmall,
+            style: const TextTheme().headlineSmall,
           ),
           InkWell(
             child: Container(
@@ -35,7 +32,7 @@ class _NotificationPageState extends State<NotificationPage> {
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 18),
                 child: Text(
                   'Marcar como lido',
-                  style: font(Colors.white, FontWeight.w500).bodyMedium,
+                  style: const TextTheme().bodyMedium,
                 ),
               ),
             ),
@@ -88,9 +85,7 @@ Widget button(ctx, bool active) {
           padding: const EdgeInsets.only(bottom: 11, left: 5),
           child: Text(
             'Todas',
-            style:
-                font(Theme.of(ctx).appBarTheme.foregroundColor, FontWeight.w600)
-                    .titleSmall,
+            style: const TextTheme().titleSmall,
           ),
         ),
       ),

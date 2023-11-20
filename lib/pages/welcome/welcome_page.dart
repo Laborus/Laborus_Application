@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/utils/constants/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -90,7 +89,7 @@ class _WelcomePageState extends State<WelcomePage> {
               alignment: Alignment.center,
               child: Text(
                 'Continuar',
-                style: font().titleMedium,
+                style: const TextTheme().titleLarge,
               ),
             ),
           )
@@ -122,16 +121,13 @@ Widget buildContainer(String urlImage, String title, String label, int index,
           const SizedBox(height: 20),
           Text(
             title,
-            style:
-                font(Theme.of(ctx).appBarTheme.foregroundColor, FontWeight.w500)
-                    .headlineSmall,
+            style: const TextTheme().headlineSmall,
           ),
           const SizedBox(height: 20),
           Text(
             label,
             textAlign: TextAlign.center,
-            style: font(Color.fromRGBO(161, 172, 179, 1), FontWeight.w700)
-                .bodyMedium,
+            style: const TextTheme().bodyMedium,
           ),
         ],
       ),
