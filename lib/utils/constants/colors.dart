@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  // Primary colors
   static const Color primaryPurple = Color(0xFF8000AD);
   static const Color darknessPurple = Color(0xFF4C1175);
   static const Color mediumPurple = Color(0xFF9D35F2);
 
+  //neutral Colors
   static const Map<int, Color> neutralsLight = {
     0: Color(0xFFFFFFFF),
     100: Color(0xFFFAFAFC),

@@ -3,48 +3,41 @@ import 'package:flutter/material.dart';
 class LTextTheme {
   LTextTheme._();
 
-  static TextTheme textTheme = TextTheme(
-    headlineLarge: _createTextStyle(
+  static TextTheme textTheme = const TextTheme(
+    headlineLarge: TextStyle(
       fontSize: 30,
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w700,
     ),
-    headlineMedium: _createTextStyle(
+    headlineMedium: TextStyle(
       fontSize: 24,
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w700,
     ),
-    headlineSmall: _createTextStyle(
+    headlineSmall: TextStyle(
       fontSize: 20,
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w700,
     ),
-    titleMedium: _createTextStyle(
+    titleMedium: TextStyle(
       fontSize: 18,
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w500,
     ),
-    titleSmall: _createTextStyle(
+    titleSmall: TextStyle(
       fontSize: 16,
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w500,
     ),
-    bodyMedium: _createTextStyle(
+    bodyMedium: TextStyle(
       fontSize: 14,
-      fontWeight: FontWeight.w500,
       fontFamily: 'Roboto',
+      fontWeight: FontWeight.w500,
     ),
-    bodySmall: _createTextStyle(
+    bodySmall: TextStyle(
       fontSize: 12,
-      fontWeight: FontWeight.w500,
       fontFamily: 'Roboto',
+      fontWeight: FontWeight.w500,
     ),
   );
-
-  static TextStyle _createTextStyle({
-    double? fontSize,
-    FontWeight? fontWeight,
-    String? fontFamily,
-  }) {
-    return TextStyle(
-      fontSize: fontSize ?? 12,
-      fontFamily: fontFamily ?? 'Inter',
-      fontWeight: fontWeight ?? FontWeight.w400,
-    );
-  }
 }

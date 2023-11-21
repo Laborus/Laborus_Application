@@ -16,13 +16,13 @@ class ProfilePage extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 293,
+          toolbarHeight: 300,
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: const ProfileHeader(),
           leadingWidth: double.infinity,
           bottom: TabBar(
-            isScrollable: width < 400 ? true : false,
+            isScrollable: width > 340 ? false : true,
             tabs: [
               tab('Sobre', context),
               tab('Seguindo', context),

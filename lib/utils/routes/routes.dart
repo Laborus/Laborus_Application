@@ -8,6 +8,7 @@ import 'package:laborus_app/pages/profile/profile.dart';
 import 'package:laborus_app/pages/settings/settings_page.dart';
 import 'package:laborus_app/pages/template/home_template.dart';
 import 'package:laborus_app/pages/welcome/welcome_page.dart';
+import 'package:laborus_app/utils/routes/global_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _feedNavigatorKey = GlobalKey<NavigatorState>();
@@ -21,12 +22,18 @@ final _router = GoRouter(
     GoRoute(
       name: 'start',
       path: '/',
-      builder: (context, state) => const LoadPage(),
+      builder: (context, state) {
+        GlobalRouteStack.push(state.name.toString());
+        return const LoadPage();
+      },
     ),
     GoRoute(
       name: 'welcome',
       path: '/welcome',
-      builder: (context, state) => const WelcomePage(),
+      builder: (context, state) {
+        GlobalRouteStack.push(state.name.toString());
+        return const WelcomePage();
+      },
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -39,7 +46,10 @@ final _router = GoRouter(
             GoRoute(
               path: '/feed',
               name: 'feed',
-              builder: (context, state) => const FeedPage(),
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const FeedPage();
+              },
             ),
           ],
         ),
@@ -49,7 +59,10 @@ final _router = GoRouter(
             GoRoute(
               path: '/chat',
               name: 'chat',
-              builder: (context, state) => const ChatPage(),
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const ChatPage();
+              },
             ),
           ],
         ),
@@ -59,7 +72,10 @@ final _router = GoRouter(
             GoRoute(
               path: '/settings',
               name: 'settings',
-              builder: (context, state) => SettingsPage(),
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return SettingsPage();
+              },
             ),
           ],
         ),
@@ -68,12 +84,18 @@ final _router = GoRouter(
     GoRoute(
       path: '/home/profile',
       name: 'profile',
-      builder: (context, state) => const ProfilePage(),
+      builder: (context, state) {
+        GlobalRouteStack.push(state.name.toString());
+        return const ProfilePage();
+      },
     ),
     GoRoute(
       path: '/home/notification',
       name: 'notification',
-      builder: (context, state) => const NotificationPage(),
+      builder: (context, state) {
+        GlobalRouteStack.push(state.name.toString());
+        return const NotificationPage();
+      },
     ),
   ],
 );

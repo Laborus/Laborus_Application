@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/components/custom_appBar.dart';
-import 'package:laborus_app/components/custom_navigationBar.dart';
+import 'package:laborus_app/components/custom_appbar.dart';
+import 'package:laborus_app/components/custom_navigationbar.dart';
 
 class HomeTemplate extends StatelessWidget {
   final StatefulNavigationShell navigationShell;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:laborus_app/pages/notification/widgets/notification_list.dart';
+import 'package:laborus_app/utils/routes/global_routes.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -16,6 +18,15 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 80,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            GlobalRouteStack.pop();
+            String previousRoute = GlobalRouteStack.getPreviousRoute();
+
+            context.goNamed(previousRoute);
+          },
+        ),
         title:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(

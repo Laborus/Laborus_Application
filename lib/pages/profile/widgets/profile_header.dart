@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:laborus_app/utils/routes/global_routes.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -16,12 +18,14 @@ class ProfileHeader extends StatelessWidget {
               height: 162,
               width: double.infinity,
               decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/img/profile_banner.png'),
-                      fit: BoxFit.cover),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15))),
+                image: DecorationImage(
+                    image: AssetImage('assets/img/profile_banner.png'),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
+                ),
+              ),
             ),
             Positioned(
               top: 15,
@@ -39,7 +43,9 @@ class ProfileHeader extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    GlobalRouteStack.pop();
+                    String previousRoute = GlobalRouteStack.getPreviousRoute();
+                    context.goNamed(previousRoute);
                   },
                 ),
               ),
