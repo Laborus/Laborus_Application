@@ -6,8 +6,8 @@ class PalletTheme with DarkMode {
   PalletTheme._();
 
   static late bool _isDarkMode;
-  static const Map<int, Color> _dark = AppColors.neutralsLight;
-  static const Map<int, Color> _light = AppColors.neutralsDark;
+  static const Map<int, Color> _dark = AppColors.neutralsDark;
+  static const Map<int, Color> _light = AppColors.neutralsLight;
 
   static Color get neutral0 => _isDarkMode ? _dark[0]! : _light[0]!;
   static Color get neutral100 => _isDarkMode ? _dark[100]! : _light[100]!;
