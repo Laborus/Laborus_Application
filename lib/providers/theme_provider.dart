@@ -4,7 +4,6 @@ import 'package:laborus_app/utils/theme/theme.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _themeData = LAppTheme.lightTheme;
-
   ThemeData get themeData => _themeData;
 
   set themeData(ThemeData themeData) {
@@ -20,6 +19,7 @@ class ThemeProvider with ChangeNotifier {
     }
 
     await ThemeDatabase.saveTheme(_themeData == LAppTheme.darkTheme);
+    notifyListeners();
   }
 
   Future<void> loadTheme() async {

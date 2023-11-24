@@ -9,14 +9,24 @@ import 'package:provider/provider.dart';
 void main() async {
   await Hive.initFlutter();
   await ThemeDatabase.getTheme();
-  await PalletTheme.init();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) {
-        final themeProvider = ThemeProvider();
-        themeProvider.loadTheme();
-        return themeProvider;
-      },
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) {
+            final themeProvider = ThemeProvider();
+            themeProvider.loadTheme();
+            return themeProvider;
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            final palletTheme = PalletTheme();
+            palletTheme.init();
+            return PalletTheme();
+          },
+        )
+      ],
       child: const LaborusAPP(),
     ),
   );

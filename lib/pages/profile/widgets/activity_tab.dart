@@ -11,14 +11,13 @@ class ActivityTab extends StatelessWidget {
     return Container(
       width: width * 1,
       alignment: Alignment.topLeft,
-      child: SingleChildScrollView(
+      child: const SingleChildScrollView(
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 34, left: 14, right: 14, bottom: 24),
+          padding: EdgeInsets.only(top: 34, left: 14, right: 14, bottom: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 8),
                 child: Row(
                   children: [
@@ -30,10 +29,10 @@ class ActivityTab extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 21),
+              SizedBox(height: 21),
               Column(
                 children: [
-                  post(context),
+                  PostWidget(),
                 ],
               )
             ],

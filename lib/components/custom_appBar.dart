@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
@@ -13,6 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Provider.of<PalletTheme>(context).neutral0,
       toolbarHeight: preferredSize.height,
       leadingWidth: double.infinity,
       forceMaterialTransparency: true,
@@ -42,8 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               padding: const EdgeInsets.all(6),
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
-                color: Theme.of(context).appBarTheme!.backgroundColor ??
-                    const Color.fromRGBO(30, 30, 30, 1),
+                color: Provider.of<PalletTheme>(context).neutral800,
                 width: 2,
               ),
             ),
@@ -72,7 +74,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         height: 50,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Provider.of<PalletTheme>(context).neutral400,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(15)),
         child: Image.asset(

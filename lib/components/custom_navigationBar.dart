@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
-  const CustomBottomAppBar({super.key});
+  const CustomBottomAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String currentRoute = GoRouterState.of(context).path ?? '';
+
     return BottomAppBar(
       height: 80,
       shape: const CircularNotchedRectangle(),
@@ -21,26 +23,30 @@ class CustomBottomAppBar extends StatelessWidget {
               context: context,
               icon: Icons.home,
               label: 'Home',
-              route: 'feed',
+              route: '/feed',
+              isSelected: currentRoute == '/feed',
             ),
             buildNavigationButton(
               context: context,
               icon: Icons.work,
               label: 'Vagas',
               route: null,
+              isSelected: false,
             ),
             const SizedBox(width: 30),
             buildNavigationButton(
               context: context,
               icon: Icons.message,
               label: 'Mensagens',
-              route: 'chat',
+              route: '/chat',
+              isSelected: currentRoute == 'chat',
             ),
             buildNavigationButton(
               context: context,
               icon: Icons.settings,
               label: 'Config',
-              route: 'settings',
+              route: '/settings',
+              isSelected: currentRoute == '/settings',
             ),
           ],
         ),
@@ -53,20 +59,27 @@ class CustomBottomAppBar extends StatelessWidget {
     required String label,
     required BuildContext context,
     String? route,
+    required bool isSelected,
   }) {
     return TextButton(
       onPressed: () {
         if (route != null) {
-          context.goNamed(route);
+          GoRouter.of(context).go(route);
         }
       },
       child: Column(
         children: [
-          Icon(icon, color: Colors.white),
+          Icon(
+            icon,
+            color: isSelected ? Colors.blue : Colors.white,
+          ),
           const SizedBox(height: 2),
           Text(
             label,
-            style: const TextStyle(color: Colors.white, fontSize: 10),
+            style: TextStyle(
+              color: isSelected ? Colors.blue : Colors.white,
+              fontSize: 10,
+            ),
           ),
         ],
       ),
