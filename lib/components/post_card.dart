@@ -44,35 +44,34 @@ class PostWidget extends StatelessWidget {
   }
 
   Widget _buildPostHeader() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            const IconButton(
+            IconButton(
               icon: CircleAvatar(
                 radius: 20,
                 backgroundImage: AssetImage('assets/img/profile.jpg'),
               ),
               onPressed: null,
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Juliana Martins',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 3),
+                SizedBox(height: 3),
                 Row(
                   children: [
-                    const Icon(Icons.school, size: 8),
-                    const SizedBox(width: 5),
+                    Icon(Icons.school, size: 8),
+                    SizedBox(width: 5),
                     Text(
                       'Fatec Carapicuiba',
-                      style: const TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12),
                     )
                   ],
                 ),
@@ -80,7 +79,7 @@ class PostWidget extends StatelessWidget {
             ),
           ],
         ),
-        const IconButton(
+        IconButton(
           onPressed: null,
           icon: Icon(Icons.more_horiz),
         ),
@@ -89,9 +88,9 @@ class PostWidget extends StatelessWidget {
   }
 
   Widget _buildPostContent() {
-    return Text(
+    return const Text(
       'Eu e meus colegas de turma estamos promovendo uma pesquisa a respeito do aquecimento global. Agradeceria muito se pudessem contribuir com a pesquisa <3',
-      style: const TextStyle(fontSize: 16),
+      style: TextStyle(fontSize: 16),
       textAlign: TextAlign.justify,
     );
   }
