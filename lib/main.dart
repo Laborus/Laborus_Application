@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:laborus_app/data/theme_database.dart';
+import 'package:laborus_app/data/local_database.dart';
 import 'package:laborus_app/providers/theme_provider.dart';
 import 'package:laborus_app/utils/routes/routes.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await ThemeDatabase.getTheme();
+  await LocalDatabase.getTheme();
+  await LocalDatabase.isOnboardingShown();
+  await PalletTheme().init();
+
   runApp(
     MultiProvider(
       providers: [
@@ -21,8 +25,6 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) {
-            final palletTheme = PalletTheme();
-            palletTheme.init();
             return PalletTheme();
           },
         )

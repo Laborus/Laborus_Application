@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/data/theme_database.dart';
+import 'package:laborus_app/data/local_database.dart';
 import 'package:laborus_app/utils/theme/theme.dart';
 
 class ThemeProvider with ChangeNotifier {
@@ -18,12 +18,12 @@ class ThemeProvider with ChangeNotifier {
       themeData = LAppTheme.lightTheme;
     }
 
-    await ThemeDatabase.saveTheme(_themeData == LAppTheme.darkTheme);
+    await LocalDatabase.saveTheme(_themeData == LAppTheme.darkTheme);
     notifyListeners();
   }
 
   Future<void> loadTheme() async {
-    final isDarkMode = await ThemeDatabase.getTheme();
+    final isDarkMode = await LocalDatabase.getTheme();
     themeData = isDarkMode ? LAppTheme.darkTheme : LAppTheme.lightTheme;
   }
 }
