@@ -22,7 +22,7 @@ class LElevatedButtonTheme {
       ),
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
-          fontSize: 14,
+          fontSize: 16,
           fontFamily: 'Inter',
           fontWeight: FontWeight.bold,
         ),

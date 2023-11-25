@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/data/theme_database.dart';
+import 'package:laborus_app/data/local_database.dart';
 import 'package:laborus_app/utils/constants/colors.dart';
 
 class PalletTheme with ChangeNotifier {
   PalletTheme();
 
-  bool _isDarkMode = false;
+  static late bool _isDarkMode;
   static const Map<int, Color> _dark = AppColors.neutralsDark;
   static const Map<int, Color> _light = AppColors.neutralsLight;
 
@@ -24,7 +24,7 @@ class PalletTheme with ChangeNotifier {
   }
 
   Future<bool> isDarkMode() async {
-    final brightness = await ThemeDatabase.getTheme();
+    final brightness = await LocalDatabase.getTheme();
     _isDarkMode = brightness;
     return _isDarkMode;
   }
