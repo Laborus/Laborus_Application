@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/data/local_database.dart';
 
 class LoadPage extends StatefulWidget {
   const LoadPage({super.key});
@@ -10,11 +11,22 @@ class LoadPage extends StatefulWidget {
 }
 
 class _LoadPageState extends State<LoadPage> {
+  void checkOnboarding() async {
+    final onboardingShown = await LocalDatabase.isOnboardingShown();
+    if (onboardingShown) {
+      // ignore: use_build_context_synchronously
+      context.goNamed('welcome');
+    } else {
+      // ignore: use_build_context_synchronously
+      context.goNamed('onboarding');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 6), () {
-      context.goNamed('welcome');
+      checkOnboarding();
     });
   }
 

@@ -4,6 +4,7 @@ import 'package:laborus_app/pages/chat/chat_page.dart';
 import 'package:laborus_app/pages/feed/feed_page.dart';
 import 'package:laborus_app/pages/loading/load.dart';
 import 'package:laborus_app/pages/notification/notification_view.dart';
+import 'package:laborus_app/pages/onB/onb_page.dart';
 import 'package:laborus_app/pages/profile/profile.dart';
 import 'package:laborus_app/pages/settings/settings_page.dart';
 import 'package:laborus_app/pages/template/home_template.dart';
@@ -25,6 +26,14 @@ final _router = GoRouter(
       builder: (context, state) {
         GlobalRouteStack.push(state.name.toString());
         return const LoadPage();
+      },
+    ),
+    GoRoute(
+      name: 'onboarding',
+      path: '/onboarding',
+      builder: (context, state) {
+        GlobalRouteStack.push(state.name.toString());
+        return const OnBoardingPage();
       },
     ),
     GoRoute(
@@ -74,7 +83,7 @@ final _router = GoRouter(
               name: 'settings',
               builder: (context, state) {
                 GlobalRouteStack.push(state.name.toString());
-                return SettingsPage();
+                return const SettingsPage();
               },
             ),
           ],
