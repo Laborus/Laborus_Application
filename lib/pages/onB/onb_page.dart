@@ -18,7 +18,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   void refresh() async {
     await LocalDatabase.setOnboardingShown();
     // ignore: use_build_context_synchronously
-    context.goNamed('feed');
+    context.goNamed('welcome');
   }
 
   Function()? refreshButton() {

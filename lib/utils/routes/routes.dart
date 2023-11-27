@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/pages/CYA/choose_your_account_page.dart';
 import 'package:laborus_app/pages/chat/chat_page.dart';
 import 'package:laborus_app/pages/feed/feed_page.dart';
 import 'package:laborus_app/pages/loading/load.dart';
@@ -8,6 +9,8 @@ import 'package:laborus_app/pages/onB/onb_page.dart';
 import 'package:laborus_app/pages/profile/profile.dart';
 import 'package:laborus_app/pages/settings/settings_page.dart';
 import 'package:laborus_app/pages/template/home_template.dart';
+import 'package:laborus_app/pages/template/sign_template.dart';
+import 'package:laborus_app/pages/timeline/timeline_page.dart';
 import 'package:laborus_app/pages/welcome/welcome_page.dart';
 import 'package:laborus_app/utils/routes/global_routes.dart';
 
@@ -15,6 +18,8 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _feedNavigatorKey = GlobalKey<NavigatorState>();
 final _messageNavigatorKey = GlobalKey<NavigatorState>();
 final _settingsNavigatorKey = GlobalKey<NavigatorState>();
+final _siginNavigatorKey = GlobalKey<NavigatorState>();
+final _infoNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -24,7 +29,6 @@ final _router = GoRouter(
       name: 'start',
       path: '/',
       builder: (context, state) {
-        GlobalRouteStack.push(state.name.toString());
         return const LoadPage();
       },
     ),
@@ -32,7 +36,6 @@ final _router = GoRouter(
       name: 'onboarding',
       path: '/onboarding',
       builder: (context, state) {
-        GlobalRouteStack.push(state.name.toString());
         return const OnBoardingPage();
       },
     ),
@@ -43,6 +46,38 @@ final _router = GoRouter(
         GlobalRouteStack.push(state.name.toString());
         return const WelcomePage();
       },
+    ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) =>
+          SignTemplate(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _siginNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/signin',
+              name: 'signin',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const ChooseYourAccountPage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _infoNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/signin/info',
+              name: 'info',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const TimelinePage();
+              },
+            )
+          ],
+        )
+      ],
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
