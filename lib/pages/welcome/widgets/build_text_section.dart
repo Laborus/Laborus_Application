@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:provider/provider.dart';
 
 Widget buildTextSection(BuildContext context) {
   return Column(
@@ -9,7 +10,7 @@ Widget buildTextSection(BuildContext context) {
         style: TextStyle(
           fontSize: Theme.of(context).textTheme.headlineLarge?.fontSize,
           fontWeight: FontWeight.bold,
-          color: PalletTheme().neutral800,
+          color: Provider.of<PalletTheme>(context).neutral800,
         ),
       ),
       const SizedBox(height: 20),
@@ -21,7 +22,7 @@ Widget buildTextSection(BuildContext context) {
           style: TextStyle(
             fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
             fontWeight: FontWeight.w200,
-            color: PalletTheme().neutral800,
+            color: Provider.of<PalletTheme>(context).neutral800,
           ),
         ),
       ),

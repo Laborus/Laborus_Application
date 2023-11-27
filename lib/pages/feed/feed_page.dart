@@ -12,7 +12,7 @@ class FeedPage extends StatelessWidget {
       color: Provider.of<PalletTheme>(context).neutral200,
       child: const SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.only(bottom: 80),
+        padding: EdgeInsets.only(bottom: 120),
         child: Column(
           children: [PostWidget(), PostWidget()],
         ),

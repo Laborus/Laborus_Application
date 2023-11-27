@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/welcome/widgets/build_bottom_buttons.dart';
 import 'package:laborus_app/pages/welcome/widgets/build_image_section.dart';
 import 'package:laborus_app/pages/welcome/widgets/build_text_section.dart';
-import 'package:laborus_app/utils/constants/colors.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);

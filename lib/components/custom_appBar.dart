@@ -74,7 +74,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         height: 50,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Provider.of<PalletTheme>(context).neutral400,
+            color: Provider.of<PalletTheme>(context).logo,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(15)),
         child: Image.asset(

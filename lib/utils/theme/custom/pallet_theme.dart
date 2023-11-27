@@ -18,6 +18,7 @@ class PalletTheme with ChangeNotifier {
   Color get neutral600 => _isDarkMode ? _dark[600]! : _light[600]!;
   Color get neutral700 => _isDarkMode ? _dark[700]! : _light[700]!;
   Color get neutral800 => _isDarkMode ? _dark[800]! : _light[800]!;
+  Color get logo => _isDarkMode ? _dark[200]! : _light[200]!;
 
   Future<void> init() async {
     _isDarkMode = await isDarkMode();

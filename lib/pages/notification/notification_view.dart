@@ -19,7 +19,7 @@ class _NotificationPageState extends State<NotificationPage> {
         elevation: 0,
         toolbarHeight: 80,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             GlobalRouteStack.pop();
             String previousRoute = GlobalRouteStack.getPreviousRoute();
