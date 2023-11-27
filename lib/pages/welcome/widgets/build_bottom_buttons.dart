@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:laborus_app/utils/constants/colors.dart';
 
 Widget buildBottomButtons(double width, BuildContext context) {
@@ -35,7 +36,7 @@ Widget buildBottomButtons(double width, BuildContext context) {
         ),
         const SizedBox(height: 24),
         OutlinedButton(
-          onPressed: () => {},
+          onPressed: () => {context.goNamed('signin')},
           child: const SizedBox(
             width: double.infinity,
             child: Text(

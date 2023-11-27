@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/utils/constants/colors.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   const CustomBottomAppBar({Key? key}) : super(key: key);
@@ -9,9 +10,10 @@ class CustomBottomAppBar extends StatelessWidget {
     String currentRoute = GoRouterState.of(context).path ?? '';
 
     return BottomAppBar(
+      elevation: 0,
       height: 80,
       shape: const CircularNotchedRectangle(),
-      color: const Color.fromRGBO(30, 30, 30, 1),
+      color: AppColors.neutralsLight[800],
       child: IconTheme(
         data: const IconThemeData(
           color: Color.fromRGBO(30, 30, 30, 1),
