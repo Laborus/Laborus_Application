@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:laborus_app/data/local_database.dart';
+import 'package:laborus_app/providers/step_provide.dart';
 import 'package:laborus_app/providers/theme_provider.dart';
 import 'package:laborus_app/utils/routes/routes.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
@@ -26,6 +27,11 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) {
             return PalletTheme();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return StepProvider();
           },
         )
       ],

@@ -43,7 +43,9 @@ class _NotificationPageState extends State<NotificationPage> {
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 18),
                 child: Text(
                   'Marcar como lido',
-                  style: const TextTheme().bodyMedium,
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                  ),
                 ),
               ),
             ),

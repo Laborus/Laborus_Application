@@ -8,7 +8,13 @@ import 'package:laborus_app/pages/notification/notification_view.dart';
 import 'package:laborus_app/pages/onB/onb_page.dart';
 import 'package:laborus_app/pages/profile/profile.dart';
 import 'package:laborus_app/pages/settings/settings_page.dart';
+import 'package:laborus_app/pages/signin/steps/step_1.dart';
+import 'package:laborus_app/pages/signin/steps/step_2.dart';
+import 'package:laborus_app/pages/signin/steps/step_3.dart';
+import 'package:laborus_app/pages/signin/steps/step_4.dart';
+import 'package:laborus_app/pages/signup/signup.dart';
 import 'package:laborus_app/pages/template/home_template.dart';
+import 'package:laborus_app/pages/template/sign_steps_template.dart';
 import 'package:laborus_app/pages/template/sign_template.dart';
 import 'package:laborus_app/pages/timeline/timeline_page.dart';
 import 'package:laborus_app/pages/welcome/welcome_page.dart';
@@ -18,8 +24,10 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _feedNavigatorKey = GlobalKey<NavigatorState>();
 final _messageNavigatorKey = GlobalKey<NavigatorState>();
 final _settingsNavigatorKey = GlobalKey<NavigatorState>();
-final _siginNavigatorKey = GlobalKey<NavigatorState>();
+final _signinNavigatorKey = GlobalKey<NavigatorState>();
+final _signupNavigatorKey = GlobalKey<NavigatorState>();
 final _infoNavigatorKey = GlobalKey<NavigatorState>();
+final _signinStepNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -52,7 +60,7 @@ final _router = GoRouter(
           SignTemplate(navigationShell: navigationShell),
       branches: [
         StatefulShellBranch(
-          navigatorKey: _siginNavigatorKey,
+          navigatorKey: _signinNavigatorKey,
           routes: [
             GoRoute(
               path: '/signin',
@@ -60,6 +68,19 @@ final _router = GoRouter(
               builder: (context, state) {
                 GlobalRouteStack.push(state.name.toString());
                 return const ChooseYourAccountPage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _signupNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/signup',
+              name: 'signup',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const SignUpPage();
               },
             ),
           ],
@@ -123,6 +144,51 @@ final _router = GoRouter(
             ),
           ],
         ),
+      ],
+    ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) => SignStepsTemplate(
+        navigationShell: navigationShell,
+        maxSteps: 4,
+      ),
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _signinStepNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/signin/step1',
+              name: 'signinStep1',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const StepPage1();
+              },
+            ),
+            GoRoute(
+              path: '/signin/step2',
+              name: 'signinStep2',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const StepPage2();
+              },
+            ),
+            GoRoute(
+              path: '/signin/step3',
+              name: 'signinStep3',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const StepPage3();
+              },
+            ),
+            GoRoute(
+              path: '/signin/step4',
+              name: 'signinStep4',
+              builder: (context, state) {
+                GlobalRouteStack.push(state.name.toString());
+                return const StepPage4();
+              },
+            ),
+          ],
+        )
       ],
     ),
     GoRoute(

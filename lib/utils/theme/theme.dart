@@ -3,6 +3,7 @@ import 'package:laborus_app/utils/theme/custom/appbar_theme.dart';
 import 'package:laborus_app/utils/theme/custom/color_scheme_theme.dart';
 import 'package:laborus_app/utils/theme/custom/elevated_button_theme.dart';
 import 'package:laborus_app/utils/theme/custom/outlined_button_theme.dart';
+import 'package:laborus_app/utils/theme/custom/text_field_theme.dart';
 import 'package:laborus_app/utils/theme/custom/text_theme.dart';
 
 class LAppTheme {
@@ -14,6 +15,7 @@ class LAppTheme {
     appBarTheme: LAppBarTheme.lightAppBarTheme,
     colorScheme: LColorSchemeTheme.lightColorScheme,
     textTheme: LTextTheme.textTheme,
+    inputDecorationTheme: LTextFieldTheme.lightTextFieldTheme,
     elevatedButtonTheme: LElevatedButtonTheme.lightElevatedButtonTheme,
     outlinedButtonTheme: LOutlinedTheme.lightOutlinedButtonTheme,
   );
@@ -24,6 +26,7 @@ class LAppTheme {
     appBarTheme: LAppBarTheme.darkAppBarTheme,
     colorScheme: LColorSchemeTheme.darkColorScheme,
     textTheme: LTextTheme.textTheme,
+    inputDecorationTheme: LTextFieldTheme.darkTextFieldTheme,
     elevatedButtonTheme: LElevatedButtonTheme.darkElevatedButtonTheme,
     outlinedButtonTheme: LOutlinedTheme.darkOutlinedButtonTheme,
   );

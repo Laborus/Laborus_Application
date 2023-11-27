@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:laborus_app/pages/timeline/components/time_line_tile_component.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +66,9 @@ class TimelinePage extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed('signinStep1');
+            },
             child: const SizedBox(
               width: double.infinity,
               child: Text(

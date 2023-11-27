@@ -46,6 +46,7 @@ dependencies:
   path: ^1.8.3
   flutter_launcher_icons: ^0.13.1
   timeline_tile: ^2.0.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

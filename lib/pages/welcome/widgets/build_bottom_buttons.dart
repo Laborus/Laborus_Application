@@ -19,7 +19,7 @@ Widget buildBottomButtons(double width, BuildContext context) {
     child: Column(
       children: [
         ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => {context.goNamed('signup')},
           style: ButtonStyle(
             backgroundColor:
                 Theme.of(context).elevatedButtonTheme.style?.foregroundColor,
