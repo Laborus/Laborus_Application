@@ -22,6 +22,7 @@ class SignStepsTemplate extends StatelessWidget {
     final String label = Provider.of<StepProvider>(context).textData;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         toolbarHeight: 200,
         leading: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
