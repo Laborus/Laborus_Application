@@ -13,7 +13,6 @@ class LocalDatabase {
   static Future<bool> getTheme() async {
     final box = await Hive.openBox(boxName);
     final isDarkMode = box.get('isDarkMode', defaultValue: false);
-    await box.close();
     return isDarkMode;
   }
 

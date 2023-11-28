@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:provider/provider.dart';
 
 class InputSearch extends StatelessWidget {
-  final double margin;
-  const InputSearch({super.key, required this.margin});
+  const InputSearch({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: margin),
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(220, 222, 231, 1),
-        borderRadius: BorderRadius.circular(15),
+        color: Provider.of<PalletTheme>(context).neutral500,
+        borderRadius: BorderRadius.circular(12),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 11),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                cursorColor: const Color.fromRGBO(161, 172, 179, 1),
-                decoration: const InputDecoration(
-                  hintText: 'Digite alguma coisa...',
-                  border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 11, vertical: 9),
-                ),
-              ),
-            ),
-            const Icon(
-              Icons.search,
-              color: Color.fromRGBO(161, 172, 179, 1),
-            ),
-            const SizedBox(width: 8)
-          ],
+      child: TextField(
+        cursorColor: Provider.of<PalletTheme>(context).neutral300,
+        style: TextStyle(
+          color: Provider.of<PalletTheme>(context).neutral300,
+        ),
+        decoration: InputDecoration(
+          suffixIcon: Icon(
+            Icons.search,
+            color: Provider.of<PalletTheme>(context).neutral300,
+          ),
+          hintText: 'Digite alguma coisa...',
+          hintStyle: TextStyle(
+            color: Provider.of<PalletTheme>(context).neutral300,
+          ),
+          disabledBorder: InputBorder.none,
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
         ),
       ),
     );

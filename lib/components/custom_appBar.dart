@@ -18,7 +18,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Provider.of<PalletTheme>(context).neutral0,
       toolbarHeight: preferredSize.height,
       leadingWidth: double.infinity,
-      forceMaterialTransparency: true,
+      forceMaterialTransparency: false,
+      elevation: 0,
       leading: Container(
         margin: const EdgeInsets.only(left: 22, right: 22),
         child: Row(

@@ -14,8 +14,8 @@ class StepPage1 extends StatelessWidget {
     });
     return ElevatedButton(
       onPressed: () {
-        Provider.of<StepProvider>(context, listen: false).addData();
         context.goNamed('signinStep2');
+        Provider.of<StepProvider>(context, listen: false).addData();
       },
       child: Text('2'),
     );

@@ -11,6 +11,7 @@ class SignTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         toolbarHeight: 80,
         leading: Row(children: [
           const SizedBox(width: 22),

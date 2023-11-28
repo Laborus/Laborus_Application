@@ -16,9 +16,7 @@ class ChatPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const InputSearch(
-            margin: 24,
-          ),
+          const InputSearch(),
           const SizedBox(height: 13),
           Text(
             'Grupos',
