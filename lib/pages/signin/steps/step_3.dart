@@ -17,7 +17,7 @@ class _StepPage3State extends State<StepPage3> {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<StepProvider>(context, listen: false)
-          .changeText('Localização e Instituição');
+          .changeText('Política de Privacidades');
     });
 
     return SingleChildScrollView(
@@ -29,9 +29,9 @@ class _StepPage3State extends State<StepPage3> {
             const SizedBox(height: 20),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               alignment: Alignment.center,
-              child: Text(
+              child:  Text(
                 '''
     Na LABORUS, privacidade e segurança são prioridades e nos comprometemos com a transparência do tratamento de dados pessoais dos nossos usuários/clientes. Por isso, esta presente Política de Privacidade estabelece como é feita a coleta, uso e transferência de informações de clientes ou outras pessoas que acessam ou usam nosso aplicativo.
     
@@ -58,6 +58,10 @@ class _StepPage3State extends State<StepPage3> {
     Solicitar a portabilidade de seus dados, através de um relatório de dados cadastrais que a Laborus trata a seu respeito.
     Eliminar seus dados tratados a partir de seu consentimento, exceto nos casos previstos em lei.Revogar seu consentimento, desautorizando o tratamento de seus dados.
     Informar-se sobre a possibilidade de não fornecer seu consentimento e sobre as consequências da negativa...
+    A Laborus disponibiliza os seguintes meios para que você possa entrar em contato conosco: 
+
+    E-mail: Laborus.Projeto@gmail.com
+    Instagram: @laborus_
     ''',
                 textAlign: TextAlign.justify,
               ),
@@ -81,12 +85,12 @@ class _StepPage3State extends State<StepPage3> {
                   ? () {
                       Provider.of<StepProvider>(context, listen: false)
                           .addData();
-                      context.goNamed('signinStep2');
+                      context.goNamed('sucess');
                     }
                   : null,
               child: Container(
                 alignment: Alignment.center,
-                child: Text('Próximo'),
+                child: const Text('Próximo'),
               ),
             ),
           ],

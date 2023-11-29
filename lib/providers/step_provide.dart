@@ -13,8 +13,10 @@ class StepProvider with ChangeNotifier {
   }
 
   void addData() {
-    _stepData++;
-    notifyListeners();
+    if (_stepData < 4) {
+      _stepData++;
+      notifyListeners();
+    }
   }
 
   void removeData() {

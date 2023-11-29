@@ -70,7 +70,9 @@ class SignStepsTemplate extends StatelessWidget {
                   radius: 40,
                   lineWidth: 5,
                   animation: true,
-                  percent: step / maxSteps,
+                  percent: (step.toDouble() / maxSteps.toDouble() > 1)
+                      ? 1
+                      : step.toDouble() / maxSteps.toDouble(),
                   circularStrokeCap: CircularStrokeCap.round,
                   backgroundColor: Provider.of<PalletTheme>(context).neutral300,
                   progressColor: Theme.of(context).colorScheme.tertiary,

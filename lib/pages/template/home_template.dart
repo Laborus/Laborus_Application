@@ -11,6 +11,7 @@ class HomeTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      primary: true,
       appBar: CustomAppBar(
         context: context,
       ),

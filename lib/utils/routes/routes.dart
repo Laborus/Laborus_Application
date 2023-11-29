@@ -8,6 +8,7 @@ import 'package:laborus_app/pages/notification/notification_view.dart';
 import 'package:laborus_app/pages/onB/onb_page.dart';
 import 'package:laborus_app/pages/profile/profile.dart';
 import 'package:laborus_app/pages/settings/settings_page.dart';
+import 'package:laborus_app/pages/signin/signin.dart';
 import 'package:laborus_app/pages/signin/steps/step_1.dart';
 import 'package:laborus_app/pages/signin/steps/step_2.dart';
 import 'package:laborus_app/pages/signin/steps/step_3.dart';
@@ -149,7 +150,7 @@ final _router = GoRouter(
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) => SignStepsTemplate(
         navigationShell: navigationShell,
-        maxSteps: 4,
+        maxSteps: 3,
       ),
       branches: [
         StatefulShellBranch(
@@ -179,17 +180,17 @@ final _router = GoRouter(
                 return const StepPage3();
               },
             ),
-            GoRoute(
-              path: '/signin/step4',
-              name: 'signinStep4',
-              builder: (context, state) {
-                GlobalRouteStack.push(state.name.toString());
-                return const StepPage4();
-              },
-            ),
           ],
         )
       ],
+    ),
+    GoRoute(
+      path: '/signin/sucess',
+      name: 'sucess',
+      builder: (context, state) {
+        GlobalRouteStack.push('welcome');
+        return const SiginSucess();
+      },
     ),
     GoRoute(
       path: '/home/profile',
