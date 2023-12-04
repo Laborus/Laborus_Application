@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/utils/theme/custom/appbar_theme.dart';
+import 'package:laborus_app/utils/theme/custom/bottom_sheet_theme.dart';
 import 'package:laborus_app/utils/theme/custom/color_scheme_theme.dart';
 import 'package:laborus_app/utils/theme/custom/divider_theme.dart';
 import 'package:laborus_app/utils/theme/custom/elevated_button_theme.dart';
@@ -20,6 +21,7 @@ class LAppTheme {
     elevatedButtonTheme: LElevatedButtonTheme.lightElevatedButtonTheme,
     outlinedButtonTheme: LOutlinedTheme.lightOutlinedButtonTheme,
     dividerTheme: LDividerTheme.lightDivider,
+    bottomSheetTheme: LBottomSheetTheme.lightBottomSheetTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -32,5 +34,6 @@ class LAppTheme {
     elevatedButtonTheme: LElevatedButtonTheme.darkElevatedButtonTheme,
     outlinedButtonTheme: LOutlinedTheme.darkOutlinedButtonTheme,
     dividerTheme: LDividerTheme.darkDivider,
+    bottomSheetTheme: LBottomSheetTheme.darkBottomSheetTheme,
   );
 }

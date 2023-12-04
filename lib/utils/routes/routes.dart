@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/pages/CYA/choose_your_account_page.dart';
 import 'package:laborus_app/pages/chat/chat_page.dart';
+import 'package:laborus_app/pages/createPost/create_post_page.dart';
 import 'package:laborus_app/pages/feed/feed_page.dart';
 import 'package:laborus_app/pages/loading/load.dart';
 import 'package:laborus_app/pages/notification/notification_view.dart';
@@ -12,7 +13,6 @@ import 'package:laborus_app/pages/signin/signin.dart';
 import 'package:laborus_app/pages/signin/steps/step_1.dart';
 import 'package:laborus_app/pages/signin/steps/step_2.dart';
 import 'package:laborus_app/pages/signin/steps/step_3.dart';
-import 'package:laborus_app/pages/signin/steps/step_4.dart';
 import 'package:laborus_app/pages/signup/signup.dart';
 import 'package:laborus_app/pages/template/home_template.dart';
 import 'package:laborus_app/pages/template/sign_steps_template.dart';
@@ -169,7 +169,7 @@ final _router = GoRouter(
               name: 'signinStep2',
               builder: (context, state) {
                 GlobalRouteStack.push(state.name.toString());
-                return const StepPage2();
+                return StepPage2();
               },
             ),
             GoRoute(
@@ -190,6 +190,14 @@ final _router = GoRouter(
       builder: (context, state) {
         GlobalRouteStack.push('welcome');
         return const SiginSucess();
+      },
+    ),
+    GoRoute(
+      path: '/create',
+      name: 'create',
+      builder: (context, state) {
+        GlobalRouteStack.push('create');
+        return CreatePostPage();
       },
     ),
     GoRoute(

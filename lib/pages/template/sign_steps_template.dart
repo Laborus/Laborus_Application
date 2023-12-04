@@ -23,6 +23,7 @@ class SignStepsTemplate extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        forceMaterialTransparency: true,
         toolbarHeight: 200,
         leading: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

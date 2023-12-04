@@ -20,7 +20,9 @@ class HomeTemplate extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
-        onPressed: () {},
+        onPressed: () {
+          context.goNamed('create');
+        },
         child: const Icon(Icons.add, color: Colors.white),
       ),
       bottomNavigationBar: const CustomBottomAppBar(),
