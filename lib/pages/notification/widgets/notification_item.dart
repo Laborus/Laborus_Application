@@ -12,10 +12,11 @@ class FriendRequestButton extends StatelessWidget {
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(8)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 13),
-        child: Text(
-          label,
-          style: const TextTheme().bodyMedium,
-        ),
+        child: Text(label,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+            )),
       ),
     );
   }
@@ -115,10 +116,10 @@ Text textRich(BuildContext context, String name, [String? text]) {
   return Text.rich(
     TextSpan(
       children: [
-        TextSpan(text: '$name ', style: const TextTheme().titleSmall),
+        TextSpan(text: '$name ', style: Theme.of(context).textTheme.titleSmall),
         TextSpan(
           text: text ?? 'enviou um pedido de conexão',
-          style: const TextTheme().titleSmall,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
       ],
     ),

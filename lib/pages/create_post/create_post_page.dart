@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/utils/routes/global_routes.dart';
@@ -41,7 +39,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                         horizontal: 22,
                         vertical: 7,
                       ),
-                      leading: const Icon(Icons.school),
+                      leading: const Icon(Icons.public),
                       title: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -111,8 +109,10 @@ class _CreatePostPageState extends State<CreatePostPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool choose = selectedOption == options[0];
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Row(
@@ -153,60 +153,37 @@ class _CreatePostPageState extends State<CreatePostPage> {
         ),
         leadingWidth: double.infinity,
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 17,
-                horizontal: 35,
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/img/profile.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                    width: 50,
-                    height: 50,
-                  ),
-                  const SizedBox(width: 18),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Antonía Martinez'),
-                      GestureDetector(
-                        onTap: _showOptionsBottomSheet,
-                        child: Chip(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(99),
-                          ),
-                          label: Text(
-                            selectedOption,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                          avatar: Icon(
-                            Icons.circle,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+      body: Column(
+        children: [
+          personInfos(context, choose),
+          Expanded(
+            child: TextFormField(
+              textInputAction: TextInputAction.newline,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              minLines: null,
+              expands: true,
+              textAlignVertical: TextAlignVertical.top,
+              decoration: InputDecoration(
+                hintText: 'Escreva alguma coisa...',
+                hintStyle: TextStyle(
+                  fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                  color: Provider.of<PalletTheme>(context).neutral800,
+                ),
+                filled: true,
+                fillColor: Colors.transparent,
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 35,
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: Container(
         color: Provider.of<PalletTheme>(context).neutral0,
@@ -228,6 +205,62 @@ class _CreatePostPageState extends State<CreatePostPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container personInfos(BuildContext context, bool choose) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 17,
+        horizontal: 35,
+      ),
+      child: Row(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/img/profile.jpg'),
+                fit: BoxFit.cover,
+              ),
+              shape: BoxShape.circle,
+            ),
+            width: 50,
+            height: 50,
+          ),
+          const SizedBox(width: 18),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Antonía Martinez'),
+              GestureDetector(
+                onTap: _showOptionsBottomSheet,
+                child: Chip(
+                  backgroundColor: Colors.transparent,
+                  side: BorderSide(
+                    width: 1,
+                    color: Provider.of<PalletTheme>(context).neutral800,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                  label: Text(
+                    selectedOption,
+                    style: TextStyle(
+                      color: Provider.of<PalletTheme>(context).neutral800,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  avatar: Icon(
+                    choose ? Icons.public : Icons.school,
+                    color: Provider.of<PalletTheme>(context).neutral800,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

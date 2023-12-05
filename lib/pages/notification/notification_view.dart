@@ -31,7 +31,7 @@ class _NotificationPageState extends State<NotificationPage> {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
             'Notificações',
-            style: const TextTheme().headlineSmall,
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
           InkWell(
             child: Container(
@@ -45,6 +45,7 @@ class _NotificationPageState extends State<NotificationPage> {
                   'Marcar como lido',
                   style: TextStyle(
                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -98,7 +99,7 @@ Widget button(ctx, bool active) {
           padding: const EdgeInsets.only(bottom: 11, left: 5),
           child: Text(
             'Todas',
-            style: const TextTheme().titleSmall,
+            style: Theme.of(ctx).textTheme.titleSmall,
           ),
         ),
       ),

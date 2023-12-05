@@ -41,7 +41,6 @@ class StepPage2 extends StatelessWidget {
   // Lista de Fatecs em Carapicuíba
   final List<String> fatecsCarapicuiba = [
     'Fatec Carapicuíba',
-    // Adicione outras Fatecs se necessário
   ];
 
   @override
@@ -59,10 +58,9 @@ class StepPage2 extends StatelessWidget {
           children: [
             Column(
               children: [
-                // Dropdown para estados brasileiros
                 DropdownButtonFormField<String>(
                   hint: Text('Selecione o estado'),
-                  value: null, // Você pode definir um estado padrão se desejar
+                  value: null,
                   items: estadosBrasileiros.map((estado) {
                     return DropdownMenuItem<String>(
                       value: estado,
@@ -74,10 +72,9 @@ class StepPage2 extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 12),
-                // Dropdown para Fatecs em Carapicuíba
                 DropdownButtonFormField<String>(
                   hint: Text('Selecione a Fatec'),
-                  value: null, // Você pode definir uma Fatec padrão se desejar
+                  value: null,
                   items: fatecsCarapicuiba.map((fatec) {
                     return DropdownMenuItem<String>(
                       value: fatec,

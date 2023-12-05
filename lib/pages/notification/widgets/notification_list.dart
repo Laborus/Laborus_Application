@@ -11,12 +11,6 @@ class NotificationList extends StatefulWidget {
 
 class _NotificationListState extends State<NotificationList> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ListView.separated(
         shrinkWrap: true,

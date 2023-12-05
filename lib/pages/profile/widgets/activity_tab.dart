@@ -31,9 +31,7 @@ class ActivityTab extends StatelessWidget {
               ),
               SizedBox(height: 21),
               Column(
-                children: [
-                  PostWidget(),
-                ],
+                children: [],
               )
             ],
           ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/model/post.dart';
 import 'package:laborus_app/pages/CYA/choose_your_account_page.dart';
 import 'package:laborus_app/pages/chat/chat_page.dart';
-import 'package:laborus_app/pages/createPost/create_post_page.dart';
+import 'package:laborus_app/pages/create_post/create_post_page.dart';
 import 'package:laborus_app/pages/feed/feed_page.dart';
 import 'package:laborus_app/pages/loading/load.dart';
 import 'package:laborus_app/pages/notification/notification_view.dart';
 import 'package:laborus_app/pages/onB/onb_page.dart';
+import 'package:laborus_app/pages/post_full_size/post_full_size_page.dart';
 import 'package:laborus_app/pages/profile/profile.dart';
 import 'package:laborus_app/pages/settings/settings_page.dart';
 import 'package:laborus_app/pages/signin/signin.dart';
@@ -206,6 +208,16 @@ final _router = GoRouter(
       builder: (context, state) {
         GlobalRouteStack.push(state.name.toString());
         return const ProfilePage();
+      },
+    ),
+    GoRoute(
+      path: '/feed/post',
+      name: 'post',
+      builder: (context, state) {
+        GlobalRouteStack.push(state.name.toString());
+        return PostFullSizePage(
+          post: state.extra as Post,
+        );
       },
     ),
     GoRoute(
