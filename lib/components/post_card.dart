@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/model/post.dart';
-import 'package:laborus_app/pages/post_full_size/post_full_size_page.dart';
 import 'package:laborus_app/utils/packages/readmore.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
 import 'package:laborus_app/widgets/button_comment.dart';
@@ -148,7 +147,7 @@ class PostWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ButtonLike(post: post),
-        buttonComment(context),
+        buttonComment(context, post),
       ],
     );
   }

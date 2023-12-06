@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/model/post.dart';
-import 'package:laborus_app/utils/packages/readmore.dart';
 import 'package:laborus_app/utils/routes/global_routes.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
 import 'package:laborus_app/widgets/button_comment.dart';
@@ -29,6 +28,7 @@ class PostFullSizePage extends StatelessWidget {
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
+          color: Colors.transparent,
           child: SizedBox(
             width: double.infinity,
             child: Padding(
@@ -125,21 +125,9 @@ class PostFullSizePage extends StatelessWidget {
   }
 
   Widget _buildPostContent(BuildContext context) {
-    return ReadMoreText(
+    return Text(
       post.text,
-      trimLines: 3,
-      callback: (val) {
-        context.goNamed('chat');
-      },
       textAlign: TextAlign.left,
-      colorClickableText: Theme.of(context).colorScheme.tertiary,
-      trimMode: TrimMode.Line,
-      trimCollapsedText: 'Ler Mais',
-      moreStyle: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.bold,
-        color: Theme.of(context).colorScheme.tertiary,
-      ),
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
@@ -163,7 +151,7 @@ class PostFullSizePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ButtonLike(post: post),
-          buttonComment(context),
+          ButtonComment(post: post),
         ],
       ),
     );
