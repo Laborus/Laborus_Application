@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/scSettings/settings/components/option.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {

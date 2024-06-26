@@ -1,6 +1,6 @@
-import 'package:laborus_app/model/laborus/comments.dart';
-import 'package:laborus_app/model/laborus/post.dart';
-import 'package:laborus_app/model/social/user.dart';
+import 'package:laborus_app/core/model/laborus/comments.dart';
+import 'package:laborus_app/core/model/laborus/post.dart';
+import 'package:laborus_app/core/model/social/user.dart';
 
 List<Post> posts = [
   Post(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/utils/constants/colors.dart';
+import 'package:laborus_app/core/utils/constants/colors.dart';
 
 Widget buildBottomButtons(double width, BuildContext context) {
   return Container(

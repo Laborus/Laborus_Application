@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/data/local_database.dart';
+import 'package:laborus_app/core/data/local_database.dart';
 import 'package:laborus_app/pages/scIntroduction/onB/widgets/build_continue_button.dart';
 import 'package:laborus_app/pages/scIntroduction/onB/widgets/build_indicator.dart';
 import 'package:laborus_app/pages/scIntroduction/onB/widgets/build_slide.dart';

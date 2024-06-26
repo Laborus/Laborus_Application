@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/utils/routes/global_routes.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/core/utils/routes/global_routes.dart';
+import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
 
 class SignTemplate extends StatelessWidget {
   final StatefulNavigationShell navigationShell;

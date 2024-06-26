@@ -1,4 +1,4 @@
-import 'package:laborus_app/model/notification/notification.dart';
+import 'package:laborus_app/core/model/notification/notification.dart';
 
 List<Notification> notification = const [
   Notification(

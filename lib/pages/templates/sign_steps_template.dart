@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/providers/step_provide.dart';
-import 'package:laborus_app/utils/routes/global_routes.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/core/providers/step_provide.dart';
+import 'package:laborus_app/core/utils/routes/global_routes.dart';
+import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 

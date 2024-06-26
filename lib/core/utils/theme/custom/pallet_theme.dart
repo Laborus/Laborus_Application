@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/data/local_database.dart';
-import 'package:laborus_app/utils/constants/colors.dart';
+import 'package:laborus_app/core/data/local_database.dart';
+import 'package:laborus_app/core/utils/constants/colors.dart';
 
 class PalletTheme with ChangeNotifier {
   PalletTheme();

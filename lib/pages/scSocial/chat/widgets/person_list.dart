@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/scSocial/chat/data/DUMMY_DATA.dart';
-import 'package:laborus_app/model/social/people.dart';
+import 'package:laborus_app/core/model/social/people.dart';
 import 'package:laborus_app/pages/scSocial/chat/widgets/person_item.dart';
 
 class PersonList extends StatelessWidget {

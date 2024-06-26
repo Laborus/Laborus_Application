@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/model/laborus/post.dart';
-import 'package:laborus_app/utils/packages/readmore.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/core/model/laborus/post.dart';
+import 'package:laborus_app/core/utils/packages/readmore.dart';
+import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
 import 'package:laborus_app/widgets/button_comment.dart';
 import 'package:laborus_app/widgets/button_like.dart';
 import 'package:provider/provider.dart';

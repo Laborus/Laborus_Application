@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/model/laborus/post.dart';
+import 'package:laborus_app/core/model/laborus/post.dart';
 import 'package:laborus_app/pages/scAuth/CYA/choose_your_account_page.dart';
 import 'package:laborus_app/pages/scSocial/chat/chat_page.dart';
 import 'package:laborus_app/pages/scLaborus/create_post/create_post_page.dart';
@@ -20,7 +20,7 @@ import 'package:laborus_app/pages/templates/sign_steps_template.dart';
 import 'package:laborus_app/pages/templates/sign_template.dart';
 import 'package:laborus_app/pages/scAuth/timeline/timeline_page.dart';
 import 'package:laborus_app/pages/scIntroduction/welcome/welcome_page.dart';
-import 'package:laborus_app/utils/routes/global_routes.dart';
+import 'package:laborus_app/core/utils/routes/global_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _feedNavigatorKey = GlobalKey<NavigatorState>();

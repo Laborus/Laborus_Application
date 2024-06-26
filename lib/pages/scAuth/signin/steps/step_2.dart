@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/providers/step_provide.dart';
+import 'package:laborus_app/core/providers/step_provide.dart';
 import 'package:provider/provider.dart';
 
 class StepPage2 extends StatelessWidget {

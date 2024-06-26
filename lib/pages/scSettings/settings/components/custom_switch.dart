@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/data/local_database.dart';
-import 'package:laborus_app/providers/theme_provider.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/core/data/local_database.dart';
+import 'package:laborus_app/core/providers/theme_provider.dart';
+import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
 import 'package:provider/provider.dart';
 
 class CustomSwitch extends StatefulWidget {

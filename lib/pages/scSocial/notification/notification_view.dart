@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/pages/scSocial/notification/widgets/notification_list.dart';
-import 'package:laborus_app/utils/routes/global_routes.dart';
+import 'package:laborus_app/core/utils/routes/global_routes.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});

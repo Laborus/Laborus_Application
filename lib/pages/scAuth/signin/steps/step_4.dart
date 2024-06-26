@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/providers/step_provide.dart';
+import 'package:laborus_app/core/providers/step_provide.dart';
 import 'package:provider/provider.dart';
 
 class StepPage4 extends StatelessWidget {

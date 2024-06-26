@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/theme/custom/appbar_theme.dart';
-import 'package:laborus_app/utils/theme/custom/bottom_sheet_theme.dart';
-import 'package:laborus_app/utils/theme/custom/color_scheme_theme.dart';
-import 'package:laborus_app/utils/theme/custom/divider_theme.dart';
-import 'package:laborus_app/utils/theme/custom/elevated_button_theme.dart';
-import 'package:laborus_app/utils/theme/custom/outlined_button_theme.dart';
-import 'package:laborus_app/utils/theme/custom/text_field_theme.dart';
-import 'package:laborus_app/utils/theme/custom/text_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/appbar_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/bottom_sheet_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/color_scheme_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/divider_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/elevated_button_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/outlined_button_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/text_field_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/text_theme.dart';
 
 class LAppTheme {
   LAppTheme._();

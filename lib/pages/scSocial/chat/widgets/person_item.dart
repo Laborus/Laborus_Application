@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:laborus_app/model/social/people.dart';
+import 'package:laborus_app/core/model/social/people.dart';
 
 class PersonItem extends StatelessWidget {
   const PersonItem({

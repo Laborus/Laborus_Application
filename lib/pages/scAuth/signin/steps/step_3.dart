@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/providers/step_provide.dart';
+import 'package:laborus_app/core/providers/step_provide.dart';
 import 'package:provider/provider.dart';
 
 class StepPage3 extends StatefulWidget {
@@ -31,7 +31,7 @@ class _StepPage3State extends State<StepPage3> {
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               alignment: Alignment.center,
-              child:  const Text(
+              child: const Text(
                 '''
     Na LABORUS, privacidade e segurança são prioridades e nos comprometemos com a transparência do tratamento de dados pessoais dos nossos usuários/clientes. Por isso, esta presente Política de Privacidade estabelece como é feita a coleta, uso e transferência de informações de clientes ou outras pessoas que acessam ou usam nosso aplicativo.
     

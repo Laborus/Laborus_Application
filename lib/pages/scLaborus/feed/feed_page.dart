@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/components/cards/post_card.dart';
-import 'package:laborus_app/data/data_post.dart';
+import 'package:laborus_app/core/data/data_post.dart';
 import 'package:laborus_app/pages/scLaborus/feed/components/custom_icon_button.dart';
-import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
 import 'package:provider/provider.dart';
 
 class FeedPage extends StatelessWidget {

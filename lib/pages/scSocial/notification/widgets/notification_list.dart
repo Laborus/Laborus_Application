@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/pages/scSocial/notification/data/data.dart';
-import 'package:laborus_app/model/notification/notification.dart';
+import 'package:laborus_app/core/model/notification/notification.dart';
 import 'package:laborus_app/pages/scSocial/notification/widgets/notification_item.dart';
 
 class NotificationList extends StatefulWidget {

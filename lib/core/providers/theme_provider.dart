@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/data/local_database.dart';
-import 'package:laborus_app/utils/theme/theme.dart';
+import 'package:laborus_app/core/data/local_database.dart';
+import 'package:laborus_app/core/utils/theme/theme.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _themeData = LAppTheme.lightTheme;

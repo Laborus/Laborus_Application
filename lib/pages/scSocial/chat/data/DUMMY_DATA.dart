@@ -1,5 +1,5 @@
-import 'package:laborus_app/model/social/group.dart';
-import 'package:laborus_app/model/social/people.dart';
+import 'package:laborus_app/core/model/social/group.dart';
+import 'package:laborus_app/core/model/social/people.dart';
 
 List<People> peoples = [
   People(

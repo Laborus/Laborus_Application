@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/utils/constants/colors.dart';
+import 'package:laborus_app/core/utils/constants/colors.dart';
 
 class LDividerTheme {
   LDividerTheme._();
