@@ -7,31 +7,31 @@ class LElevatedButtonTheme {
   static ElevatedButtonThemeData lightElevatedButtonTheme =
       ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return AppColors.neutralsLight[700] as Color;
           }
           return AppColors.darknessPurple;
         },
       ),
-      foregroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
           return AppColors.neutralsDark[800] as Color;
         },
       ),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(
           fontSize: 16,
           fontFamily: 'Inter',
           fontWeight: FontWeight.bold,
         ),
       ),
-      elevation: MaterialStateProperty.all<double>(1),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+      elevation: WidgetStateProperty.all<double>(1),
+      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         const EdgeInsets.symmetric(vertical: 22),
       ),
-      shape: MaterialStateProperty.all<OutlinedBorder>(
+      shape: WidgetStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -41,31 +41,31 @@ class LElevatedButtonTheme {
   static ElevatedButtonThemeData darkElevatedButtonTheme =
       ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return AppColors.neutralsDark[300] as Color;
           }
           return AppColors.darknessPurple;
         },
       ),
-      foregroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
           return AppColors.neutralsDark[800] as Color;
         },
       ),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(
           fontSize: 16,
           fontFamily: 'Inter',
           fontWeight: FontWeight.bold,
         ),
       ),
-      elevation: MaterialStateProperty.all<double>(8),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+      elevation: WidgetStateProperty.all<double>(8),
+      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         const EdgeInsets.symmetric(vertical: 22),
       ),
-      shape: MaterialStateProperty.all<OutlinedBorder>(
+      shape: WidgetStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),

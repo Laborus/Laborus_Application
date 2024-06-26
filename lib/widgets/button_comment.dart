@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/model/comments.dart';
-import 'package:laborus_app/model/post.dart';
+import 'package:laborus_app/model/laborus/comments.dart';
+import 'package:laborus_app/model/laborus/post.dart';
 import 'package:laborus_app/utils/theme/custom/pallet_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
@@ -11,7 +11,7 @@ class ButtonComment extends StatelessWidget {
   const ButtonComment({super.key, required this.post});
   @override
   Widget build(BuildContext context) {
-    void _showOptionsBottomSheet() {
+    void showOptionsBottomSheet() {
       showModalBottomSheet(
         showDragHandle: true,
         isScrollControlled: true,
@@ -30,8 +30,8 @@ class ButtonComment extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 22, vertical: 15),
                       color: Provider.of<PalletTheme>(context).neutral200,
                       child: Row(
                         children: [
@@ -46,7 +46,7 @@ class ButtonComment extends StatelessWidget {
                             width: 30,
                             height: 30,
                           ),
-                          SizedBox(width: 15),
+                          const SizedBox(width: 15),
                           Expanded(
                               child: Container(
                             decoration: BoxDecoration(
@@ -54,7 +54,7 @@ class ButtonComment extends StatelessWidget {
                                   Provider.of<PalletTheme>(context).neutral300,
                               borderRadius: BorderRadius.circular(999),
                             ),
-                            child: TextField(
+                            child: const TextField(
                               style: TextStyle(),
                               decoration: InputDecoration(
                                 contentPadding:
@@ -70,12 +70,12 @@ class ButtonComment extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ListView.separated(
                       shrinkWrap: true,
                       itemCount: post.comments.length,
                       separatorBuilder: (context, index) =>
-                          SizedBox(height: 13),
+                          const SizedBox(height: 13),
                       itemBuilder: (BuildContext context, int index) {
                         Comment comment = post.comments[index];
                         return ListTile(
@@ -143,7 +143,7 @@ class ButtonComment extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 13),
-                              Row(
+                              const Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Icon(
@@ -174,7 +174,7 @@ class ButtonComment extends StatelessWidget {
     return Tooltip(
       message: 'comentar',
       child: TextButton.icon(
-        onPressed: _showOptionsBottomSheet,
+        onPressed: showOptionsBottomSheet,
         icon: Icon(
           Icons.messenger_outline_rounded,
           color: Provider.of<PalletTheme>(context).neutral700,

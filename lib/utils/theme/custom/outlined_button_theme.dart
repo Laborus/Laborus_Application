@@ -7,41 +7,41 @@ class LOutlinedTheme {
   static OutlinedButtonThemeData lightOutlinedButtonTheme =
       OutlinedButtonThemeData(
     style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return AppColors.neutralsLight[0] as Color;
           }
           return AppColors.neutralsLight[0] as Color;
         },
       ),
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return Colors.transparent;
           }
           return Colors.transparent;
         },
       ),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(
           fontSize: 16,
           fontFamily: 'Inter',
           fontWeight: FontWeight.bold,
         ),
       ),
-      side: MaterialStateProperty.resolveWith<BorderSide>(
-        (Set<MaterialState> states) {
+      side: WidgetStateProperty.resolveWith<BorderSide>(
+        (Set<WidgetState> states) {
           return BorderSide(
             color: AppColors.neutralsLight[0] as Color,
             width: 1.0,
           );
         },
       ),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         const EdgeInsets.symmetric(vertical: 22),
       ),
-      shape: MaterialStateProperty.all<OutlinedBorder>(
+      shape: WidgetStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -52,41 +52,41 @@ class LOutlinedTheme {
   static OutlinedButtonThemeData darkOutlinedButtonTheme =
       OutlinedButtonThemeData(
     style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return AppColors.neutralsDark[800] as Color;
           }
           return AppColors.neutralsDark[800] as Color;
         },
       ),
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
             return Colors.transparent;
           }
           return Colors.transparent;
         },
       ),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(
           fontSize: 16,
           fontFamily: 'Inter',
           fontWeight: FontWeight.bold,
         ),
       ),
-      side: MaterialStateProperty.resolveWith<BorderSide>(
-        (Set<MaterialState> states) {
+      side: WidgetStateProperty.resolveWith<BorderSide>(
+        (Set<WidgetState> states) {
           return BorderSide(
             color: AppColors.neutralsDark[800] as Color,
             width: 1.0,
           );
         },
       ),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         const EdgeInsets.symmetric(vertical: 22),
       ),
-      shape: MaterialStateProperty.all<OutlinedBorder>(
+      shape: WidgetStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),

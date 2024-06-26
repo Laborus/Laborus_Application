@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 class LChipTheme {
   LChipTheme._();
 
-  static ChipThemeData lightChipTheme = ChipThemeData();
-  static ChipThemeData darkChipTheme = ChipThemeData();
+  static ChipThemeData lightChipTheme = const ChipThemeData();
+  static ChipThemeData darkChipTheme = const ChipThemeData();
 }

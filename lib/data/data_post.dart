@@ -1,11 +1,12 @@
-import 'package:laborus_app/model/comments.dart';
-import 'package:laborus_app/model/post.dart';
-import 'package:laborus_app/model/user.dart';
+import 'package:laborus_app/model/laborus/comments.dart';
+import 'package:laborus_app/model/laborus/post.dart';
+import 'package:laborus_app/model/social/user.dart';
 
 List<Post> posts = [
   Post(
     id: "1",
-    user: User(id: "user1", name: "Gustavo", institution: "Fatec Carapicuiba"),
+    user: const User(
+        id: "user1", name: "Gustavo", institution: "Fatec Carapicuiba"),
     text: "Este é um post de exemplo.",
     media: "assets/img/landscape.png",
     code: "console.log('Hello, world!');",
@@ -22,7 +23,8 @@ List<Post> posts = [
   ),
   Post(
     id: "2",
-    user: User(id: "user2", name: "Murilo", institution: "Fatec Carapicuiba"),
+    user: const User(
+        id: "user2", name: "Murilo", institution: "Fatec Carapicuiba"),
     text: "Outro post interessante.",
     media: "assets/img/landscape.png",
     code: "",

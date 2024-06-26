@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LBottomNavigatorTheme {
   LBottomNavigatorTheme._();
 
-  static BottomAppBarTheme lightBottomAppBarTheme = BottomAppBarTheme(
+  static BottomAppBarTheme lightBottomAppBarTheme = const BottomAppBarTheme(
     color: Colors.blue,
     elevation: 4.0,
     shape: CircularNotchedRectangle(),
@@ -12,6 +12,6 @@ class LBottomNavigatorTheme {
   static BottomAppBarTheme darkBottomAppBarTheme = BottomAppBarTheme(
     color: Colors.grey[800],
     elevation: 4.0,
-    shape: CircularNotchedRectangle(),
+    shape: const CircularNotchedRectangle(),
   );
 }

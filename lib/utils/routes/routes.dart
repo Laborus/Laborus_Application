@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/model/post.dart';
-import 'package:laborus_app/pages/CYA/choose_your_account_page.dart';
-import 'package:laborus_app/pages/chat/chat_page.dart';
-import 'package:laborus_app/pages/create_post/create_post_page.dart';
-import 'package:laborus_app/pages/feed/feed_page.dart';
-import 'package:laborus_app/pages/loading/load.dart';
-import 'package:laborus_app/pages/notification/notification_view.dart';
-import 'package:laborus_app/pages/onB/onb_page.dart';
-import 'package:laborus_app/pages/post_full_size/post_full_size_page.dart';
-import 'package:laborus_app/pages/profile/profile.dart';
-import 'package:laborus_app/pages/settings/settings_page.dart';
-import 'package:laborus_app/pages/signin/signin.dart';
-import 'package:laborus_app/pages/signin/steps/step_1.dart';
-import 'package:laborus_app/pages/signin/steps/step_2.dart';
-import 'package:laborus_app/pages/signin/steps/step_3.dart';
-import 'package:laborus_app/pages/signup/signup.dart';
-import 'package:laborus_app/pages/template/home_template.dart';
-import 'package:laborus_app/pages/template/sign_steps_template.dart';
-import 'package:laborus_app/pages/template/sign_template.dart';
-import 'package:laborus_app/pages/timeline/timeline_page.dart';
-import 'package:laborus_app/pages/welcome/welcome_page.dart';
+import 'package:laborus_app/model/laborus/post.dart';
+import 'package:laborus_app/pages/scAuth/CYA/choose_your_account_page.dart';
+import 'package:laborus_app/pages/scSocial/chat/chat_page.dart';
+import 'package:laborus_app/pages/scLaborus/create_post/create_post_page.dart';
+import 'package:laborus_app/pages/scLaborus/feed/feed_page.dart';
+import 'package:laborus_app/pages/scSocial/notification/notification_view.dart';
+import 'package:laborus_app/pages/scIntroduction/onB/onb_page.dart';
+import 'package:laborus_app/pages/scLaborus/post_full_size/post_full_size_page.dart';
+import 'package:laborus_app/pages/scSocial/profile/profile.dart';
+import 'package:laborus_app/pages/scSettings/settings/settings_page.dart';
+import 'package:laborus_app/pages/scAuth/signin/signin.dart';
+import 'package:laborus_app/pages/scAuth/signin/steps/step_1.dart';
+import 'package:laborus_app/pages/scAuth/signin/steps/step_2.dart';
+import 'package:laborus_app/pages/scAuth/signin/steps/step_3.dart';
+import 'package:laborus_app/pages/scAuth/signup/signup.dart';
+import 'package:laborus_app/pages/templates/home_template.dart';
+import 'package:laborus_app/pages/templates/sign_steps_template.dart';
+import 'package:laborus_app/pages/templates/sign_template.dart';
+import 'package:laborus_app/pages/scAuth/timeline/timeline_page.dart';
+import 'package:laborus_app/pages/scIntroduction/welcome/welcome_page.dart';
 import 'package:laborus_app/utils/routes/global_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -37,15 +36,8 @@ final _router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
-      name: 'start',
-      path: '/',
-      builder: (context, state) {
-        return const LoadPage();
-      },
-    ),
-    GoRoute(
       name: 'onboarding',
-      path: '/onboarding',
+      path: '/',
       builder: (context, state) {
         return const OnBoardingPage();
       },
@@ -199,7 +191,7 @@ final _router = GoRouter(
       name: 'create',
       builder: (context, state) {
         GlobalRouteStack.push('create');
-        return CreatePostPage();
+        return const CreatePostPage();
       },
     ),
     GoRoute(
