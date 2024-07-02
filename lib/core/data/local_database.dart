@@ -1,30 +1,30 @@
-import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalDatabase {
-  static const String boxName = 'themeBox';
+  static const String _isDarkModeKey = 'isDarkMode';
   static const String _onboardingKey = 'onboardingShown';
 
+  static Future<void> init() async {
+    await SharedPreferences.getInstance();
+  }
+
   static Future<void> saveTheme(bool isDarkMode) async {
-    final box = await Hive.openBox(boxName);
-    await box.put('isDarkMode', isDarkMode);
-    await box.close();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_isDarkModeKey, isDarkMode);
   }
 
   static Future<bool> getTheme() async {
-    final box = await Hive.openBox(boxName);
-    final isDarkMode = box.get('isDarkMode', defaultValue: false);
-    return isDarkMode;
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_isDarkModeKey) ?? false;
   }
 
   static Future<void> setOnboardingShown() async {
-    final box = await Hive.openBox('app_data');
-    await box.put(_onboardingKey, true);
-    await box.close();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_onboardingKey, true);
   }
 
   static Future<bool> isOnboardingShown() async {
-    final box = await Hive.openBox('app_data');
-    final result = box.get(_onboardingKey, defaultValue: false);
-    return result;
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_onboardingKey) ?? false;
   }
 }

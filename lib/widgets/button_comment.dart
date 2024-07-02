@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/model/laborus/comments.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
-import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
-import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
 class ButtonComment extends StatelessWidget {
@@ -24,7 +22,7 @@ class ButtonComment extends StatelessWidget {
           return Column(
             children: [
               Container(
-                color: Provider.of<PalletTheme>(context).neutral0,
+                color: Theme.of(context).colorScheme.primary,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +30,7 @@ class ButtonComment extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 22, vertical: 15),
-                      color: Provider.of<PalletTheme>(context).neutral200,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       child: Row(
                         children: [
                           Container(
@@ -50,8 +48,7 @@ class ButtonComment extends StatelessWidget {
                           Expanded(
                               child: Container(
                             decoration: BoxDecoration(
-                              color:
-                                  Provider.of<PalletTheme>(context).neutral300,
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(999),
                             ),
                             child: const TextField(
@@ -99,16 +96,18 @@ class ButtonComment extends StatelessWidget {
                                   Icon(
                                     Icons.school,
                                     size: 12,
-                                    color: Provider.of<PalletTheme>(context)
-                                        .neutral700,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .tertiaryContainer,
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
                                     post.user.institution,
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color: Provider.of<PalletTheme>(context)
-                                          .neutral700,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiaryContainer,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: 'Roboto',
                                     ),
@@ -138,8 +137,9 @@ class ButtonComment extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: Provider.of<PalletTheme>(context)
-                                      .neutral700,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .tertiaryContainer,
                                 ),
                               ),
                               const SizedBox(height: 13),
@@ -177,12 +177,12 @@ class ButtonComment extends StatelessWidget {
         onPressed: showOptionsBottomSheet,
         icon: Icon(
           Icons.messenger_outline_rounded,
-          color: Provider.of<PalletTheme>(context).neutral700,
+          color: Theme.of(context).colorScheme.tertiaryContainer,
         ),
         label: Text(
           post.comments.length.toString(),
           style: TextStyle(
-            color: Provider.of<PalletTheme>(context).neutral700,
+            color: Theme.of(context).colorScheme.tertiaryContainer,
           ),
         ),
       ),
@@ -199,12 +199,12 @@ Widget buttonComment(BuildContext context, Post post) {
       },
       icon: Icon(
         Icons.messenger_outline_rounded,
-        color: Provider.of<PalletTheme>(context).neutral700,
+        color: Theme.of(context).colorScheme.tertiaryContainer,
       ),
       label: Text(
         post.comments.length.toString(),
         style: TextStyle(
-          color: Provider.of<PalletTheme>(context).neutral700,
+          color: Theme.of(context).colorScheme.tertiaryContainer,
         ),
       ),
     ),

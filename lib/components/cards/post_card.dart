@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
-import 'package:laborus_app/core/utils/packages/readmore.dart';
-import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
+import 'package:laborus_app/components/generics/readmore.dart';
 import 'package:laborus_app/widgets/button_comment.dart';
 import 'package:laborus_app/widgets/button_like.dart';
-import 'package:provider/provider.dart';
 
 class PostWidget extends StatelessWidget {
   final Post post;
@@ -25,7 +23,7 @@ class PostWidget extends StatelessWidget {
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
-          color: Provider.of<PalletTheme>(context).neutral100,
+          color: Theme.of(context).colorScheme.primaryContainer,
           child: SizedBox(
             width: double.infinity,
             child: Padding(
@@ -84,7 +82,7 @@ class PostWidget extends StatelessWidget {
                     Icon(
                       Icons.school,
                       size: 12,
-                      color: Provider.of<PalletTheme>(context).neutral700,
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
                     ),
                     const SizedBox(width: 5),
                     Text(
@@ -92,7 +90,7 @@ class PostWidget extends StatelessWidget {
                           .institution, // Usar a instituição do usuário do post
                       style: TextStyle(
                         fontSize: 12,
-                        color: Provider.of<PalletTheme>(context).neutral700,
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
                         fontWeight: FontWeight.w500,
                         fontFamily: 'Roboto',
                       ),
@@ -130,7 +128,7 @@ class PostWidget extends StatelessWidget {
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Provider.of<PalletTheme>(context).neutral700,
+        color: Theme.of(context).colorScheme.tertiaryContainer,
       ),
     );
   }

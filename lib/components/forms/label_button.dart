@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
-import 'package:provider/provider.dart';
 
 class LabelButton extends StatelessWidget {
   const LabelButton({super.key, required this.label, required this.checked});
@@ -23,7 +21,7 @@ class LabelButton extends StatelessWidget {
                 fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
                 color: checked
                     ? Colors.white
-                    : Provider.of<PalletTheme>(context).neutral800,
+                    : Theme.of(context).colorScheme.onTertiary,
               ),
             ),
           ),
@@ -49,7 +47,7 @@ class LabelButton extends StatelessWidget {
                 fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
                 color: checked
                     ? Colors.white
-                    : Provider.of<PalletTheme>(context).neutral800,
+                    : Theme.of(context).colorScheme.onTertiary,
               ),
             ),
           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
-import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
-import 'package:provider/provider.dart';
+import 'package:laborus_app/core/utils/constants/colors.dart';
 
 class ButtonLike extends StatefulWidget {
   final Post post;
@@ -27,15 +26,15 @@ class _ButtonLikeState extends State<ButtonLike> {
               ? Icons.thumb_up_off_alt_outlined
               : Icons.thumb_up_off_alt_sharp,
           color: liked
-              ? Provider.of<PalletTheme>(context).neutral700
-              : Theme.of(context).colorScheme.tertiary,
+              ? Theme.of(context).colorScheme.tertiaryContainer
+              : AppColors.darknessPurple,
         ),
         label: Text(
           widget.post.likesCount.toString(),
           style: TextStyle(
             color: liked
-                ? Provider.of<PalletTheme>(context).neutral700
-                : Theme.of(context).colorScheme.tertiary,
+                ? Theme.of(context).colorScheme.tertiaryContainer
+                : AppColors.darknessPurple,
           ),
         ),
       ),

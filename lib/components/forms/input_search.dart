@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/utils/theme/custom/pallet_theme.dart';
-import 'package:provider/provider.dart';
 
 class InputSearch extends StatelessWidget {
   const InputSearch({super.key});
@@ -9,22 +7,22 @@ class InputSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Provider.of<PalletTheme>(context).neutral500,
+        color: Theme.of(context).colorScheme.onSecondary,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextField(
-        cursorColor: Provider.of<PalletTheme>(context).neutral300,
+        cursorColor: Theme.of(context).colorScheme.secondary,
         style: TextStyle(
-          color: Provider.of<PalletTheme>(context).neutral300,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         decoration: InputDecoration(
           suffixIcon: Icon(
             Icons.search,
-            color: Provider.of<PalletTheme>(context).neutral300,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           hintText: 'Digite alguma coisa...',
           hintStyle: TextStyle(
-            color: Provider.of<PalletTheme>(context).neutral300,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           disabledBorder: InputBorder.none,
           border: InputBorder.none,

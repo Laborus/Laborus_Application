@@ -41,4 +41,5 @@ class AppColors {
   static const Color violet = Color(0xFF7B61FF);
   static const Color lightViolet = Color(0xFFF2EFFF);
   static const Color lightPurple = Color(0xFFF6EBFF);
+  static const Color transparent = Colors.transparent;
 }
