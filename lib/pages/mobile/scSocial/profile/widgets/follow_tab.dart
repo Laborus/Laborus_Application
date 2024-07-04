@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/components/forms/label_button.dart';
+import 'package:laborus_app/core/components/forms/label_button.dart';
 
 class FollowTab extends StatelessWidget {
   const FollowTab({super.key});

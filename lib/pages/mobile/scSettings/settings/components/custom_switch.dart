@@ -14,7 +14,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: LocalDatabase.getTheme(),
+      future: LocalDatabase.getTheme(context: context),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('Erro: ${snapshot.error}');

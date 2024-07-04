@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/components/cards/post_card.dart';
+import 'package:laborus_app/core/components/cards/post_card.dart';
 import 'package:laborus_app/core/data/data_post.dart';
-import 'package:laborus_app/pages/mobile/scLaborus/feed/components/custom_icon_button.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});
@@ -11,36 +10,19 @@ class FeedPage extends StatelessWidget {
     return Container(
       color: Theme.of(context).colorScheme.onPrimary,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 40, top: 20),
+        padding: const EdgeInsets.only(bottom: 30, top: 13),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CustomIconButton(
-                  icon: Icons.messenger_outline_rounded,
-                  routeName: '',
-                ),
-                CustomIconButton(
-                  icon: Icons.people_outline_sharp,
-                  routeName: '',
-                ),
-                CustomIconButton(
-                  icon: Icons.school_outlined,
-                  routeName: 'campus',
-                ),
-                CustomIconButton(
-                  icon: Icons.emoji_events_outlined,
-                  routeName: '',
-                )
-              ],
-            ),
-            ListView.builder(
+            ListView.separated(
               itemCount: posts.length,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return PostWidget(post: posts[index]);
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 13);
               },
             ),
           ],

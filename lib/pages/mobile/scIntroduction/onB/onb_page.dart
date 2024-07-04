@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/data/local_database.dart';
+import 'package:laborus_app/core/routes/app_route_enum.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_continue_button.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_indicator.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_slide.dart';
@@ -18,11 +19,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   void checkOnboarding() async {
     final onboardingShown = await LocalDatabase.isOnboardingShown();
     if (onboardingShown) {
-      // ignore: use_build_context_synchronously
-      context.goNamed('welcome');
-    } else {
-      // ignore: use_build_context_synchronously
-      context.goNamed('onboarding');
+      AppRouteEnum currentPath = AppRouteEnum.welcome;
+      String routePath = currentPath.name;
+      context.pushReplacementNamed(routePath);
     }
   }
 
@@ -34,8 +33,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   void refresh() async {
     await LocalDatabase.setOnboardingShown();
+    AppRouteEnum currentPath = AppRouteEnum.welcome;
+    String routePath = currentPath.name;
     // ignore: use_build_context_synchronously
-    context.goNamed('welcome');
+    context.pushReplacementNamed(routePath);
   }
 
   Function()? refreshButton() {

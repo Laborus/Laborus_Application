@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/components/forms/input_search.dart';
+import 'package:laborus_app/core/components/forms/input_search.dart';
 import 'package:laborus_app/pages/mobile/scSocial/chat/widgets/group_list.dart';
 import 'package:laborus_app/pages/mobile/scSocial/chat/widgets/person_list.dart';
 

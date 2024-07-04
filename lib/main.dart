@@ -15,7 +15,7 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) {
             final themeProvider = ThemeProvider();
-            themeProvider.loadTheme();
+            themeProvider.loadTheme(context);
             return themeProvider;
           },
         ),

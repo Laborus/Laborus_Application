@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
-import 'package:laborus_app/core/utils/constants/colors.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class ButtonLike extends StatefulWidget {
   final Post post;

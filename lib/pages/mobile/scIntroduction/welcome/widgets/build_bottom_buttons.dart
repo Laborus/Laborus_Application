@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/core/utils/constants/colors.dart';
+import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 Widget buildBottomButtons(double width, BuildContext context) {
   return Container(
@@ -19,7 +20,11 @@ Widget buildBottomButtons(double width, BuildContext context) {
     child: Column(
       children: [
         ElevatedButton(
-          onPressed: () => {context.goNamed('signup')},
+          onPressed: () {
+            AppRouteEnum currentPath = AppRouteEnum.signin;
+            String routePath = currentPath.name;
+            context.pushNamed(routePath);
+          },
           style: ButtonStyle(
             backgroundColor:
                 Theme.of(context).elevatedButtonTheme.style?.foregroundColor,
@@ -36,7 +41,11 @@ Widget buildBottomButtons(double width, BuildContext context) {
         ),
         const SizedBox(height: 24),
         OutlinedButton(
-          onPressed: () => {context.goNamed('signin')},
+          onPressed: () {
+            AppRouteEnum currentPath = AppRouteEnum.signup;
+            String routePath = currentPath.name;
+            context.pushNamed(routePath);
+          },
           child: const SizedBox(
             width: double.infinity,
             child: Text(

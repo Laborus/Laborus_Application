@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalDatabase {
@@ -13,9 +14,14 @@ class LocalDatabase {
     await prefs.setBool(_isDarkModeKey, isDarkMode);
   }
 
-  static Future<bool> getTheme() async {
+  static Future<bool> getTheme({required BuildContext context}) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_isDarkModeKey) ?? false;
+    if (prefs.containsKey(_isDarkModeKey)) {
+      return prefs.getBool(_isDarkModeKey) ?? false;
+    } else {
+      final brightness = MediaQuery.of(context).platformBrightness;
+      return brightness == Brightness.dark;
+    }
   }
 
   static Future<void> setOnboardingShown() async {

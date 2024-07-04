@@ -69,7 +69,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   GestureDetector logo() {
     return GestureDetector(
-      onTap: () => context.goNamed('feed'),
+      onTap: () => context.goNamed('Home'),
       child: Container(
         width: 50,
         height: 50,

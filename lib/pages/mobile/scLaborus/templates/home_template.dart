@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/components/generics/double_back_to_close.dart';
-import 'package:laborus_app/components/navigation/custom_app_bar.dart';
-import 'package:laborus_app/components/navigation/custom_navigation_bar.dart';
+import 'package:laborus_app/core/components/generics/double_back_to_close.dart';
+import 'package:laborus_app/core/components/navigation/custom_app_bar.dart';
+import 'package:laborus_app/core/components/navigation/custom_navigation_bar.dart';
 
 class HomeTemplate extends StatelessWidget {
   final StatefulNavigationShell navigationShell;

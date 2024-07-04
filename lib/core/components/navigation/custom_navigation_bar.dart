@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laborus_app/core/utils/constants/colors.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   const CustomBottomAppBar({Key? key}) : super(key: key);
@@ -41,10 +41,10 @@ class CustomBottomAppBar extends StatelessWidget {
                   onTap: (index) {
                     switch (index) {
                       case 0:
-                        context.go('/feed');
+                        context.go('/home');
                         break;
                       case 1:
-                        GoRouter.of(context).go('/settings');
+                        context.go('/settings');
                         break;
                       case 2:
                         // Ignorar o botão do meio
@@ -53,7 +53,7 @@ class CustomBottomAppBar extends StatelessWidget {
                         //GoRouter.of(context).go('/jobs');
                         break;
                       case 4:
-                        GoRouter.of(context).go('/chat');
+                        context.go('/chat');
                         break;
                     }
                   },
@@ -98,7 +98,7 @@ class CustomBottomAppBar extends StatelessWidget {
                 onPressed: () {
                   context.push('/create');
                 },
-                backgroundColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: AppColors.primaryPurple,
                 child: const Icon(Icons.add_rounded, size: 35),
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/utils/constants/colors.dart';
-import 'package:laborus_app/core/utils/constants/font_size.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
+import 'package:laborus_app/core/utils/theme/font_size.dart';
 
 class AppTextStyle {
   // ----------Black----------//

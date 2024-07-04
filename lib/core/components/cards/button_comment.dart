@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/core/components/generics/readmore.dart';
 import 'package:laborus_app/core/model/laborus/comments.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
-import 'package:readmore/readmore.dart';
 
 class ButtonComment extends StatelessWidget {
   final Post post;

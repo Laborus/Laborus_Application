@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/components/forms/label_button.dart';
+import 'package:laborus_app/core/components/forms/label_button.dart';
 
 class AboutTab extends StatelessWidget {
   const AboutTab({super.key});

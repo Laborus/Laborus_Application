@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
-import 'package:laborus_app/widgets/button_comment.dart';
-import 'package:laborus_app/widgets/button_like.dart';
+import 'package:laborus_app/core/components/cards/button_comment.dart';
+import 'package:laborus_app/core/components/cards/button_like.dart';
 
 class PostFullSizePage extends StatelessWidget {
   final Post post;
