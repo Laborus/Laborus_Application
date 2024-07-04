@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class LAppBarTheme {
   LAppBarTheme._();
 
-  static AppBarTheme lightAppBarTheme = const AppBarTheme(
-    backgroundColor: Color.fromRGBO(255, 255, 255, 1),
-    foregroundColor: Color.fromRGBO(30, 30, 30, 1),
+  static AppBarTheme lightAppBarTheme = AppBarTheme(
+    backgroundColor: AppColors.neutralsLight[0],
+    foregroundColor: AppColors.neutralsLight[0],
   );
-  static AppBarTheme darkAppBarTheme = const AppBarTheme(
-    backgroundColor: Color.fromRGBO(30, 30, 30, 1),
-    foregroundColor: Color.fromRGBO(255, 255, 255, 1),
+  static AppBarTheme darkAppBarTheme = AppBarTheme(
+    backgroundColor: AppColors.neutralsDark[0],
+    foregroundColor: AppColors.neutralsDark[0],
   );
 }

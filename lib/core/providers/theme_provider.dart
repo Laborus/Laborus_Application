@@ -22,8 +22,9 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> loadTheme() async {
-    final isDarkMode = await LocalDatabase.getTheme();
+  Future<void> loadTheme(BuildContext context) async {
+    final isDarkMode = await LocalDatabase.getTheme(context: context);
+
     themeData = isDarkMode ? LAppTheme.darkTheme : LAppTheme.lightTheme;
   }
 }

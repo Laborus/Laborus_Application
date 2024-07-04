@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class LBottomNavigatorTheme {
   LBottomNavigatorTheme._();
 
-  static BottomAppBarTheme lightBottomAppBarTheme = const BottomAppBarTheme(
-    color: Colors.blue,
-    elevation: 4.0,
-    shape: CircularNotchedRectangle(),
+  static BottomAppBarTheme lightBottomAppBarTheme = BottomAppBarTheme(
+    color: AppColors.neutralsLight[0],
+    elevation: 0,
   );
 
   static BottomAppBarTheme darkBottomAppBarTheme = BottomAppBarTheme(
-    color: Colors.grey[800],
-    elevation: 4.0,
-    shape: const CircularNotchedRectangle(),
+    color: AppColors.neutralsDark[0],
+    elevation: 0,
   );
 }

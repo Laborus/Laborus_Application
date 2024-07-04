@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class LColorSchemeTheme {
   LColorSchemeTheme._();
 
-  static ColorScheme lightColorScheme = const ColorScheme.light(
-    primary: Color.fromRGBO(128, 0, 173, 1),
-    secondary: Color.fromRGBO(157, 53, 242, 1),
-    tertiary: Color.fromRGBO(76, 17, 117, 1),
-    error: Color.fromRGBO(255, 242, 249, 1),
-    onError: Color.fromRGBO(255, 100, 124, 1),
-    surface: Color.fromRGBO(242, 245, 249, 1),
-  );
-  static ColorScheme darkColorScheme = const ColorScheme.dark(
-    primary: Color.fromRGBO(128, 0, 173, 1),
-    secondary: Color.fromRGBO(157, 53, 242, 1),
-    tertiary: Color.fromRGBO(76, 17, 117, 1),
-    error: Color.fromRGBO(255, 242, 249, 1),
-    onError: Color.fromRGBO(255, 100, 124, 1),
-    surface: Color.fromRGBO(36, 36, 36, 1),
-  );
+  static ColorScheme lightColorScheme = ColorScheme.light(
+      primary: AppColors.neutralsLight[0]!,
+      primaryContainer: AppColors.neutralsLight[100]!,
+      onPrimary: AppColors.neutralsLight[200]!,
+      secondary: AppColors.neutralsLight[300]!,
+      secondaryContainer: AppColors.neutralsLight[400]!,
+      onSecondary: AppColors.neutralsLight[500]!,
+      tertiary: AppColors.neutralsLight[600]!,
+      tertiaryContainer: AppColors.neutralsLight[700]!,
+      onTertiary: AppColors.neutralsLight[800]!);
+  static ColorScheme darkColorScheme = ColorScheme.dark(
+      primary: AppColors.neutralsDark[0]!,
+      primaryContainer: AppColors.neutralsDark[100]!,
+      onPrimary: AppColors.neutralsDark[200]!,
+      secondary: AppColors.neutralsDark[300]!,
+      secondaryContainer: AppColors.neutralsDark[400]!,
+      onSecondary: AppColors.neutralsDark[500]!,
+      tertiary: AppColors.neutralsDark[600]!,
+      tertiaryContainer: AppColors.neutralsDark[700]!,
+      onTertiary: AppColors.neutralsDark[800]!);
 }
