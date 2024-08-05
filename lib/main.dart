@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/data/local_database.dart';
-import 'package:laborus_app/core/providers/theme_provider.dart';
+import 'package:laborus_app/core/providers/settings_provider.dart';
 import 'package:laborus_app/core/routes/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +14,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) {
-            final themeProvider = ThemeProvider();
-            themeProvider.loadTheme(context);
+            final themeProvider = SettingsProvider();
+            themeProvider.loadSettings(context);
             return themeProvider;
           },
         ),
@@ -32,7 +32,7 @@ class LaborusAPP extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Laborus',
-      theme: Provider.of<ThemeProvider>(context).themeData,
+      theme: Provider.of<SettingsProvider>(context).themeData,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
