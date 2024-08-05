@@ -99,7 +99,11 @@ class CustomBottomAppBar extends StatelessWidget {
                   context.push('/create');
                 },
                 backgroundColor: AppColors.primaryPurple,
-                child: const Icon(Icons.add_rounded, size: 35),
+                child: Icon(
+                  Icons.add_rounded,
+                  size: 35,
+                  color: AppColors.neutralsLight[0],
+                ),
               ),
             ),
           ),
