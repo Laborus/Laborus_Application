@@ -1,4 +1,13 @@
-enum AppRouteEnum { welcome, signin, signup, home, onboarding, settings, chat }
+enum AppRouteEnum {
+  welcome,
+  signin,
+  signup,
+  home,
+  onboarding,
+  settings,
+  chat,
+  profile
+}
 
 extension AppRouteExtension on AppRouteEnum {
   String get name {
@@ -17,6 +26,8 @@ extension AppRouteExtension on AppRouteEnum {
         return "Chat";
       case AppRouteEnum.settings:
         return "Settings";
+      case AppRouteEnum.profile:
+        return "Profile";
       default:
         return "/";
     }

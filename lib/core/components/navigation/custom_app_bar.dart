@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/core/routes/app_route_enum.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
@@ -61,7 +62,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             backgroundImage: AssetImage('assets/img/profile.jpg'),
             radius: 20,
           ),
-          onPressed: () => context.goNamed('profile'),
+          onPressed: () {
+            AppRouteEnum pathName = AppRouteEnum.profile;
+            context.push(pathName.name);
+          },
         )
       ],
     );
@@ -69,7 +73,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   GestureDetector logo() {
     return GestureDetector(
-      onTap: () => context.goNamed('Home'),
+      onTap: () {
+        AppRouteEnum pathName = AppRouteEnum.home;
+        context.goNamed(pathName.name);
+      },
       child: Container(
         width: 50,
         height: 50,

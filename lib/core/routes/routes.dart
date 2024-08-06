@@ -45,8 +45,8 @@ final _router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/home/profile',
-      name: 'profile',
+      path: '/profile',
+      name: 'Profile',
       builder: (context, state) {
         return const ProfilePage();
       },
@@ -61,7 +61,7 @@ final _router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/home/notification',
+      path: '/notification',
       name: 'notification',
       builder: (context, state) {
         return const NotificationPage();
