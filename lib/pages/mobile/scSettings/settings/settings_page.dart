@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/data/global_vars.dart';
 import 'package:laborus_app/pages/mobile/scSettings/settings/components/option.dart';
+import 'package:laborus_app/pages/mobile/scSettings/settings/components/profile_box.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -11,13 +12,17 @@ class SettingsPage extends StatelessWidget {
       margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       height: double.infinity,
       color: Theme.of(context).colorScheme.onPrimary,
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
-          Column(
+          ProfileBox(),
+          const SizedBox(
+            height: 2,
+          ),
+          const Column(
             children: [
               Option(
                 icon: Icons.wb_sunny_outlined,
@@ -50,6 +55,12 @@ class SettingsPage extends StatelessWidget {
                 icon: Icons.smartphone_rounded,
                 text: 'Versão ${AppGlobals.versionApp}',
                 isSwitch: false,
+              ),
+              Option(
+                icon: Icons.logout_rounded,
+                text: 'Sair da Conta',
+                isSwitch: false,
+                isSignOut: true,
               ),
             ],
           ),

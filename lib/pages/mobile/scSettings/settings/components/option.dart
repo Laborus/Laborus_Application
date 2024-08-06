@@ -6,6 +6,7 @@ class Option extends StatefulWidget {
   final String text;
   final bool isSwitch;
   final bool? isThemeSwitch;
+  final bool isSignOut;
 
   const Option({
     Key? key,
@@ -13,6 +14,7 @@ class Option extends StatefulWidget {
     required this.text,
     required this.isSwitch,
     this.isThemeSwitch,
+    this.isSignOut = false,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,9 @@ class _OptionState extends State<Option> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
-      color: Theme.of(context).colorScheme.primary,
+      color: widget.isSignOut
+          ? const Color.fromRGBO(255, 244, 244, 1)
+          : Theme.of(context).colorScheme.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,16 +38,20 @@ class _OptionState extends State<Option> {
             children: [
               Icon(
                 widget.icon,
-                size: Theme.of(context).textTheme.headlineMedium?.fontSize,
+                size: Theme.of(context).textTheme.headlineLarge?.fontSize,
+                color: widget.isSignOut
+                    ? const Color.fromRGBO(229, 39, 39, 1)
+                    : Theme.of(context).colorScheme.onTertiary,
               ),
               const SizedBox(width: 12),
               Text(
                 widget.text,
                 style: TextStyle(
-                  fontSize:
-                      Theme.of(context).textTheme.headlineMedium?.fontSize,
+                  fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
                   fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.onTertiary,
+                  color: widget.isSignOut
+                      ? const Color.fromRGBO(229, 39, 39, 1)
+                      : Theme.of(context).colorScheme.onTertiary,
                 ),
               ),
             ],
