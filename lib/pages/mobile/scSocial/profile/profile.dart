@@ -1,56 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/about_tab.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/activity_tab.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/follow_tab.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/profile_header.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/save_tab.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/components/about_section.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/components/actions_section.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/components/profile_header.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/components/tags_section.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/info_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 300,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: const ProfileHeader(),
-          leadingWidth: double.infinity,
-          bottom: TabBar(
-            isScrollable: width > 340 ? false : true,
-            tabs: [
-              tab('Sobre', context),
-              tab('Seguindo', context),
-              tab('Atividade', context),
-              tab('Salvos', context),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            AboutTab(),
-            FollowTab(),
-            ActivityTab(),
-            SaveTab(),
-          ],
-        ),
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top,
       ),
-    );
-  }
-
-  Tab tab(text, ctx) {
-    return Tab(
-      child: Text(
-        text,
-        style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: Theme.of(ctx).appBarTheme.foregroundColor),
+      child: const Column(
+        children: [
+          ProfileHeader(),
+          SizedBox(height: 66),
+          InfoProfile(),
+          SizedBox(height: 13),
+          TagsSection(),
+          SizedBox(height: 13),
+          AboutSection(),
+          SizedBox(height: 13),
+          ActionsSection(),
+        ],
       ),
     );
   }
