@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/core/data/global_vars.dart';
 import 'package:laborus_app/pages/mobile/scSettings/settings/components/option.dart';
+import 'package:laborus_app/pages/mobile/scSettings/settings/components/profile_box.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -7,68 +9,61 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       height: double.infinity,
       color: Theme.of(context).colorScheme.onPrimary,
-      padding: const EdgeInsets.symmetric(horizontal: 22),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Geral',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
-              fontWeight: FontWeight.bold,
-            ),
+          const SizedBox(
+            height: 2,
           ),
-          const SizedBox(height: 10),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            child: const Column(
-              children: [
-                Option(
-                  icon: Icons.person,
-                  text: 'Conta',
-                  isSwitch: false,
-                ),
-                Option(
-                  icon: Icons.description,
-                  text: 'Termos & Privacidade',
-                  isSwitch: false,
-                ),
-                Option(
-                  icon: Icons.notifications,
-                  text: 'Notificações',
-                  isSwitch: false,
-                ),
-                Option(
-                  icon: Icons.contrast,
-                  text: 'Aparência',
-                  isSwitch: true,
-                ),
-                Option(
-                  icon: Icons.help,
-                  text: 'FAQ & Suporte',
-                  isSwitch: false,
-                ),
-              ],
-            ),
+          ProfileBox(),
+          const SizedBox(
+            height: 2,
           ),
-          const SizedBox(height: 20),
-          const Divider(),
-          const SizedBox(height: 20),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            child:
-                const Option(icon: Icons.logout, text: 'Sair', isSwitch: false),
-          )
+          const Column(
+            children: [
+              Option(
+                icon: Icons.wb_sunny_outlined,
+                text: 'Aparência',
+                isSwitch: true,
+                isThemeSwitch: true,
+              ),
+              Option(
+                icon: Icons.notifications_on_outlined,
+                text: 'Notificações',
+                isSwitch: true,
+                isThemeSwitch: false,
+              ),
+              Option(
+                icon: Icons.gpp_maybe_outlined,
+                text: 'Política de Privacidade',
+                isSwitch: false,
+              ),
+              Option(
+                icon: Icons.description_outlined,
+                text: 'Termos de Uso',
+                isSwitch: false,
+              ),
+              Option(
+                icon: Icons.help_outline,
+                text: 'Ajuda & Suporte',
+                isSwitch: false,
+              ),
+              Option(
+                icon: Icons.smartphone_rounded,
+                text: 'Versão ${AppGlobals.versionApp}',
+                isSwitch: false,
+              ),
+              Option(
+                icon: Icons.logout_rounded,
+                text: 'Sair da Conta',
+                isSwitch: false,
+                isSignOut: true,
+              ),
+            ],
+          ),
         ],
       ),
     );
