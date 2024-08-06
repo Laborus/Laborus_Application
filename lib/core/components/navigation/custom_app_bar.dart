@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
@@ -42,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             position: badges.BadgePosition.topStart(top: 2, start: 1),
             badgeStyle: badges.BadgeStyle(
               shape: badges.BadgeShape.circle,
-              badgeColor: Theme.of(context).colorScheme.primary,
+              badgeColor: AppColors.primaryPurple,
               padding: const EdgeInsets.all(6),
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
@@ -64,7 +65,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           onPressed: () {
             AppRouteEnum pathName = AppRouteEnum.profile;
-            context.push(pathName.name);
+            context.pushNamed(pathName.name);
           },
         )
       ],

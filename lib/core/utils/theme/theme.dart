@@ -3,6 +3,7 @@ import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/core/utils/theme/custom/appbar_theme.dart';
 import 'package:laborus_app/core/utils/theme/custom/bottom_navigator_theme.dart';
 import 'package:laborus_app/core/utils/theme/custom/bottom_sheet_theme.dart';
+import 'package:laborus_app/core/utils/theme/custom/chip_theme.dart';
 import 'package:laborus_app/core/utils/theme/custom/color_scheme_theme.dart';
 import 'package:laborus_app/core/utils/theme/custom/divider_theme.dart';
 import 'package:laborus_app/core/utils/theme/custom/elevated_button_theme.dart';
@@ -30,6 +31,7 @@ class LAppTheme {
     iconTheme: LIconTheme.lightIconTheme,
     scaffoldBackgroundColor: AppColors.neutralsLight[0],
     scrollbarTheme: LScrollBarTheme.lightScrollbarTheme,
+    chipTheme: LChipTheme.lightChipTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -47,5 +49,6 @@ class LAppTheme {
     iconTheme: LIconTheme.darkIconTheme,
     scaffoldBackgroundColor: AppColors.neutralsDark[0],
     scrollbarTheme: LScrollBarTheme.darkScrollbarTheme,
+    chipTheme: LChipTheme.darkChipTheme,
   );
 }

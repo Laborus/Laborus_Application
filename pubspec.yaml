@@ -39,6 +39,29 @@ flutter:
   assets:
     - assets/img/
 
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto_light.ttf
+          weight: 300
+        - asset: assets/fonts/roboto_medium.ttf
+          weight: 500
+        - asset: assets/fonts/roboto_bold.ttf
+          weight: 700
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter_light.ttf
+          weight: 300
+        - asset: assets/fonts/inter_medium.ttf
+          weight: 500
+        - asset: assets/fonts/inter_bold.ttf
+          weight: 700
+        - asset: assets/fonts/inter_bold.ttf
+          weight: 800 
+        - asset: assets/fonts/inter_bold.ttf
+          weight: 900
+
 # flutter_native_splash:
 #   color: "#7000B5"
 #   image: assets/img/laborus_light2.png
