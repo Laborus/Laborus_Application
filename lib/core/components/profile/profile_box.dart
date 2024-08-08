@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/core/components/generics/avatar_picture.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
 
 class ProfileBox extends StatelessWidget {
@@ -17,9 +18,9 @@ class ProfileBox extends StatelessWidget {
         },
         child: Row(
           children: [
-            const CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage('assets/img/profile.jpg'),
+            const AvatarPicture(
+              imagePath: 'assets/img/profile.jpg',
+              size: 40,
             ),
             const SizedBox(width: 8),
             Column(

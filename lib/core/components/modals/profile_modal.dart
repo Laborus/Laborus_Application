@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/core/components/generics/avatar_picture.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/core/utils/theme/font_size.dart';
@@ -28,17 +29,9 @@ class ProfileModal {
                 },
                 child: Row(
                   children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/img/profile.jpg'),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(999),
-                        ),
-                      ),
+                    const AvatarPicture(
+                      size: 40,
+                      imagePath: 'assets/img/profile.jpg',
                     ),
                     const SizedBox(width: 8),
                     Column(
@@ -157,7 +150,7 @@ class ProfileModal {
   }
 
   static void _navigateAndCloseModal(BuildContext context, AppRouteEnum route) {
-    Navigator.pop(context); // Fecha o modal
-    context.pushNamed(route.name); // Navega para a rota especificada
+    Navigator.pop(context);
+    context.pushNamed(route.name);
   }
 }
