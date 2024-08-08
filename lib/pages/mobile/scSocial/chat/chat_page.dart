@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/components/forms/input_search.dart';
-import 'package:laborus_app/pages/mobile/scSocial/chat/widgets/group_list.dart';
 import 'package:laborus_app/pages/mobile/scSocial/chat/widgets/person_list.dart';
 
 class ChatPage extends StatelessWidget {
@@ -9,6 +8,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       color: Theme.of(context).colorScheme.onPrimary,
       padding: const EdgeInsets.only(top: 21, left: 21, right: 21),
       child: Column(
@@ -16,11 +16,6 @@ class ChatPage extends StatelessWidget {
         children: [
           const InputSearch(),
           const SizedBox(height: 13),
-          Text(
-            'Grupos',
-            style: const TextTheme().titleMedium,
-          ),
-          const GroupList(),
           const Expanded(
             child: PersonList(),
           ),

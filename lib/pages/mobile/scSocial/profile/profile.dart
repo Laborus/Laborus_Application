@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/components/about_section.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/components/actions_section.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/components/profile_header.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/components/tags_section.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/about_section.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/actions_section.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/profile_header.dart';
+import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/tags_section.dart';
 import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/info_profile.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
     return SingleChildScrollView(
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top,
+        bottom: MediaQuery.of(context).padding.bottom,
       ),
       child: const Column(
         children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/profile_banner.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/profile_picture.dart';
+import 'package:laborus_app/core/components/profile/profile_banner.dart';
+import 'package:laborus_app/core/components/profile/profile_picture.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});

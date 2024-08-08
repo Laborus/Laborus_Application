@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/edit_tags.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/profile_tag.dart';
+import 'package:laborus_app/core/components/chips/edit_tags.dart';
+import 'package:laborus_app/core/components/chips/profile_tag.dart';
 
 class TagsSection extends StatelessWidget {
   const TagsSection({super.key});

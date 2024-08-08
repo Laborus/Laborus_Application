@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/data/global_vars.dart';
-import 'package:laborus_app/pages/mobile/scSettings/settings/components/option.dart';
-import 'package:laborus_app/pages/mobile/scSettings/settings/components/profile_box.dart';
+import 'package:laborus_app/core/components/tiles/option.dart';
+import 'package:laborus_app/core/components/profile/profile_box.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      height: double.infinity,
-      color: Theme.of(context).colorScheme.onPrimary,
+    return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top,
+        bottom: MediaQuery.of(context).padding.bottom,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 2,
-          ),
-          ProfileBox(),
-          const SizedBox(
-            height: 2,
-          ),
-          const Column(
-            children: [
+          const Divider(),
+          const ProfileBox(),
+          const Divider(),
+          ListView(
+            physics: const ClampingScrollPhysics(),
+            padding:
+                EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+            shrinkWrap: true,
+            children: const [
               Option(
                 icon: Icons.wb_sunny_outlined,
                 text: 'Aparência',

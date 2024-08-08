@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/core/components/modals/profile_modal.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 
@@ -58,15 +59,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-        TextButton(
-          child: const CircleAvatar(
-            backgroundImage: AssetImage('assets/img/profile.jpg'),
-            radius: 20,
+        const SizedBox(width: 5),
+        GestureDetector(
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/img/profile.jpg'),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(999),
+              ),
+            ),
           ),
-          onPressed: () {
-            AppRouteEnum pathName = AppRouteEnum.profile;
-            context.pushNamed(pathName.name);
-          },
+          onTap: () => ProfileModal.show(context),
         )
       ],
     );

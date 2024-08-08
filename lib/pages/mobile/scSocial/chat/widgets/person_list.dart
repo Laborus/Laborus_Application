@@ -11,8 +11,8 @@ class PersonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      physics: const BouncingScrollPhysics(
-          decelerationRate: ScrollDecelerationRate.normal),
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+      physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       itemCount: peoples.length,

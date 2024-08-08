@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
-import 'package:laborus_app/pages/mobile/scSocial/profile/widgets/edit_icon.dart';
+import 'package:laborus_app/core/components/buttons/edit_icon.dart';
 
-class ProfileBanner extends StatelessWidget {
+class ProfilePicture extends StatelessWidget {
   final String imagePath;
   final VoidCallback onEdit;
 
-  const ProfileBanner({
+  const ProfilePicture({
     super.key,
     required this.imagePath,
     required this.onEdit,
@@ -15,12 +15,18 @@ class ProfileBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
       alignment: Alignment.bottomRight,
       children: [
         Container(
-          height: 162,
-          width: double.infinity,
+          width: 67,
+          height: 67,
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(9999),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary,
+              width: 2,
+            ),
             image: DecorationImage(
               image: AssetImage(imagePath),
               fit: BoxFit.cover,
@@ -28,8 +34,8 @@ class ProfileBanner extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 22,
-          bottom: 5,
+          right: -3,
+          bottom: -5,
           child: EditIcon(
             onTap: onEdit,
             color: AppColors.primaryPurple,

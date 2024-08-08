@@ -44,7 +44,7 @@ class CustomBottomAppBar extends StatelessWidget {
                         context.go('/home');
                         break;
                       case 1:
-                        context.go('/settings');
+                        //context.go('/settings');
                         break;
                       case 2:
                         // Ignorar o botão do meio

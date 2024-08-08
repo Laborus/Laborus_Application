@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/core/utils/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:laborus_app/core/providers/settings_provider.dart';
