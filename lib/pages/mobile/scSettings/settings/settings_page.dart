@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/data/global_vars.dart';
-import 'package:laborus_app/core/components/tiles/option.dart';
+import 'package:laborus_app/core/components/tiles/option_tile.dart';
 import 'package:laborus_app/core/components/profile/profile_box.dart';
 
 class SettingsPage extends StatelessWidget {

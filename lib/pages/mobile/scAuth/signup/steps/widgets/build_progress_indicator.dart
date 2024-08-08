@@ -14,7 +14,7 @@ class BuildProgressIndicator extends StatelessWidget {
         Expanded(
           flex: step,
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 topLeft: Radius.circular(10),
@@ -28,7 +28,7 @@ class BuildProgressIndicator extends StatelessWidget {
           flex: remainingSteps,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(10),
                 bottomRight: Radius.circular(10),
               ),

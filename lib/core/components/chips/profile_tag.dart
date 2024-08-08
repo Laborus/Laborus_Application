@@ -12,7 +12,7 @@ class ProfileTag extends StatelessWidget {
         color: AppColors.neutralsDark[800]!,
       ),
       backgroundColor: AppColors.violet,
-      label: Text('Tecnologia'),
+      label: const Text('Tecnologia'),
     );
   }
 }

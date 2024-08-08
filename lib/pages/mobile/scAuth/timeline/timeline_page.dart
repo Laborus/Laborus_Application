@@ -9,7 +9,7 @@ class TimelinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarIntroduction(
+      appBar: const CustomAppBarIntroduction(
         title: 'Crie sua conta',
       ),
       body: Container(

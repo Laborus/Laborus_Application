@@ -8,7 +8,7 @@ Widget buildIndicator(int activeIndex, List<String> urlImages,
   void animateToSlide(int index) => controller.animateToPage(index);
   return AnimatedSmoothIndicator(
     onDotClicked: animateToSlide,
-    effect: ExpandingDotsEffect(
+    effect: const ExpandingDotsEffect(
       dotWidth: 15,
       activeDotColor: AppColors.darknessPurple,
     ),

@@ -12,7 +12,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
-      appBar: CustomAppBarIntroduction(
+      appBar: const CustomAppBarIntroduction(
         title: 'Entre com sua conta',
       ),
       body: Padding(

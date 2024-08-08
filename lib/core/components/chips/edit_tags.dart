@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class EditTags extends StatelessWidget {
   const EditTags({super.key});
