@@ -6,41 +6,49 @@ List<People> peoples = [
     name: 'John Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: true,
   ),
   People(
     name: 'John Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: true,
   ),
   People(
     name: 'John Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: true,
   ),
   People(
     name: 'John Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: true,
   ),
   People(
     name: 'Calvo Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: false,
   ),
   People(
     name: 'John Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: false,
   ),
   People(
     name: 'John Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: false,
   ),
   People(
     name: 'Calvo Doe',
     image: 'assets/img/profile.jpg',
     lastVisited: DateTime.now(),
+    viewed: false,
   ),
 ];
 
