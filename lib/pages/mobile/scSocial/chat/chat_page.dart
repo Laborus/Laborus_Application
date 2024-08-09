@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/components/forms/input_search.dart';
+import 'package:laborus_app/core/components/navigation/custom_appbar_bottom.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/pages/mobile/scSocial/chat/widgets/persons_section.dart';
 
@@ -12,12 +13,11 @@ class ChatPage extends StatelessWidget {
       length: 1,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        appBar: AppBar(
+        appBar: CustomAppBarBottom(
           leading: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 22),
             child: InputSearch(),
           ),
-          leadingWidth: double.maxFinite,
           bottom: TabBar(
             dividerColor: Theme.of(context).colorScheme.primary,
             indicatorColor: AppColors.primaryPurple,
