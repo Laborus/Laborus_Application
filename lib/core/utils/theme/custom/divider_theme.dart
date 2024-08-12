@@ -5,7 +5,7 @@ class LDividerTheme {
   LDividerTheme._();
 
   static DividerThemeData lightDivider =
-      DividerThemeData(color: AppColors.neutralsLight[300], space: .8);
+      DividerThemeData(color: AppColors.neutralsLight[200], space: .8);
   static DividerThemeData darkDivider =
-      DividerThemeData(color: AppColors.neutralsDark[300], space: .8);
+      DividerThemeData(color: AppColors.neutralsDark[200], space: .8);
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
@@ -41,19 +43,22 @@ class CustomBottomAppBar extends StatelessWidget {
                   onTap: (index) {
                     switch (index) {
                       case 0:
-                        context.go('/home');
+                        AppRouteEnum path = AppRouteEnum.home;
+                        GoRouter.of(context).goNavigate(context, path.name);
+
                         break;
                       case 1:
-                        //context.go('/settings');
+                        AppRouteEnum path = AppRouteEnum.connections;
+                        GoRouter.of(context).goNavigate(context, path.name);
+
                         break;
                       case 2:
-                        // Ignorar o botão do meio
                         break;
                       case 3:
-                        //GoRouter.of(context).go('/jobs');
                         break;
                       case 4:
-                        context.go('/chat');
+                        AppRouteEnum path = AppRouteEnum.chat;
+                        GoRouter.of(context).goNavigate(context, path.name);
                         break;
                     }
                   },
@@ -96,7 +101,7 @@ class CustomBottomAppBar extends StatelessWidget {
                 elevation: 0,
                 shape: const CircleBorder(),
                 onPressed: () {
-                  context.push('/create');
+                  GoRouter.of(context).pushIfNotCurrent(context, '/create');
                 },
                 backgroundColor: AppColors.primaryPurple,
                 child: Icon(

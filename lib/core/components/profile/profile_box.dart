@@ -14,7 +14,7 @@ class ProfileBox extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           AppRouteEnum path = AppRouteEnum.profile;
-          context.pushReplacementNamed(path.name);
+          context.pushReplacement(path.name);
         },
         child: Row(
           children: [
