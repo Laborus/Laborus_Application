@@ -5,6 +5,7 @@ import 'package:laborus_app/pages/mobile/scAuth/signin/signin.dart';
 import 'package:laborus_app/pages/mobile/scSocial/chat/chat_page.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/create_post/create_post_page.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/feed/feed_page.dart';
+import 'package:laborus_app/pages/mobile/scSocial/connections/connections_page.dart';
 import 'package:laborus_app/pages/mobile/scSocial/notification/notification_view.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/onb_page.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/post_full_size/post_full_size_page.dart';
@@ -18,8 +19,13 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _feedNavigatorKey = GlobalKey<NavigatorState>();
 final _messageNavigatorKey = GlobalKey<NavigatorState>();
 final _settingsNavigatorKey = GlobalKey<NavigatorState>();
+final _connectionsNavigatorKey = GlobalKey<NavigatorState>();
+final _createNavigatorKey = GlobalKey<NavigatorState>();
+final _notificationsNavigatorKey = GlobalKey<NavigatorState>();
+final _profileNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
+  debugLogDiagnostics: true,
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
   routes: [
@@ -38,33 +44,12 @@ final _router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/create',
-      name: 'create',
-      builder: (context, state) {
-        return const CreatePostPage();
-      },
-    ),
-    GoRoute(
-      path: '/profile',
-      name: 'Profile',
-      builder: (context, state) {
-        return const ProfilePage();
-      },
-    ),
-    GoRoute(
       path: '/feed/post',
       name: 'post',
       builder: (context, state) {
         return PostFullSizePage(
           post: state.extra as Post,
         );
-      },
-    ),
-    GoRoute(
-      path: '/notification',
-      name: 'notification',
-      builder: (context, state) {
-        return const NotificationPage();
       },
     ),
     GoRoute(
@@ -122,8 +107,56 @@ final _router = GoRouter(
             ),
           ],
         ),
+        StatefulShellBranch(
+          navigatorKey: _connectionsNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/connections',
+              name: 'Connections',
+              builder: (context, state) {
+                return const ConnectionsPage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _createNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/create',
+              name: 'create',
+              builder: (context, state) {
+                return const CreatePostPage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _profileNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/profile',
+              name: 'Profile',
+              builder: (context, state) {
+                return const ProfilePage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _notificationsNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/notification',
+              name: 'notification',
+              builder: (context, state) {
+                return const NotificationPage();
+              },
+            ),
+          ],
+        )
       ],
-    ),
+    )
   ],
 );
 

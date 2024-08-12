@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/forms/text_field_form.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class SignInPage extends StatelessWidget {
@@ -42,7 +43,7 @@ class SignInPage extends StatelessWidget {
               onPressed: () {
                 AppRouteEnum currentPath = AppRouteEnum.home;
                 String routePath = currentPath.name;
-                context.goNamed(routePath);
+                context.go(routePath);
               },
               child: SizedBox(
                 width: MediaQuery.of(context).size.width - 22,
@@ -67,7 +68,7 @@ class SignInPage extends StatelessWidget {
                   onPressed: () {
                     AppRouteEnum currentPath = AppRouteEnum.signin;
                     String routePath = currentPath.name;
-                    context.pushReplacementNamed(routePath);
+                    GoRouter.of(context).pushReplacement(routePath);
                   },
                   child: Text(
                     'Altere aqui.',

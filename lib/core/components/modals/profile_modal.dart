@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/generics/avatar_picture.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/core/utils/theme/font_size.dart';
 
@@ -114,7 +115,7 @@ class ProfileModal {
               backgroundColor: AppColors.lightRed,
               onTap: () {
                 AppRouteEnum path = AppRouteEnum.welcome;
-                _navigateAndCloseModal(context, path);
+                GoRouter.of(context).clearStackAndNavigate(context, path.name);
               },
             ),
           ],
@@ -151,6 +152,6 @@ class ProfileModal {
 
   static void _navigateAndCloseModal(BuildContext context, AppRouteEnum route) {
     Navigator.pop(context);
-    context.pushNamed(route.name);
+    GoRouter.of(context).pushIfNotCurrent(context, route.name);
   }
 }

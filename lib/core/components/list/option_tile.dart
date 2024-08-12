@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/components/switch/custom_switch.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
+import 'package:laborus_app/core/utils/theme/font_size.dart';
 
 class Option extends StatefulWidget {
   final IconData icon;
@@ -8,6 +9,7 @@ class Option extends StatefulWidget {
   final bool isSwitch;
   final bool? isThemeSwitch;
   final bool isSignOut;
+  final VoidCallback? callback;
 
   const Option({
     Key? key,
@@ -16,6 +18,7 @@ class Option extends StatefulWidget {
     required this.isSwitch,
     this.isThemeSwitch,
     this.isSignOut = false,
+    this.callback,
   }) : super(key: key);
 
   @override
@@ -41,7 +44,7 @@ class _OptionState extends State<Option> {
       title: Text(
         widget.text,
         style: TextStyle(
-          fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+          fontSize: AppFontSize.medium,
           fontWeight: FontWeight.w500,
           color: widget.isSignOut
               ? AppColors.red
@@ -51,11 +54,7 @@ class _OptionState extends State<Option> {
       trailing: widget.isSwitch
           ? CustomSwitch(isThemeSwitch: widget.isThemeSwitch ?? false)
           : null,
-      onTap: widget.isSwitch
-          ? null
-          : () {
-              // Define any onTap behavior here, if necessary.
-            },
+      onTap: widget.isSwitch ? null : widget.callback ?? () {},
     );
   }
 }

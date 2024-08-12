@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/generics/avatar_picture.dart';
 import 'package:laborus_app/core/components/modals/profile_modal.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -74,7 +75,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return GestureDetector(
       onTap: () {
         AppRouteEnum pathName = AppRouteEnum.home;
-        context.goNamed(pathName.name);
+        GoRouter.of(context).goNavigate(context, pathName.name);
       },
       child: Container(
         width: 50,
