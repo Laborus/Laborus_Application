@@ -6,28 +6,31 @@ enum AppRouteEnum {
   onboarding,
   settings,
   chat,
-  profile
+  profile,
+  connections,
 }
 
 extension AppRouteExtension on AppRouteEnum {
   String get name {
     switch (this) {
       case AppRouteEnum.onboarding:
-        return "Onboarding";
+        return "/onboarding";
       case AppRouteEnum.welcome:
-        return "Welcome";
+        return "/welcome";
       case AppRouteEnum.signin:
-        return "Signin";
+        return "/signin";
       case AppRouteEnum.signup:
-        return "Signup";
+        return "/signup";
       case AppRouteEnum.home:
-        return "Home";
+        return "/home";
       case AppRouteEnum.chat:
-        return "Chat";
+        return "/chat";
       case AppRouteEnum.settings:
-        return "Settings";
+        return "/settings";
       case AppRouteEnum.profile:
-        return "Profile";
+        return "/profile";
+      case AppRouteEnum.connections:
+        return "/connections";
       default:
         return "/";
     }

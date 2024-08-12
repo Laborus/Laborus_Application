@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/data/local_database.dart';
+import 'package:laborus_app/core/providers/route_stack_provider.dart';
 import 'package:laborus_app/core/providers/settings_provider.dart';
 import 'package:laborus_app/core/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,9 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (context) => RouteStackProvider(),
+        ),
         ChangeNotifierProvider(
           create: (context) {
             final themeProvider = SettingsProvider();
