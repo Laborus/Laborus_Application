@@ -8,6 +8,7 @@ enum AppRouteEnum {
   chat,
   profile,
   connections,
+  notification,
 }
 
 extension AppRouteExtension on AppRouteEnum {
@@ -31,6 +32,8 @@ extension AppRouteExtension on AppRouteEnum {
         return "/profile";
       case AppRouteEnum.connections:
         return "/connections";
+      case AppRouteEnum.notification:
+        return "/notification";
       default:
         return "/";
     }

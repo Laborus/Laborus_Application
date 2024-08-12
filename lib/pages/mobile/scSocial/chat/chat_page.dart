@@ -13,7 +13,7 @@ class ChatPage extends StatelessWidget {
     return DefaultTabController(
       length: 1,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         appBar: CustomAppBarBottom(
           leading: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 22),

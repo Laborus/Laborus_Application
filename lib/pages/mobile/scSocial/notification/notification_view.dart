@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/pages/mobile/scSocial/notification/widgets/notification_list.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
+import 'package:laborus_app/core/utils/theme/font_size.dart';
+import 'package:laborus_app/pages/mobile/scSocial/notification/widgets/all_notifications_tab.dart';
+import 'package:laborus_app/pages/mobile/scSocial/notification/widgets/campus_tab.dart';
+import 'package:laborus_app/pages/mobile/scSocial/notification/widgets/following_tab.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -12,90 +16,56 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 80,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
-        title:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(
-            'Notificações',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          InkWell(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(15)),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 6, horizontal: 18),
-                child: Text(
-                  'Marcar como lido',
-                  style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
-                    color: Colors.white,
-                  ),
-                ),
+    return DefaultTabController(
+      length: 3, // Defina o número de abas
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        appBar: AppBar(
+          toolbarHeight: 0,
+          bottom: TabBar(
+            dividerColor: Theme.of(context).colorScheme.primary,
+            indicatorColor: AppColors.primaryPurple,
+            labelColor: AppColors.primaryPurple,
+            unselectedLabelColor: Theme.of(context).colorScheme.onSecondary,
+            indicatorWeight: 4,
+            indicatorSize: TabBarIndicatorSize.tab,
+            tabAlignment: TabAlignment.start,
+            padding: const EdgeInsets.only(left: 22),
+            isScrollable: true,
+            labelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Inter',
+              fontSize: AppFontSize.medium,
+            ),
+            unselectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Inter',
+              fontSize: AppFontSize.medium,
+            ),
+            tabs: const [
+              Tab(
+                height: 34,
+                text: 'Todas',
               ),
-            ),
-          )
-        ]),
-        bottom: AppBar(
-          toolbarHeight: 40,
-          leadingWidth: width * 1,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                button(context, true),
-                button(context, false),
-                button(context, false),
-                button(context, false),
-              ],
-            ),
+              Tab(
+                height: 34,
+                text: 'Meu Campus',
+              ),
+              Tab(
+                height: 34,
+                text: 'Seguindo',
+              ),
+            ],
           ),
-          elevation: 0,
         ),
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(21),
-        child: NotificationList(),
+        body: const TabBarView(
+          children: [
+            NotificationsTab(),
+            CampusTab(),
+            FollowingTab(),
+          ],
+        ),
       ),
     );
   }
-}
-
-Widget button(ctx, bool active) {
-  return Expanded(
-    flex: 2,
-    child: InkWell(
-      onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: active
-                  ? Theme.of(ctx).colorScheme.primary
-                  : Colors.transparent,
-              width: 2,
-            ),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 11, left: 5),
-          child: Text(
-            'Todas',
-            style: Theme.of(ctx).textTheme.titleSmall,
-          ),
-        ),
-      ),
-    ),
-  );
 }

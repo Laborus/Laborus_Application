@@ -41,7 +41,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Row(
       children: [
         IconButton(
-          onPressed: () => context.goNamed('notification'),
+          onPressed: () {
+            AppRouteEnum pathName = AppRouteEnum.notification;
+            GoRouter.of(context).pushIfNotCurrent(context, pathName.name);
+          },
           icon: badges.Badge(
             position: badges.BadgePosition.topStart(top: 2, start: 1),
             badgeStyle: badges.BadgeStyle(

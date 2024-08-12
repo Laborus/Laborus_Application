@@ -15,7 +15,7 @@ class ConnectionsPage extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         appBar: CustomAppBarBottom(
           leading: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22),
