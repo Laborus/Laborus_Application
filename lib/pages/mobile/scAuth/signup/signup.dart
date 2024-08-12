@@ -131,7 +131,7 @@ class _SignupWrapperState extends State<SignupWrapper> {
                   onPressed: () {
                     AppRouteEnum currentPath = AppRouteEnum.signin;
                     String routePath = currentPath.name;
-                    context.pushReplacementNamed(routePath);
+                    context.pushReplacement(routePath);
                   },
                   child: Text(
                     'Crie sua conta!',

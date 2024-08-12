@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 
 Widget buildBottomButtons(double width, BuildContext context) {
@@ -23,7 +24,7 @@ Widget buildBottomButtons(double width, BuildContext context) {
           onPressed: () {
             AppRouteEnum currentPath = AppRouteEnum.signin;
             String routePath = currentPath.name;
-            context.pushNamed(routePath);
+            GoRouter.of(context).pushIfNotCurrent(context, routePath);
           },
           style: ButtonStyle(
             backgroundColor:
@@ -44,7 +45,7 @@ Widget buildBottomButtons(double width, BuildContext context) {
           onPressed: () {
             AppRouteEnum currentPath = AppRouteEnum.signup;
             String routePath = currentPath.name;
-            context.pushNamed(routePath);
+            GoRouter.of(context).pushIfNotCurrent(context, routePath);
           },
           child: const SizedBox(
             width: double.infinity,

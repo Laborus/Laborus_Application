@@ -21,7 +21,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     if (onboardingShown) {
       AppRouteEnum currentPath = AppRouteEnum.welcome;
       String routePath = currentPath.name;
-      context.pushReplacementNamed(routePath);
+      context.pushReplacement(routePath);
     }
   }
 
@@ -36,7 +36,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     AppRouteEnum currentPath = AppRouteEnum.welcome;
     String routePath = currentPath.name;
     // ignore: use_build_context_synchronously
-    context.pushReplacementNamed(routePath);
+    context.pushReplacement(routePath);
   }
 
   Function()? refreshButton() {
