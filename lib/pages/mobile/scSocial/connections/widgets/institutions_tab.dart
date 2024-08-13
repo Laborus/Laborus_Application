@@ -38,8 +38,15 @@ class InstitutionsTab extends StatelessWidget {
                   size: 40,
                 ),
                 title: institution['name']!,
-                subtitle:
-                    '${institution['location']} • ${institution['followers']} Seguidores',
+                subtitle: Text(
+                  '${institution['location']} • ${institution['followers']} Seguidores',
+                  style: TextStyle(
+                    fontSize: AppFontSize.small,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: TextButtonIcon(
                   backgroundColor: AppColors.darknessPurple,
                   color: AppColors.neutralsLight[0]!,

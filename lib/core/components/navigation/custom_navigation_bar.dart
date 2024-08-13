@@ -45,16 +45,16 @@ class CustomBottomAppBar extends StatelessWidget {
                       case 0:
                         AppRouteEnum path = AppRouteEnum.home;
                         GoRouter.of(context).goNavigate(context, path.name);
-
                         break;
                       case 1:
                         AppRouteEnum path = AppRouteEnum.connections;
                         GoRouter.of(context).goNavigate(context, path.name);
-
                         break;
                       case 2:
                         break;
                       case 3:
+                        AppRouteEnum path = AppRouteEnum.job;
+                        GoRouter.of(context).goNavigate(context, path.name);
                         break;
                       case 4:
                         AppRouteEnum path = AppRouteEnum.chat;

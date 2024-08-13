@@ -81,7 +81,8 @@ class ProfileModal {
               icon: Icons.account_balance_outlined,
               label: 'Meu Campus',
               onTap: () {
-                // Handle Meu Campus tap
+                AppRouteEnum path = AppRouteEnum.school;
+                _navigateAndCloseModal(context, path);
               },
             ),
             _buildMenuItem(
@@ -89,7 +90,8 @@ class ProfileModal {
               icon: Icons.outlined_flag_rounded,
               label: 'Desafios',
               onTap: () {
-                // Handle Desafios tap
+                AppRouteEnum path = AppRouteEnum.challenges;
+                _navigateAndCloseModal(context, path);
               },
             ),
             _buildMenuItem(
@@ -112,7 +114,7 @@ class ProfileModal {
               icon: Icons.logout,
               label: 'Sair da conta',
               textColor: AppColors.red,
-              backgroundColor: AppColors.lightRed,
+              backgroundColor: const Color.fromARGB(255, 243, 187, 217),
               onTap: () {
                 AppRouteEnum path = AppRouteEnum.welcome;
                 GoRouter.of(context).clearStackAndNavigate(context, path.name);

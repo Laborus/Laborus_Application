@@ -27,7 +27,15 @@ class PersonList extends StatelessWidget {
             size: 50,
           ),
           title: people.name,
-          subtitle: people.name,
+          subtitle: Text(
+            people.name,
+            style: TextStyle(
+              fontSize: AppFontSize.small,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

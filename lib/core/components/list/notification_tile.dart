@@ -1,6 +1,4 @@
-import 'package:laborus_app/core/utils/theme/font_size.dart';
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/utils/theme/font_size.dart';
 
 class NotificationTile extends StatelessWidget {
   final Widget? leading;

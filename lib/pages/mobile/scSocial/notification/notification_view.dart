@@ -15,9 +15,8 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     return DefaultTabController(
-      length: 3, // Defina o número de abas
+      length: 3,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         appBar: AppBar(

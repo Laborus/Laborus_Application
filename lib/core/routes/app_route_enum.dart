@@ -9,6 +9,9 @@ enum AppRouteEnum {
   profile,
   connections,
   notification,
+  school,
+  job,
+  challenges,
 }
 
 extension AppRouteExtension on AppRouteEnum {
@@ -34,6 +37,12 @@ extension AppRouteExtension on AppRouteEnum {
         return "/connections";
       case AppRouteEnum.notification:
         return "/notification";
+      case AppRouteEnum.school:
+        return "/school";
+      case AppRouteEnum.job:
+        return "/job";
+      case AppRouteEnum.challenges:
+        return "/challenges";
       default:
         return "/";
     }

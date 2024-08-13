@@ -38,7 +38,15 @@ class StudentsTab extends StatelessWidget {
                   size: 40,
                 ),
                 title: student['name']!,
-                subtitle: student['location']!,
+                subtitle: Text(
+                  student['location']!,
+                  style: TextStyle(
+                    fontSize: AppFontSize.small,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: TextButtonIcon(
                   backgroundColor: AppColors.darknessPurple,
                   color: AppColors.neutralsLight[0]!,

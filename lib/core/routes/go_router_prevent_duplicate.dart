@@ -36,7 +36,7 @@ extension GoRouterPreventDuplicate on GoRouter {
   void clearStackAndNavigate(BuildContext context, String path) {
     final routeStackProvider = context.read<RouteStackProvider>();
     while (canPop()) {
-      popAndNavigate(context);
+      pop();
     }
     routeStackProvider.clearStackAndNavigate(path);
     pushReplacement(path);

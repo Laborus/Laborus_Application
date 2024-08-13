@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signin/signin.dart';
+import 'package:laborus_app/pages/mobile/scLaborus/campus/campus.dart';
+import 'package:laborus_app/pages/mobile/scLaborus/challenge/challenges_page.dart';
 import 'package:laborus_app/pages/mobile/scSocial/chat/chat_page.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/create_post/create_post_page.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/feed/feed_page.dart';
 import 'package:laborus_app/pages/mobile/scSocial/connections/connections_page.dart';
+import 'package:laborus_app/pages/mobile/scSocial/jobs/jobs_page.dart';
 import 'package:laborus_app/pages/mobile/scSocial/notification/notification_view.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/onb_page.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/post_full_size/post_full_size_page.dart';
@@ -23,6 +26,9 @@ final _connectionsNavigatorKey = GlobalKey<NavigatorState>();
 final _createNavigatorKey = GlobalKey<NavigatorState>();
 final _notificationsNavigatorKey = GlobalKey<NavigatorState>();
 final _profileNavigatorKey = GlobalKey<NavigatorState>();
+final _schoolNavigatorKey = GlobalKey<NavigatorState>();
+final _jobsNavigatorKey = GlobalKey<NavigatorState>();
+final _challengesNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
   debugLogDiagnostics: true,
@@ -151,6 +157,42 @@ final _router = GoRouter(
               name: 'notification',
               builder: (context, state) {
                 return const NotificationPage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _schoolNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/school',
+              name: 'school',
+              builder: (context, state) {
+                return const CampusScreen();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _jobsNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/job',
+              name: 'job',
+              builder: (context, state) {
+                return const JobsPage();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _challengesNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/challenges',
+              name: 'challenges',
+              builder: (context, state) {
+                return const ChallengesPage();
               },
             ),
           ],

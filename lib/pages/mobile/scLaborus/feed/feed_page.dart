@@ -10,11 +10,15 @@ class FeedPage extends StatelessWidget {
     return Container(
       color: Theme.of(context).colorScheme.onPrimary,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 30, top: 13),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom,
+          top: MediaQuery.of(context).padding.top,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListView.separated(
+              padding: const EdgeInsets.only(top: 13),
               itemCount: posts.length,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
