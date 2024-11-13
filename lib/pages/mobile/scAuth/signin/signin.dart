@@ -46,6 +46,15 @@ class _SignInPageState extends State<SignInPage> {
 
       if (mounted) {
         if (success) {
+          // Exibe SnackBar de sucesso
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Login realizado com sucesso!'),
+              backgroundColor: AppColors.green,
+              duration: Duration(seconds: 3),
+            ),
+          );
+
           AppRouteEnum currentPath = AppRouteEnum.home;
           String routePath = currentPath.name;
           context.go(routePath);
@@ -54,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
             SnackBar(
               content: Text(authProvider.error ??
                   'Falha no login. Verifique suas credenciais.'),
-              backgroundColor: Colors.red,
+              backgroundColor: AppColors.red,
               duration: const Duration(seconds: 3),
             ),
           );

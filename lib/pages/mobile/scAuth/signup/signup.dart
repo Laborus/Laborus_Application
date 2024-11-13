@@ -6,7 +6,6 @@ import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/details_account_step.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/info_institution_step.dart';
-import 'package:laborus_app/pages/mobile/scAuth/signup/steps/location_fields_step.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/widgets/build_progress_indicator.dart';
 
 class SignupWrapper extends StatefulWidget {
@@ -27,7 +26,7 @@ class _SignupWrapperState extends State<SignupWrapper> {
     super.initState();
     _dynamicWidgets = {
       'Informações': const DetailsAccountStep(),
-      'Localização': const LocationFieldsStep(),
+      // 'Localização': const LocationFieldsStep(),
       'Instituição': const InfoInstitutionStep(),
     };
   }
