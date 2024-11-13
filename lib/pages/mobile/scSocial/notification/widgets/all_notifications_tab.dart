@@ -58,7 +58,7 @@ class NotificationsTab extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 3),
-                  AvatarPicture(
+                  const AvatarPicture(
                     imagePath: 'assets/img/profile.jpg',
                     size: 40,
                   ),
@@ -98,7 +98,7 @@ class NotificationsTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    constraints: BoxConstraints.tight(Size(28, 28)),
+                    constraints: BoxConstraints.tight(const Size(28, 28)),
                     onPressed: () {},
                     style: const ButtonStyle(
                       padding: WidgetStatePropertyAll(
@@ -115,7 +115,7 @@ class NotificationsTab extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    constraints: BoxConstraints.tight(Size(28, 28)),
+                    constraints: BoxConstraints.tight(const Size(28, 28)),
                     onPressed: () {},
                     style: const ButtonStyle(
                       padding: WidgetStatePropertyAll(

@@ -7,6 +7,8 @@ import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/core/utils/theme/font_size.dart';
 
 class FeedTab extends StatelessWidget {
+  const FeedTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -36,6 +38,8 @@ class FeedTab extends StatelessWidget {
 }
 
 class DiscussionTab extends StatelessWidget {
+  const DiscussionTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -65,7 +69,7 @@ class DiscussionTab extends StatelessWidget {
                 ),
                 horizontalTitleGap: 12,
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 22, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -181,6 +185,8 @@ class DiscussionTab extends StatelessWidget {
 }
 
 class AlertsTab extends StatelessWidget {
+  const AlertsTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -210,7 +216,7 @@ class AlertsTab extends StatelessWidget {
                 ),
                 horizontalTitleGap: 12,
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 22, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 22, vertical: 5),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

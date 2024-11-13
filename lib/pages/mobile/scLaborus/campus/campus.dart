@@ -58,7 +58,7 @@ class CampusScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             FeedTab(),
             DiscussionTab(),

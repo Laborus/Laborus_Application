@@ -95,9 +95,9 @@ class YoungApprenticeTab extends StatelessWidget {
                   ],
                 ),
                 trailing: IconButton(
-                  padding: EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(4),
                   alignment: Alignment.center,
-                  constraints: BoxConstraints(),
+                  constraints: const BoxConstraints(),
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(
                       Theme.of(context).colorScheme.onPrimary,

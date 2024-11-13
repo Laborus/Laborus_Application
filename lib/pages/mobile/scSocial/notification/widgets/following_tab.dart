@@ -62,7 +62,7 @@ class FollowingTab extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 3),
-                  AvatarPicture(
+                  const AvatarPicture(
                     imagePath: 'assets/img/profile.jpg',
                     size: 40,
                   ),
@@ -102,7 +102,7 @@ class FollowingTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    constraints: BoxConstraints.tight(Size(28, 28)),
+                    constraints: BoxConstraints.tight(const Size(28, 28)),
                     onPressed: () {},
                     style: ButtonStyle(
                       padding: const WidgetStatePropertyAll(

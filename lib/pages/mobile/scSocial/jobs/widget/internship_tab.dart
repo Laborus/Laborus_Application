@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laborus_app/core/components/buttons/text_button_icon.dart';
 import 'package:laborus_app/core/components/generics/avatar_picture.dart';
 import 'package:laborus_app/core/components/list/generic_list_builder_separated.dart';
 import 'package:laborus_app/core/components/list/generic_list_tile.dart';
@@ -96,9 +95,9 @@ class InternshipTab extends StatelessWidget {
                   ],
                 ),
                 trailing: IconButton(
-                  padding: EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(4),
                   alignment: Alignment.center,
-                  constraints: BoxConstraints(),
+                  constraints: const BoxConstraints(),
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(
                       Theme.of(context).colorScheme.onPrimary,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/details_account_step.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/info_institution_step.dart';
@@ -131,7 +132,7 @@ class _SignupWrapperState extends State<SignupWrapper> {
                   onPressed: () {
                     AppRouteEnum currentPath = AppRouteEnum.signin;
                     String routePath = currentPath.name;
-                    context.pushReplacement(routePath);
+                    GoRouter.of(context).pushIfNotCurrent(context, routePath);
                   },
                   child: Text(
                     'Crie sua conta!',

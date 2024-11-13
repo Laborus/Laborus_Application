@@ -2,12 +2,66 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/forms/text_field_form.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
+import 'package:laborus_app/core/providers/auth_provider.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
-import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
+import 'package:laborus_app/core/utils/constants/validators.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
+import 'package:laborus_app/pages/mobile/scIntroduction/welcome/widgets/build_text_section.dart';
+import 'package:provider/provider.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
+  }
+
+  Future<void> _handleSignIn() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      final authProvider = context.read<AuthProvider>();
+
+      final success = await authProvider.signIn(
+        _emailController.text.trim(),
+        _passwordController.text,
+      );
+
+      if (mounted) {
+        if (success) {
+          AppRouteEnum currentPath = AppRouteEnum.home;
+          String routePath = currentPath.name;
+          context.go(routePath);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(authProvider.error ??
+                  'Falha no login. Verifique suas credenciais.'),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,99 +70,105 @@ class SignInPage extends StatelessWidget {
       appBar: const CustomAppBarIntroduction(
         title: 'Entre com sua conta',
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            buildTextSection(context),
-            const SizedBox(height: 20),
-            const Column(
-              children: [
-                CustomTextField(
-                  labelText: 'Seu e-mail',
-                  hintText: 'Digite seu e-mail',
-                ),
-                SizedBox(height: 20),
-                CustomTextField(
-                  hintText: 'Digite seu e-mail',
-                  labelText: 'Sua senha',
-                  suffixIcon: Icon(Icons.visibility),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                AppRouteEnum currentPath = AppRouteEnum.home;
-                String routePath = currentPath.name;
-                context.go(routePath);
-              },
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width - 22,
-                child: const Text(
-                  'Entrar',
-                  textAlign: TextAlign.center,
-                ),
+      body: Consumer<AuthProvider>(
+        builder: (context, authProvider, child) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 22),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildTextSection(context),
+                  const SizedBox(height: 20),
+                  Column(
+                    children: [
+                      CustomTextField(
+                        controller: _emailController,
+                        labelText: 'Seu e-mail',
+                        hintText: 'Digite seu e-mail',
+                        validator: Validators.validateEmail,
+                        keyboardType: TextInputType.emailAddress,
+                        enabled: !authProvider.isLoading,
+                      ),
+                      const SizedBox(height: 20),
+                      CustomTextField(
+                        controller: _passwordController,
+                        hintText: 'Digite sua senha',
+                        labelText: 'Sua senha',
+                        obscureText: !_isPasswordVisible,
+                        validator: Validators.validatePassword,
+                        enabled: !authProvider.isLoading,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: _togglePasswordVisibility,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: authProvider.isLoading ? null : _handleSignIn,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 22,
+                      child: authProvider.isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : const Text(
+                              'Entrar',
+                              textAlign: TextAlign.center,
+                            ),
+                    ),
+                  ),
+                  if (authProvider.error != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text(
+                        authProvider.error!,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Esqueceu a senha?',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.onTertiary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          AppRouteEnum currentPath = AppRouteEnum.challenges;
+                          String routePath = currentPath.name;
+                          context.push(routePath);
+                        },
+                        child: Text(
+                          'Altere aqui.',
+                          style:
+                              Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    color: AppColors.mediumPurple,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Esqueceu a senha?',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.onTertiary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    AppRouteEnum currentPath = AppRouteEnum.signin;
-                    String routePath = currentPath.name;
-                    GoRouter.of(context).pushReplacement(routePath);
-                  },
-                  child: Text(
-                    'Altere aqui.',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: AppColors.mediumPurple,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
-}
-
-Widget buildTextSection(BuildContext context) {
-  return Column(
-    children: [
-      Text(
-        'Bem-vindo(a) de volta!',
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onTertiary,
-            ),
-      ),
-      const SizedBox(height: 13),
-      SizedBox(
-        width: 260,
-        child: Text(
-          'É bom vê-lo(a) novamente! Por favor digite suas informações.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.tertiary,
-              ),
-        ),
-      ),
-    ],
-  );
 }

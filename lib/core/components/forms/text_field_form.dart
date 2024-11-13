@@ -7,6 +7,10 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final bool enabled;
   final Widget? suffixIcon;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final void Function(String)? onChanged;
 
   const CustomTextField({
     super.key,
@@ -15,6 +19,10 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.enabled = true,
     this.suffixIcon,
+    this.controller,
+    this.validator,
+    this.keyboardType,
+    this.onChanged,
   });
 
   @override
@@ -31,8 +39,12 @@ class CustomTextField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          controller: controller,
           enabled: enabled,
           obscureText: obscureText,
+          validator: validator,
+          keyboardType: keyboardType,
+          onChanged: onChanged,
           cursorColor: AppColors.darknessPurple,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: Theme.of(context).colorScheme.tertiary,
@@ -66,6 +78,29 @@ class CustomTextField extends StatelessWidget {
                 width: 1.5,
                 color: AppColors.darknessPurple,
               ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              borderSide: BorderSide(
+                width: 1.5,
+                color: AppColors.red,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              borderSide: BorderSide(
+                width: 1.5,
+                color: AppColors.red,
+              ),
+            ),
+            errorStyle: TextStyle(
+              color: AppColors.red,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: const BorderRadius.all(

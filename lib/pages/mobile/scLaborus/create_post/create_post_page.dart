@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/generics/avatar_picture.dart';
 import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
@@ -23,7 +22,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
       useRootNavigator: true,
       showDragHandle: true,
       context: context,
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxHeight: 260,
       ),
       builder: (BuildContext context) {

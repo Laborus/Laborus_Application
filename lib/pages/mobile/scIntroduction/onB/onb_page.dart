@@ -1,12 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/data/local_database.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_continue_button.dart';
-import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_indicator.dart';
-import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_slide.dart';
 import 'package:laborus_app/pages/mobile/scIntroduction/onB/widgets/build_text_rich.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -16,14 +15,14 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-  void checkOnboarding() async {
-    final onboardingShown = await LocalDatabase.isOnboardingShown();
-    if (onboardingShown) {
-      AppRouteEnum currentPath = AppRouteEnum.welcome;
-      String routePath = currentPath.name;
-      context.pushReplacement(routePath);
-    }
-  }
+  int activeIndex = 0;
+  final PageController pageController = PageController();
+  final List<String> urlImages = [
+    'assets/img/slide1.png',
+    'assets/img/slide2.png',
+    'assets/img/slide3.png',
+  ];
+  final List<String> titles = ['Laborus', 'Compartilhe', 'Interaja'];
 
   @override
   void initState() {
@@ -31,31 +30,81 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     checkOnboarding();
   }
 
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  void checkOnboarding() async {
+    final onboardingShown = await LocalDatabase.isOnboardingShown();
+    if (onboardingShown) {
+      final routePath = AppRouteEnum.welcome.name;
+      if (mounted) {
+        context.pushReplacement(routePath);
+      }
+    }
+  }
+
   void refresh() async {
     await LocalDatabase.setOnboardingShown();
-    AppRouteEnum currentPath = AppRouteEnum.welcome;
-    String routePath = currentPath.name;
-    // ignore: use_build_context_synchronously
-    context.pushReplacement(routePath);
+    final routePath = AppRouteEnum.welcome.name;
+    if (mounted) {
+      context.pushReplacement(routePath);
+    }
   }
 
   Function()? refreshButton() {
     setState(() {});
     if (activeIndex == urlImages.length - 1) {
-      return () => refresh();
+      return refresh;
     }
     return null;
   }
 
-  int activeIndex = 0;
-  final controller = CarouselController();
-  final urlImages = [
-    'assets/img/slide1.png',
-    'assets/img/slide2.png',
-    'assets/img/slide3.png',
-  ];
+  Widget buildCarouselItem(
+      String urlImage, String title, Widget label, int index) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            urlImage,
+            height: 200,
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          const SizedBox(height: 8),
+          label,
+        ],
+      ),
+    );
+  }
 
-  final titles = ['Laborus', 'Compartilhe', 'Interaja'];
+  Widget buildPageIndicator() {
+    return AnimatedSmoothIndicator(
+      onDotClicked: (index) {
+        pageController.animateToPage(
+          index,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      },
+      effect: const ExpandingDotsEffect(
+        dotWidth: 15,
+        dotHeight: 15,
+        activeDotColor: AppColors.darknessPurple,
+        dotColor: Colors.grey,
+      ),
+      activeIndex: activeIndex,
+      count: urlImages.length,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,9 +144,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         true,
         false,
         true,
-        false,
+        false
       ], context),
     ];
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -106,31 +156,29 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CarouselSlider.builder(
-                carouselController: controller,
-                itemCount: urlImages.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = urlImages[index];
-                  final label = labels[index];
-                  final title = titles[index];
-                  return buildContainer(urlImage, title, label, index, context);
-                },
-                options: CarouselOptions(
-                  height: 320,
-                  autoPlay: false,
-                  enableInfiniteScroll: false,
-                  autoPlayAnimationDuration: const Duration(seconds: 2),
-                  enlargeCenterPage: true,
-                  clipBehavior: Clip.none,
-                  onPageChanged: (index, reason) =>
-                      setState(() => activeIndex = index),
+              SizedBox(
+                height: 320,
+                child: PageView.builder(
+                  controller: pageController,
+                  itemCount: urlImages.length,
+                  onPageChanged: (index) {
+                    setState(() => activeIndex = index);
+                  },
+                  itemBuilder: (context, index) {
+                    return buildCarouselItem(
+                      urlImages[index],
+                      titles[index],
+                      labels[index],
+                      index,
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 24),
-              buildIndicator(activeIndex, urlImages, controller, context)
+              buildPageIndicator(),
             ],
           ),
-          buildContinueButton(activeIndex, urlImages, refreshButton, context)
+          buildContinueButton(activeIndex, urlImages, refreshButton, context),
         ],
       ),
     );
