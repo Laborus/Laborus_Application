@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laborus_app/core/data/local_database.dart';
-import 'package:laborus_app/core/providers/auth_provider.dart';
+import 'package:laborus_app/core/providers/signin_provider.dart';
 import 'package:laborus_app/core/providers/route_stack_provider.dart';
 import 'package:laborus_app/core/providers/settings_provider.dart';
+import 'package:laborus_app/core/providers/signup_provider.dart';
 import 'package:laborus_app/core/routes/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,10 @@ void main() async {
           create: (context) => RouteStackProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => AuthProvider(),
+          create: (context) => SigninProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SignupProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) {

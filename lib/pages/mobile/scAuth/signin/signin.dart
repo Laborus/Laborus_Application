@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/forms/text_field_form.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
-import 'package:laborus_app/core/providers/auth_provider.dart';
+import 'package:laborus_app/core/providers/signin_provider.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
 import 'package:laborus_app/core/utils/constants/validators.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
@@ -37,7 +37,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _handleSignIn() async {
     if (_formKey.currentState?.validate() ?? false) {
-      final authProvider = context.read<AuthProvider>();
+      final authProvider = context.read<SigninProvider>();
 
       final success = await authProvider.signIn(
         _emailController.text.trim(),
@@ -79,7 +79,7 @@ class _SignInPageState extends State<SignInPage> {
       appBar: const CustomAppBarIntroduction(
         title: 'Entre com sua conta',
       ),
-      body: Consumer<AuthProvider>(
+      body: Consumer<SigninProvider>(
         builder: (context, authProvider, child) {
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 22),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
+import 'package:laborus_app/core/providers/signup_provider.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
 import 'package:laborus_app/core/routes/go_router_prevent_duplicate.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/details_account_step.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/info_institution_step.dart';
+import 'package:laborus_app/pages/mobile/scAuth/signup/steps/infos_about.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/widgets/build_progress_indicator.dart';
+import 'package:provider/provider.dart';
 
 class SignupWrapper extends StatefulWidget {
   const SignupWrapper({super.key});
@@ -17,6 +20,20 @@ class SignupWrapper extends StatefulWidget {
 
 class _SignupWrapperState extends State<SignupWrapper> {
   late final Map<String, Widget> _dynamicWidgets;
+  late final SignupProvider _signupProvider;
+
+  Future<void> _handleSubmit() async {
+    final success = await _signupProvider.submitSignup();
+    if (success) {
+      // Navigate to success screen or login
+      context.go(AppRouteEnum.signin.name);
+    } else {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Signup failed. Please try again.')),
+      );
+    }
+  }
 
   int _step = 1;
   int _remainingSteps = 2;
@@ -25,10 +42,11 @@ class _SignupWrapperState extends State<SignupWrapper> {
   void initState() {
     super.initState();
     _dynamicWidgets = {
-      'Informações': const DetailsAccountStep(),
-      // 'Localização': const LocationFieldsStep(),
+      'Dados Obrigatórios': DetailsAccountStep(),
+      'Perfil': InfosAbout(),
       'Instituição': const InfoInstitutionStep(),
     };
+    _signupProvider = Provider.of<SignupProvider>(context, listen: false);
   }
 
   void nextStep() {

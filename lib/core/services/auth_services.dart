@@ -7,6 +7,9 @@ import 'package:laborus_app/core/exceptions/auth_exception.dart';
 import 'package:laborus_app/core/model/responses/auth_response.dart';
 import 'dart:async';
 
+import 'package:laborus_app/core/model/users/school_model.dart';
+import 'package:laborus_app/core/model/users/user_modell.dart';
+
 class AuthService {
   static final String _baseUrl =
       dotenv.env['API_URL'] ?? 'https://laborus-backend-api.onrender.com/';
@@ -44,6 +47,36 @@ class AuthService {
           'Connection timeout. Please check your internet connection.');
     } catch (e) {
       throw AuthException('Failed to sign in: ${e.toString()}');
+    }
+  }
+
+  Future<List<SchoolModel>> getSchools() async {
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl/api/schools'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        return data.map((json) => SchoolModel.fromJson(json)).toList();
+      }
+      throw Exception('Failed to load schools');
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
+  Future<Map<String, dynamic>> signup(UserModel user) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/api/auth/signup'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(user.toJson()),
+      );
+
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      }
+      throw Exception('Signup failed: ${response.body}');
+    } catch (e) {
+      throw Exception('Error: $e');
     }
   }
 

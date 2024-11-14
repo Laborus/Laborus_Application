@@ -1,66 +1,115 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/components/forms/text_field_form.dart';
+import 'package:laborus_app/core/providers/signup_provider.dart';
+import 'package:laborus_app/core/utils/constants/signup_validators.dart';
+import 'package:provider/provider.dart';
 
-class DetailsAccountStep extends StatelessWidget {
-  const DetailsAccountStep({super.key});
+class DetailsAccountStep extends StatefulWidget {
+  @override
+  _DetailsAccountStepState createState() => _DetailsAccountStepState();
+}
+
+class _DetailsAccountStepState extends State<DetailsAccountStep> {
+  final _formKey = GlobalKey<FormState>();
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
+  final _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          'Dados obrigatórios',
-          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          'Por favor, preencha os campos com suas informações pessoais.',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontWeight: FontWeight.w500,
-              ),
-        ),
-        const SizedBox(height: 15),
-        const CustomTextField(
-          labelText: 'Nome',
-          hintText: 'Nome Completo',
-        ),
-        const SizedBox(height: 15),
-        const CustomTextField(
-          labelText: 'CPF',
-          hintText: '000.000.000-00',
-        ),
-        const SizedBox(height: 15),
-        const CustomTextField(
-          labelText: 'Email',
-          hintText: 'exemplo@gmail.com',
-        ),
-        const SizedBox(height: 15),
-        const CustomTextField(
-          labelText: 'Senha',
-          hintText: 'Sua senha',
-          obscureText: true,
-          suffixIcon: IconButton(
-            icon: Icon(Icons.visibility),
-            onPressed: null,
+    final provider = Provider.of<SignupProvider>(context);
+
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Dados obrigatórios',
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
-        ),
-        const SizedBox(height: 15),
-        const CustomTextField(
-          labelText: 'Confirme sua senha',
-          hintText: 'Sua senha',
-          obscureText: true,
-          suffixIcon: IconButton(
-            icon: Icon(Icons.visibility),
-            onPressed: null,
+          const SizedBox(height: 10),
+          Text(
+            'Por favor, preencha os campos com suas informações pessoais.',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontWeight: FontWeight.w500,
+                ),
           ),
-        ),
-      ],
+          const SizedBox(height: 15),
+          CustomTextField(
+            labelText: 'Nome',
+            hintText: 'Nome Completo',
+            onChanged: provider.setName,
+            initialValue: provider.name,
+            validator: SignupValidation.validateName,
+          ),
+          const SizedBox(height: 15),
+          CustomTextField(
+            labelText: 'CPF',
+            hintText: '000.000.000-00',
+            onChanged: provider.setCpf,
+            initialValue: provider.cpf,
+            validator: SignupValidation.validateCPF,
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(height: 15),
+          CustomTextField(
+            labelText: 'Email',
+            hintText: 'exemplo@gmail.com',
+            onChanged: provider.setEmail,
+            initialValue: provider.email,
+            validator: SignupValidation.validateEmail,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 15),
+          CustomTextField(
+            labelText: 'Senha',
+            hintText: 'Sua senha',
+            obscureText: !_isPasswordVisible,
+            onChanged: provider.setPassword,
+            initialValue: provider.password,
+            validator: SignupValidation.validatePassword,
+            suffixIcon: IconButton(
+              icon: Icon(
+                _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+              ),
+              onPressed: () {
+                setState(() {
+                  _isPasswordVisible = !_isPasswordVisible;
+                });
+              },
+            ),
+          ),
+          const SizedBox(height: 15),
+          CustomTextField(
+            labelText: 'Confirme sua senha',
+            hintText: 'Digite sua senha novamente',
+            obscureText: !_isConfirmPasswordVisible,
+            controller: _confirmPasswordController,
+            validator: (value) => SignupValidation.validateConfirmPassword(
+              value,
+              provider.password,
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                _isConfirmPasswordVisible
+                    ? Icons.visibility_off
+                    : Icons.visibility,
+              ),
+              onPressed: () {
+                setState(() {
+                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

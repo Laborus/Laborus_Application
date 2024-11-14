@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:laborus_app/core/exceptions/auth_exception.dart';
 import 'package:laborus_app/core/services/auth_services.dart';
 
-class AuthProvider extends ChangeNotifier {
+class SigninProvider extends ChangeNotifier {
   final AuthService _authService = AuthService();
   bool _isAuthenticated = false;
   bool _isLoading = false;
