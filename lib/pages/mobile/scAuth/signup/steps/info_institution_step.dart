@@ -23,7 +23,7 @@ class InfoInstitutionStep extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          'Por favor, Precisamos de mais algumas informações para criar sua conta.',
+          'Por favor, precisamos de mais algumas informações para criar sua conta.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onTertiary,
                 fontWeight: FontWeight.w500,
@@ -33,56 +33,108 @@ class InfoInstitutionStep extends StatelessWidget {
         FutureBuilder<List<SchoolModel>>(
           future: provider.getSchools(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final schools = snapshot.data!;
-              return DropdownButtonFormField<String>(
-                value: provider.school.isNotEmpty ? provider.school : null,
-                hint: const Text('Selecione sua instituição'),
-                items: schools.map((school) {
-                  return DropdownMenuItem(
-                    value: school.id,
-                    child: Text(school.name),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  if (value != null) {
-                    provider.setSchool(value);
-                    // Reset course when school changes
-                    provider.setCourse('');
-                  }
-                },
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Column(
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 16),
+                    Text(
+                      'Carregando instituições...',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
               );
             }
-            return const CircularProgressIndicator();
-          },
-        ),
-        const SizedBox(height: 15),
-        if (provider.school.isNotEmpty)
-          FutureBuilder<List<SchoolModel>>(
-            future: provider.getSchools(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final selectedSchool = snapshot.data!
-                    .firstWhere((school) => school.id == provider.school);
-                return DropdownButtonFormField<String>(
-                  value: provider.course.isNotEmpty ? provider.course : null,
-                  hint: const Text('Selecione seu curso'),
-                  items: selectedSchool.courses.map((course) {
+
+            if (snapshot.hasError) {
+              return Center(
+                child: Column(
+                  children: [
+                    Icon(Icons.error_outline, color: Colors.red, size: 48),
+                    SizedBox(height: 16),
+                    Text(
+                      'Erro ao carregar instituições',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Colors.red,
+                          ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        provider.refreshSchools();
+                      },
+                      child: Text('Tentar novamente'),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(
+                child: Text(
+                  'Nenhuma instituição encontrada',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              );
+            }
+
+            final schools = snapshot.data!;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                DropdownButtonFormField<String>(
+                  value: provider.school.isNotEmpty ? provider.school : null,
+                  decoration: InputDecoration(
+                    labelText: 'Instituição',
+                    border: OutlineInputBorder(),
+                    errorText: provider.schoolError,
+                  ),
+                  hint: const Text('Selecione sua instituição'),
+                  items: schools.map((school) {
                     return DropdownMenuItem(
-                      value: course,
-                      child: Text(course),
+                      value: school.id,
+                      child: Text(school.name),
                     );
                   }).toList(),
                   onChanged: (value) {
                     if (value != null) {
-                      provider.setCourse(value);
+                      provider.setSchool(value);
+                      provider.setCourse('');
                     }
                   },
-                );
-              }
-              return const CircularProgressIndicator();
-            },
-          ),
+                ),
+                if (provider.school.isNotEmpty) ...[
+                  const SizedBox(height: 15),
+                  DropdownButtonFormField<String>(
+                    value: provider.course.isNotEmpty ? provider.course : null,
+                    decoration: InputDecoration(
+                      labelText: 'Curso',
+                      border: OutlineInputBorder(),
+                      errorText: provider.courseError,
+                    ),
+                    hint: const Text('Selecione seu curso'),
+                    items: schools
+                        .firstWhere((school) => school.id == provider.school)
+                        .courses
+                        .map((course) {
+                      return DropdownMenuItem(
+                        value: course,
+                        child: Text(course),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      if (value != null) {
+                        provider.setCourse(value);
+                      }
+                    },
+                  ),
+                ],
+              ],
+            );
+          },
+        ),
       ],
     );
   }

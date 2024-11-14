@@ -1,9 +1,11 @@
 // auth_service.dart
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:laborus_app/core/data/auth_database.dart';
 import 'package:laborus_app/core/exceptions/auth_exception.dart';
+import 'package:laborus_app/core/exceptions/signup_exception.dart';
 import 'package:laborus_app/core/model/responses/auth_response.dart';
 import 'dart:async';
 
@@ -63,20 +65,46 @@ class AuthService {
     }
   }
 
-  Future<Map<String, dynamic>> signup(UserModel user) async {
+  String _imageToBase64(File? imageFile) {
+    if (imageFile == null) return '';
+    List<int> imageBytes = imageFile.readAsBytesSync();
+    return base64Encode(imageBytes);
+  }
+
+  Future<Map<String, dynamic>> signup(
+    UserModel user, {
+    File? profileImageFile,
+    File? bannerImageFile,
+  }) async {
     try {
+      // Convert images to base64
+      final profileImageBase64 = _imageToBase64(profileImageFile);
+      final bannerImageBase64 = _imageToBase64(bannerImageFile);
+
+      // Create user data with base64 images
+      final userData = user.toJson();
+      userData['profileImage'] = profileImageBase64;
+      userData['bannerImage'] = bannerImageBase64;
+
       final response = await http.post(
         Uri.parse('$_baseUrl/api/auth/signup'),
         headers: {'Content-Type': 'application/json'},
-        body: json.encode(user.toJson()),
+        body: json.encode(userData),
       );
 
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }
-      throw Exception('Signup failed: ${response.body}');
+
+      final error = json.decode(response.body);
+      throw SignupException(
+        error['message'] ?? 'Erro ao criar conta',
+        code: error['code'],
+        details: error['details'],
+      );
     } catch (e) {
-      throw Exception('Error: $e');
+      if (e is SignupException) rethrow;
+      throw SignupException('Erro ao criar conta: ${e.toString()}');
     }
   }
 

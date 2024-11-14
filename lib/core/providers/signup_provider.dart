@@ -32,6 +32,59 @@ class SignupProvider with ChangeNotifier {
   File? get profileImage => _profileImage;
   File? get bannerImage => _bannerImage;
 
+  String? _schoolError;
+  String? _courseError;
+  File? _profileImageFile;
+  File? _bannerImageFile;
+
+  String? get schoolError => _schoolError;
+  String? get courseError => _courseError;
+  File? get profileImageFile => _profileImageFile;
+  File? get bannerImageFile => _bannerImageFile;
+
+  void setSchool(String value) {
+    _school = value;
+    _schoolError = null;
+    notifyListeners();
+  }
+
+  void setCourse(String value) {
+    _course = value;
+    _courseError = null;
+    notifyListeners();
+  }
+
+  void setProfileImage(File file) {
+    _profileImageFile = file;
+    notifyListeners();
+  }
+
+  void setBannerImage(File file) {
+    _bannerImageFile = file;
+    notifyListeners();
+  }
+
+  bool validateInstitutionStep() {
+    bool isValid = true;
+
+    if (_school.isEmpty) {
+      _schoolError = 'Selecione uma instituição';
+      isValid = false;
+    }
+
+    if (_course.isEmpty) {
+      _courseError = 'Selecione um curso';
+      isValid = false;
+    }
+
+    notifyListeners();
+    return isValid;
+  }
+
+  Future<void> refreshSchools() async {
+    notifyListeners();
+  }
+
   // Setters with notifyListeners
   void setName(String value) {
     _name = value;
@@ -53,16 +106,6 @@ class SignupProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSchool(String value) {
-    _school = value;
-    notifyListeners();
-  }
-
-  void setCourse(String value) {
-    _course = value;
-    notifyListeners();
-  }
-
   void setTags(List<String> value) {
     _tags = value;
     notifyListeners();
@@ -73,51 +116,38 @@ class SignupProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setProfileImage(File value) {
-    _profileImage = value;
-    notifyListeners();
-  }
-
-  void setBannerImage(File value) {
-    _bannerImage = value;
-    notifyListeners();
-  }
-
   Future<String> _imageToBase64(File image) async {
     List<int> imageBytes = await image.readAsBytes();
     return base64Encode(imageBytes);
   }
 
-  Future<bool> submitSignup() async {
+  Future<bool> signup() async {
     try {
-      String? profileImageBase64;
-      String? bannerImageBase64;
-
-      if (_profileImage != null) {
-        profileImageBase64 = await _imageToBase64(_profileImage!);
-      }
-
-      if (_bannerImage != null) {
-        bannerImageBase64 = await _imageToBase64(_bannerImage!);
+      if (!validateInstitutionStep()) {
+        return false;
       }
 
       final user = UserModel(
-        name: _name,
-        email: _email,
-        password: _password,
-        cpf: _cpf,
-        school: _school,
-        course: _course,
-        tags: _tags,
-        profileImage: profileImageBase64,
-        bannerImage: bannerImageBase64,
-        aboutContent: _aboutContent,
+        name: name,
+        email: email,
+        password: password,
+        cpf: cpf,
+        school: school,
+        course: course,
+        tags: tags,
+        aboutContent: aboutContent,
       );
 
-      final response = await _apiService.signup(user);
-      return response['success'] ?? false;
+      await _apiService.signup(
+        user,
+        profileImageFile: _profileImageFile,
+        bannerImageFile: _bannerImageFile,
+      );
+
+      return true;
     } catch (e) {
-      print('Error during signup: $e');
+      // _error = e.toString();
+      notifyListeners();
       return false;
     }
   }

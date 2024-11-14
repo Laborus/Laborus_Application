@@ -23,7 +23,7 @@ class _SignupWrapperState extends State<SignupWrapper> {
   late final SignupProvider _signupProvider;
 
   Future<void> _handleSubmit() async {
-    final success = await _signupProvider.submitSignup();
+    final success = await _signupProvider.signup();
     if (success) {
       // Navigate to success screen or login
       context.go(AppRouteEnum.signin.name);
