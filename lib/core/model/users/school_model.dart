@@ -11,9 +11,18 @@ class SchoolModel {
 
   factory SchoolModel.fromJson(Map<String, dynamic> json) {
     return SchoolModel(
-      id: json['_id'],
-      name: json['name'],
-      courses: List<String>.from(json['courses']),
+      id: json['_id']?.toString() ??
+          '', // Ajustado para '_id' conforme a resposta da API
+      name: json['name']?.toString() ?? '',
+      courses: (json['courses'] as List<dynamic>?)
+              ?.map((course) => course.toString())
+              .toList() ??
+          [],
     );
+  }
+
+  @override
+  String toString() {
+    return 'SchoolModel(id: $id, name: $name, courses: $courses)';
   }
 }

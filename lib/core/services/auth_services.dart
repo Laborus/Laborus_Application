@@ -54,14 +54,29 @@ class AuthService {
 
   Future<List<SchoolModel>> getSchools() async {
     try {
-      final response = await http.get(Uri.parse('$_baseUrl/api/schools'));
+      final response = await http.get(
+        Uri.parse('$_baseUrl/api/schools'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      );
+
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        return data.map((json) => SchoolModel.fromJson(json)).toList();
+        final Map<String, dynamic> decodedResponse = json.decode(response.body);
+
+        // Acessa o caminho correto para a lista de escolas
+        final Map<String, dynamic> data = decodedResponse['data'];
+        final List<dynamic> schools = data['schools'];
+
+        return schools
+            .map((schoolData) => SchoolModel.fromJson(schoolData))
+            .toList();
+      } else {
+        throw Exception('Falha ao carregar escolas: ${response.statusCode}');
       }
-      throw Exception('Failed to load schools');
     } catch (e) {
-      throw Exception('Error: $e');
+      print('Erro ao carregar escolas: $e');
+      throw Exception('Erro ao carregar escolas: $e');
     }
   }
 
@@ -103,7 +118,9 @@ class AuthService {
         details: error['details'],
       );
     } catch (e) {
+      print('Erro ao criar conta; $e');
       if (e is SignupException) rethrow;
+
       throw SignupException('Erro ao criar conta: ${e.toString()}');
     }
   }

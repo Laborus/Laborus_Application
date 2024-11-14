@@ -5,7 +5,7 @@ class UserModel {
   final String cpf;
   final String school;
   final String course;
-  final List<String> tags;
+  // final List<String> tags;
   final String? profileImage;
   final String? bannerImage;
   final String aboutContent;
@@ -18,7 +18,7 @@ class UserModel {
     required this.cpf,
     required this.school,
     required this.course,
-    required this.tags,
+    // required this.tags,
     this.profileImage,
     this.bannerImage,
     required this.aboutContent,
@@ -33,10 +33,10 @@ class UserModel {
       'cpf': cpf,
       'school': school,
       'course': course,
-      'tags': tags,
+      // 'tags': ['TECNOLOGY'],
       'profileImage': profileImage,
       'bannerImage': bannerImage,
-      'aboutContent': aboutContent,
+      // 'aboutContent': aboutContent,
       'accountType': accountType,
     };
   }

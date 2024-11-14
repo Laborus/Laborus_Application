@@ -19,9 +19,6 @@ class _InfosAboutState extends State<InfosAbout> {
   XFile? _bannerImage;
   XFile? _profileImage;
 
-  final List<Map<String, dynamic>> _tags = [];
-  final TextEditingController _aboutController = TextEditingController();
-
   // Função de validação para o campo "Sobre"
   String? _validateAbout(String? value) {
     if (value == null || value.isEmpty) {
@@ -48,58 +45,51 @@ class _InfosAboutState extends State<InfosAbout> {
     });
   }
 
-  void _showTagSelectionModal() {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          builder: (_, scrollController) {
-            return ListView.builder(
-              controller: scrollController,
-              itemCount: tags.length,
-              itemBuilder: (context, index) {
-                String tagKey = tags.keys.elementAt(index);
-                String tagLabel = tags[tagKey]!['label'];
-                IconData tagIcon = tags[tagKey]!['icon'];
-                Color tagColor = tags[tagKey]!['color'];
-                return ListTile(
-                  leading: Icon(tagIcon),
-                  title: Text(tagLabel),
-                  onTap: () {
-                    setState(() {
-                      if (_tags.length < 3 &&
-                          !_tags.any((tag) => tag['key'] == tagKey)) {
-                        _tags.add({
-                          'key': tagKey,
-                          'label': tagLabel,
-                          'icon': tagIcon,
-                          'color': tagColor,
-                        });
-                      } else if (_tags.length >= 3) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content:
-                                Text('Você só pode selecionar até 3 tags.'),
-                          ),
-                        );
-                      }
-                    });
-                    Navigator.pop(context);
-                  },
-                );
-              },
-            );
-          },
-        );
-      },
-    );
-  }
+  // void _showTagSelectionModal() {
+  //   final provider = Provider.of<SignupProvider>(context, listen: false);
+
+  //   showModalBottomSheet(
+  //     context: context,
+  //     isScrollControlled: true,
+  //     builder: (BuildContext context) {
+  //       return DraggableScrollableSheet(
+  //         expand: false,
+  //         builder: (_, scrollController) {
+  //           return ListView.builder(
+  //             controller: scrollController,
+  //             itemCount: tags.length,
+  //             itemBuilder: (context, index) {
+  //               String tagKey = tags.keys.elementAt(index);
+  //               Map<String, dynamic> tagData = tags[tagKey]!;
+
+  //               return ListTile(
+  //                 leading: Icon(tagData['icon']),
+  //                 title: Text(tagData['label']),
+  //                 onTap: () {
+  //                   if (provider.tags.length < 3 &&
+  //                       !provider.tags.contains(tagKey)) {
+  //                     provider.addTag(tagKey);
+  //                     Navigator.pop(context);
+  //                   } else if (provider.tags.length >= 3) {
+  //                     ScaffoldMessenger.of(context).showSnackBar(
+  //                       SnackBar(
+  //                         content: Text('Você só pode selecionar até 3 tags.'),
+  //                       ),
+  //                     );
+  //                   }
+  //                 },
+  //               );
+  //             },
+  //           );
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<SignupProvider>(context);
+    final provider = Provider.of<SignupProvider>(context, listen: false);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -176,42 +166,56 @@ class _InfosAboutState extends State<InfosAbout> {
           maxLines: 5,
         ),
         const SizedBox(height: 15),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextApp(
-                    label: 'Tags',
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.tertiary,
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: _showTagSelectionModal,
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: provider.tags.map((tag) {
-                  final tagData = tags[tag];
-                  return ProfileTag(
-                    label: tagData?['label'] ?? '',
-                    iconData: tagData?['icon'],
-                    backgroundColor: tagData?['color'],
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       Row(
+        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //         children: [
+        //           TextApp(
+        //             label: 'Tags',
+        //             fontSize: 18,
+        //             fontWeight: FontWeight.bold,
+        //             color: Theme.of(context).colorScheme.tertiary,
+        //           ),
+        //           IconButton(
+        //             icon: Icon(Icons.add),
+        //             onPressed: _showTagSelectionModal,
+        //           ),
+        //         ],
+        //       ),
+        //       SizedBox(height: 8),
+        //       Wrap(
+        //         spacing: 8,
+        //         runSpacing: 8,
+        //         children: provider.tags.map((tagKey) {
+        //           final tagData = tags[tagKey];
+        //           if (tagData == null) return const SizedBox();
+
+        //           return Stack(
+        //             children: [
+        //               ProfileTag(
+        //                 label: tagData['label'] ?? '',
+        //                 iconData: tagData['icon'],
+        //                 backgroundColor: tagData['color'],
+        //               ),
+        //               Positioned(
+        //                 right: -8,
+        //                 top: -8,
+        //                 child: IconButton(
+        //                   icon: Icon(Icons.close, size: 16),
+        //                   onPressed: () => provider.removeTag(tagKey),
+        //                 ),
+        //               ),
+        //             ],
+        //           );
+        //         }).toList(),
+        //       ),
+        //     ],
+        //   ),
+        // )
       ],
     );
   }

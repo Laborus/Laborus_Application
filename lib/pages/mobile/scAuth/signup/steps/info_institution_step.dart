@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/core/components/forms/dropdown_form_field.dart';
 import 'package:laborus_app/core/model/users/school_model.dart';
 import 'package:laborus_app/core/providers/signup_provider.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +63,7 @@ class InfoInstitutionStep extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        provider.refreshSchools();
+                        // provider.refreshSchools();
                       },
                       child: Text('Tentar novamente'),
                     ),
@@ -84,18 +85,20 @@ class InfoInstitutionStep extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                DropdownButtonFormField<String>(
+                CustomDropdownButtonFormField<String>(
+                  labelText: 'Instituição',
+                  hintText: 'Selecione sua instituição',
                   value: provider.school.isNotEmpty ? provider.school : null,
-                  decoration: InputDecoration(
-                    labelText: 'Instituição',
-                    border: OutlineInputBorder(),
-                    errorText: provider.schoolError,
-                  ),
-                  hint: const Text('Selecione sua instituição'),
                   items: schools.map((school) {
                     return DropdownMenuItem(
                       value: school.id,
-                      child: Text(school.name),
+                      child: Text(
+                        school.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ),
                     );
                   }).toList(),
                   onChanged: (value) {
@@ -104,24 +107,28 @@ class InfoInstitutionStep extends StatelessWidget {
                       provider.setCourse('');
                     }
                   },
+                  // errorText: provider.schoolError,
+                  enabled: true,
                 ),
                 if (provider.school.isNotEmpty) ...[
                   const SizedBox(height: 15),
-                  DropdownButtonFormField<String>(
+                  CustomDropdownButtonFormField<String>(
                     value: provider.course.isNotEmpty ? provider.course : null,
-                    decoration: InputDecoration(
-                      labelText: 'Curso',
-                      border: OutlineInputBorder(),
-                      errorText: provider.courseError,
-                    ),
-                    hint: const Text('Selecione seu curso'),
+                    labelText: 'Curso',
+                    // errorText: provider.courseError,
                     items: schools
                         .firstWhere((school) => school.id == provider.school)
                         .courses
                         .map((course) {
                       return DropdownMenuItem(
                         value: course,
-                        child: Text(course),
+                        child: Text(
+                          course,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -129,6 +136,7 @@ class InfoInstitutionStep extends StatelessWidget {
                         provider.setCourse(value);
                       }
                     },
+                    hintText: 'Selecione seu curso',
                   ),
                 ],
               ],

@@ -86,28 +86,28 @@ class _DetailsAccountStepState extends State<DetailsAccountStep> {
             ),
           ),
           const SizedBox(height: 15),
-          CustomTextField(
-            labelText: 'Confirme sua senha',
-            hintText: 'Digite sua senha novamente',
-            obscureText: !_isConfirmPasswordVisible,
-            controller: _confirmPasswordController,
-            validator: (value) => SignupValidation.validateConfirmPassword(
-              value,
-              provider.password,
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
-                _isConfirmPasswordVisible
-                    ? Icons.visibility_off
-                    : Icons.visibility,
-              ),
-              onPressed: () {
-                setState(() {
-                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                });
-              },
-            ),
-          ),
+          // CustomTextField(
+          //   labelText: 'Confirme sua senha',
+          //   hintText: 'Digite sua senha novamente',
+          //   obscureText: !_isConfirmPasswordVisible,
+          //   controller: _confirmPasswordController,
+          //   validator: (value) => SignupValidation.validateConfirmPassword(
+          //     value,
+          //     provider.password,
+          //   ),
+          //   suffixIcon: IconButton(
+          //     icon: Icon(
+          //       _isConfirmPasswordVisible
+          //           ? Icons.visibility_off
+          //           : Icons.visibility,
+          //     ),
+          //     onPressed: () {
+          //       setState(() {
+          //         _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+          //       });
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );
