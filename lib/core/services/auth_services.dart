@@ -1,12 +1,14 @@
 // auth_service.dart
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:laborus_app/core/data/auth_database.dart';
 import 'package:laborus_app/core/exceptions/auth_exception.dart';
 import 'package:laborus_app/core/exceptions/signup_exception.dart';
 import 'package:laborus_app/core/model/responses/auth_response.dart';
+import 'package:laborus_app/core/model/users/image_model.dart';
 import 'dart:async';
 
 import 'package:laborus_app/core/model/users/school_model.dart';
@@ -80,48 +82,111 @@ class AuthService {
     }
   }
 
-  String _imageToBase64(File? imageFile) {
-    if (imageFile == null) return '';
-    List<int> imageBytes = imageFile.readAsBytesSync();
-    return base64Encode(imageBytes);
-  }
-
   Future<Map<String, dynamic>> signup(
     UserModel user, {
-    File? profileImageFile,
-    File? bannerImageFile,
+    ImageModel? profileImageFile,
+    ImageModel? bannerImageFile,
   }) async {
     try {
-      // Convert images to base64
-      final profileImageBase64 = _imageToBase64(profileImageFile);
-      final bannerImageBase64 = _imageToBase64(bannerImageFile);
+      // Criamos um Map separado para os dados do usuário
+      final Map<String, dynamic> userData = user.toJson();
 
-      // Create user data with base64 images
-      final userData = user.toJson();
-      userData['profileImage'] = profileImageBase64;
-      userData['bannerImage'] = bannerImageBase64;
+      // Adicionamos as imagens separadamente se existirem
+      if (profileImageFile != null) {
+        // Verificamos se o base64 está completo e válido
+        if (profileImageFile.base64Data != null &&
+            profileImageFile.base64Data!.isNotEmpty) {
+          userData['profileImage'] = profileImageFile.base64Data;
+        }
+      }
+
+      if (bannerImageFile != null) {
+        if (bannerImageFile.base64Data != null &&
+            bannerImageFile.base64Data!.isNotEmpty) {
+          userData['bannerImage'] = bannerImageFile.base64Data;
+        }
+      }
+
+      // Log para debug (remover em produção)
+      print('Request payload size: ${json.encode(userData).length}');
 
       final response = await http.post(
         Uri.parse('$_baseUrl/api/auth/signup'),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
         body: json.encode(userData),
       );
 
-      if (response.statusCode == 200) {
-        return json.decode(response.body);
+      // Log para debug (remover em produção)
+      print('Response status code: ${response.statusCode}');
+      print('Response content-type: ${response.headers['content-type']}');
+
+      // Verificação se a resposta é vazia
+      if (response.body.isEmpty) {
+        throw SignupException(
+          'Resposta vazia do servidor',
+          code: 'EMPTY_RESPONSE',
+        );
       }
 
-      final error = json.decode(response.body);
+      Map<String, dynamic> responseData;
+      try {
+        responseData = json.decode(response.body) as Map<String, dynamic>;
+      } catch (e) {
+        // Verifica se o corpo é HTML
+        if (response.body.toLowerCase().contains('<!doctype html>') ||
+            response.body.toLowerCase().contains('<html')) {
+          throw SignupException(
+            'Servidor retornou HTML ao invés de JSON',
+            code: 'HTML_RESPONSE',
+            details: {
+              'statusCode': response.statusCode,
+              'contentType': response.headers['content-type'],
+              'bodyPreview':
+                  response.body.substring(0, min(100, response.body.length)),
+            },
+          );
+        }
+
+        // Caso contrário, trata como JSON inválido
+        throw SignupException(
+          'Resposta do servidor em formato inválido',
+          code: 'INVALID_JSON',
+          details: {
+            'error': e.toString(),
+            'bodyPreview':
+                response.body.substring(0, min(100, response.body.length)),
+            'statusCode': response.statusCode,
+            'contentType': response.headers['content-type'],
+          },
+        );
+      }
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return responseData;
+      }
+
+      // Erro do servidor com JSON válido
       throw SignupException(
-        error['message'] ?? 'Erro ao criar conta',
-        code: error['code'],
-        details: error['details'],
+        responseData['message'] ?? 'Erro ao criar conta',
+        code: responseData['code'] ?? response.statusCode.toString(),
+        details: responseData['details'] ?? responseData,
+      );
+    } on http.ClientException catch (e) {
+      throw SignupException(
+        'Erro de conexão com o servidor',
+        code: 'CONNECTION_ERROR',
+        details: {'error': e.toString()},
       );
     } catch (e) {
-      print('Erro ao criar conta; $e');
       if (e is SignupException) rethrow;
-
-      throw SignupException('Erro ao criar conta: ${e.toString()}');
+      throw SignupException(
+        'Erro ao criar conta: ${e.toString()}',
+        code: 'UNKNOWN_ERROR',
+        details: {'originalError': e.toString()},
+      );
     }
   }
 

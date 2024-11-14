@@ -1,12 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:laborus_app/core/components/chips/profile_tag.dart';
 import 'package:laborus_app/core/components/forms/text_field_form.dart';
 import 'package:laborus_app/core/components/generics/text_app.dart';
+import 'package:laborus_app/core/model/users/image_model.dart';
 import 'package:laborus_app/core/providers/signup_provider.dart';
-import 'package:laborus_app/core/utils/constants/tags.dart';
 import 'package:provider/provider.dart';
 
 class InfosAbout extends StatefulWidget {
@@ -16,15 +15,11 @@ class InfosAbout extends StatefulWidget {
 
 class _InfosAboutState extends State<InfosAbout> {
   final ImagePicker _picker = ImagePicker();
-  XFile? _bannerImage;
-  XFile? _profileImage;
 
-  // Função de validação para o campo "Sobre"
   String? _validateAbout(String? value) {
     if (value == null || value.isEmpty) {
       return 'O campo "Sobre" é obrigatório';
     }
-    // Expressão regular para permitir apenas letras, números e espaços
     final regex = RegExp(r'^[a-zA-Z0-9\s]+$');
     if (!regex.hasMatch(value)) {
       return 'Caracteres especiais não são permitidos';
@@ -32,191 +27,124 @@ class _InfosAboutState extends State<InfosAbout> {
     return null;
   }
 
-  Future<void> _pickImage(bool isBanner) async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    setState(() {
+  Future<void> _pickImage(BuildContext context, bool isBanner) async {
+    try {
+      final pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 85,
+        maxWidth: isBanner ? 1920 : 800,
+        maxHeight: isBanner ? 1080 : 800,
+      );
+
       if (pickedFile != null) {
+        final provider = Provider.of<SignupProvider>(context, listen: false);
+        final file = File(pickedFile.path);
+
+        // Criar o ImageModel a partir do arquivo
+        final imageModel = ImageModel.fromFile(file);
+
         if (isBanner) {
-          _bannerImage = pickedFile;
+          provider.setBannerImage(imageModel);
         } else {
-          _profileImage = pickedFile;
+          provider.setProfileImage(imageModel);
         }
       }
-    });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao selecionar imagem: ${e.toString()}')),
+      );
+    }
   }
-
-  // void _showTagSelectionModal() {
-  //   final provider = Provider.of<SignupProvider>(context, listen: false);
-
-  //   showModalBottomSheet(
-  //     context: context,
-  //     isScrollControlled: true,
-  //     builder: (BuildContext context) {
-  //       return DraggableScrollableSheet(
-  //         expand: false,
-  //         builder: (_, scrollController) {
-  //           return ListView.builder(
-  //             controller: scrollController,
-  //             itemCount: tags.length,
-  //             itemBuilder: (context, index) {
-  //               String tagKey = tags.keys.elementAt(index);
-  //               Map<String, dynamic> tagData = tags[tagKey]!;
-
-  //               return ListTile(
-  //                 leading: Icon(tagData['icon']),
-  //                 title: Text(tagData['label']),
-  //                 onTap: () {
-  //                   if (provider.tags.length < 3 &&
-  //                       !provider.tags.contains(tagKey)) {
-  //                     provider.addTag(tagKey);
-  //                     Navigator.pop(context);
-  //                   } else if (provider.tags.length >= 3) {
-  //                     ScaffoldMessenger.of(context).showSnackBar(
-  //                       SnackBar(
-  //                         content: Text('Você só pode selecionar até 3 tags.'),
-  //                       ),
-  //                     );
-  //                   }
-  //                 },
-  //               );
-  //             },
-  //           );
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<SignupProvider>(context, listen: false);
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
+    return Consumer<SignupProvider>(
+      builder: (context, provider, _) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            GestureDetector(
-              onTap: () => _pickImage(true),
-              child: Container(
-                height: 200,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Theme.of(context).colorScheme.tertiary,
-                  image: _bannerImage != null
-                      ? DecorationImage(
-                          image: FileImage(File(_bannerImage!.path)),
-                          fit: BoxFit.cover,
-                        )
-                      : null,
-                ),
-                child: _bannerImage == null
-                    ? Center(
-                        child: TextApp(
-                          label: 'Selecione uma imagem de capa',
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      )
-                    : null,
-              ),
-            ),
-            Positioned(
-              bottom: -50,
-              child: GestureDetector(
-                onTap: () => _pickImage(false),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.tertiary,
-                    border: Border.all(
-                        strokeAlign: BorderSide.strokeAlignOutside,
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 10,
-                        style: BorderStyle.solid),
-                    image: _profileImage != null
-                        ? DecorationImage(
-                            image: FileImage(File(_profileImage!.path)),
-                            fit: BoxFit.cover,
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => _pickImage(context, true),
+                  child: Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Theme.of(context).colorScheme.tertiary,
+                      image: provider.bannerImageFile != null
+                          ? DecorationImage(
+                              image: MemoryImage(
+                                base64Decode(
+                                    provider.bannerImageFile!.base64Data),
+                              ),
+                              fit: BoxFit.cover,
+                            )
+                          : null,
+                    ),
+                    child: provider.bannerImageFile == null
+                        ? Center(
+                            child: TextApp(
+                              label: 'Selecione uma imagem de capa',
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           )
-                        : const DecorationImage(
-                            image: AssetImage('assets/img/pessoa.png'),
-                            fit: BoxFit.cover,
-                          ),
+                        : null,
                   ),
                 ),
-              ),
+                Positioned(
+                  bottom: -50,
+                  child: GestureDetector(
+                    onTap: () => _pickImage(context, false),
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        border: Border.all(
+                          strokeAlign: BorderSide.strokeAlignOutside,
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 10,
+                          style: BorderStyle.solid,
+                        ),
+                        image: provider.profileImageFile != null
+                            ? DecorationImage(
+                                image: MemoryImage(
+                                  base64Decode(
+                                      provider.profileImageFile!.base64Data),
+                                ),
+                                fit: BoxFit.cover,
+                              )
+                            : const DecorationImage(
+                                image: AssetImage('assets/img/pessoa.png'),
+                                fit: BoxFit.cover,
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 60),
+            CustomTextField(
+              labelText: 'Sobre',
+              hintText: 'Conte mais sobre você',
+              onChanged: provider.setAboutContent,
+              initialValue: provider.aboutContent,
+              maxLines: 5,
+              validator: _validateAbout,
             ),
           ],
-        ),
-        SizedBox(height: 60),
-        CustomTextField(
-          labelText: 'Sobre',
-          hintText: 'Conte mais sobre você',
-          onChanged: provider.setAboutContent,
-          initialValue: provider.aboutContent,
-          maxLines: 5,
-        ),
-        const SizedBox(height: 15),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           TextApp(
-        //             label: 'Tags',
-        //             fontSize: 18,
-        //             fontWeight: FontWeight.bold,
-        //             color: Theme.of(context).colorScheme.tertiary,
-        //           ),
-        //           IconButton(
-        //             icon: Icon(Icons.add),
-        //             onPressed: _showTagSelectionModal,
-        //           ),
-        //         ],
-        //       ),
-        //       SizedBox(height: 8),
-        //       Wrap(
-        //         spacing: 8,
-        //         runSpacing: 8,
-        //         children: provider.tags.map((tagKey) {
-        //           final tagData = tags[tagKey];
-        //           if (tagData == null) return const SizedBox();
-
-        //           return Stack(
-        //             children: [
-        //               ProfileTag(
-        //                 label: tagData['label'] ?? '',
-        //                 iconData: tagData['icon'],
-        //                 backgroundColor: tagData['color'],
-        //               ),
-        //               Positioned(
-        //                 right: -8,
-        //                 top: -8,
-        //                 child: IconButton(
-        //                   icon: Icon(Icons.close, size: 16),
-        //                   onPressed: () => provider.removeTag(tagKey),
-        //                 ),
-        //               ),
-        //             ],
-        //           );
-        //         }).toList(),
-        //       ),
-        //     ],
-        //   ),
-        // )
-      ],
+        );
+      },
     );
   }
 }

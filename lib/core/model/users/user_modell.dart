@@ -40,4 +40,33 @@ class UserModel {
       'accountType': accountType,
     };
   }
+
+  // Método copyWith para criar uma cópia com modificações
+  UserModel copyWith({
+    String? name,
+    String? email,
+    String? password,
+    String? cpf,
+    String? school,
+    String? course,
+    // List<String>? tags,
+    String? profileImage,
+    String? bannerImage,
+    String? aboutContent,
+    String? accountType,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      cpf: cpf ?? this.cpf,
+      school: school ?? this.school,
+      course: course ?? this.course,
+      // tags: tags ?? this.tags,
+      profileImage: profileImage ?? this.profileImage,
+      bannerImage: bannerImage ?? this.bannerImage,
+      aboutContent: aboutContent ?? this.aboutContent,
+      accountType: accountType ?? this.accountType,
+    );
+  }
 }

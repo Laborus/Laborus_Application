@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laborus_app/core/model/users/image_model.dart';
 import 'dart:io';
 import 'package:laborus_app/core/model/users/school_model.dart';
 import 'package:laborus_app/core/model/users/user_modell.dart';
@@ -16,10 +17,21 @@ class SignupProvider with ChangeNotifier {
   String _cpf = '';
   String _school = '';
   String _course = '';
-  // List<String> _tags = [];
   String _aboutContent = '';
-  File? _profileImageFile;
-  File? _bannerImageFile;
+  ImageModel? _profileImageFile;
+  ImageModel? _bannerImageFile;
+
+  void setProfileImage(ImageModel image) {
+    _profileImageFile = image;
+    _errors['profileImage'] = null;
+    notifyListeners();
+  }
+
+  void setBannerImage(ImageModel image) {
+    _bannerImageFile = image;
+    _errors['bannerImage'] = null;
+    notifyListeners();
+  }
 
   // Error states
   Map<String, String?> _errors = {
@@ -30,7 +42,6 @@ class SignupProvider with ChangeNotifier {
     'school': null,
     'course': null,
     'about': null,
-    // 'tags': null,
   };
 
   // Loading states
@@ -44,10 +55,9 @@ class SignupProvider with ChangeNotifier {
   String get cpf => _cpf;
   String get school => _school;
   String get course => _course;
-  // List<String> get tags => _tags;
   String get aboutContent => _aboutContent;
-  File? get profileImageFile => _profileImageFile;
-  File? get bannerImageFile => _bannerImageFile;
+  ImageModel? get profileImageFile => _profileImageFile;
+  ImageModel? get bannerImageFile => _bannerImageFile;
   bool get isLoading => _isLoading;
   String? get loadingMessage => _loadingMessage;
   Map<String, String?> get errors => _errors;
@@ -97,20 +107,13 @@ class SignupProvider with ChangeNotifier {
       isValid = false;
     }
 
-    // if (_tags.isEmpty) {
-    //   _errors['tags'] = 'Selecione pelo menos uma tag';
-    //   isValid = false;
-    // }
-
     // Optional validation for images
     if (_profileImageFile == null) {
       _errors['profileImage'] = 'Selecione uma foto de perfil';
-      // Not blocking validation, just warning
     }
 
     if (_bannerImageFile == null) {
       _errors['bannerImage'] = 'Selecione uma foto de capa';
-      // Not blocking validation, just warning
     }
 
     notifyListeners();
@@ -177,53 +180,18 @@ class SignupProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setProfileImage(File file) {
-    _profileImageFile = file;
-    _errors['profileImage'] = null;
-    notifyListeners();
-  }
-
-  void setBannerImage(File file) {
-    _bannerImageFile = file;
-    _errors['bannerImage'] = null;
-    notifyListeners();
-  }
-
-  // // Tag management with improved state handling
-  // void addTag(String tag) {
-  //   print(_tags.toString() + ' ' + tag);
-  //   if (_tags.length < 3 && !_tags.contains(tag)) {
-  //     _tags = List.from(_tags)
-  //       ..add(tag); // Create new list to ensure state update
-  //     _errors['tags'] = null;
-  //     notifyListeners();
-  //   }
-  // }
-
-  // void removeTag(String tag) {
-  //   _tags = List.from(_tags)
-  //     ..remove(tag); // Create new list to ensure state update
-  //   if (_tags.isEmpty) {
-  //     _errors['tags'] = 'Selecione pelo menos uma tag';
-  //   }
-  //   notifyListeners();
-  // }
-
   // API methods with error handling
-
   Future<List<SchoolModel>> getSchools() async {
     try {
       final schools = await _apiService.getSchools();
       return schools;
     } catch (e) {
-      print('Erro ao carregar escolas: $e'); // Para debug
       throw Exception('Falha ao carregar instituições: ${e.toString()}');
     }
   }
 
   Future<bool> signup() async {
     try {
-      // Validate all steps before proceeding
       if (!validateDetailsStep() ||
           !validateProfileStep() ||
           !validateInstitutionStep()) {
@@ -241,7 +209,6 @@ class SignupProvider with ChangeNotifier {
         cpf: _cpf,
         school: _school,
         course: _course,
-        // tags: _tags,
         aboutContent: _aboutContent,
       );
 
@@ -264,18 +231,13 @@ class SignupProvider with ChangeNotifier {
     }
   }
 
-  // Helper methods
   bool _isValidCPF(String cpf) {
-    // Remove non-digits
     cpf = cpf.replaceAll(RegExp(r'[^\d]'), '');
 
-    // Check length
     if (cpf.length != 11) return false;
 
-    // Check if all digits are the same
     if (RegExp(r'^(\d)\1{10}$').hasMatch(cpf)) return false;
 
-    // Calculate first digit
     int sum = 0;
     for (int i = 0; i < 9; i++) {
       sum += int.parse(cpf[i]) * (10 - i);
@@ -283,7 +245,6 @@ class SignupProvider with ChangeNotifier {
     int digit1 = 11 - (sum % 11);
     if (digit1 > 9) digit1 = 0;
 
-    // Calculate second digit
     sum = 0;
     for (int i = 0; i < 10; i++) {
       sum += int.parse(cpf[i]) * (11 - i);
@@ -291,7 +252,6 @@ class SignupProvider with ChangeNotifier {
     int digit2 = 11 - (sum % 11);
     if (digit2 > 9) digit2 = 0;
 
-    // Check if calculated digits match the actual ones
     return cpf[9] == digit1.toString() && cpf[10] == digit2.toString();
   }
 
@@ -302,7 +262,6 @@ class SignupProvider with ChangeNotifier {
     _cpf = '';
     _school = '';
     _course = '';
-    // _tags = [];
     _aboutContent = '';
     _profileImageFile = null;
     _bannerImageFile = null;

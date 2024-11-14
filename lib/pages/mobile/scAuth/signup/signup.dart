@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
@@ -45,6 +47,7 @@ class _SignupWrapperState extends State<SignupWrapper> {
     if (success) {
       context.go(AppRouteEnum.signin.name);
     } else {
+      stderr.writeln(_signupProvider.errors['submit']);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(_signupProvider.errors['submit'] ??
