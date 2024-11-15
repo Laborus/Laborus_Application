@@ -5,7 +5,6 @@ class UserModel {
   final String cpf;
   final String school;
   final String course;
-  // final List<String> tags;
   final String? profileImage;
   final String? bannerImage;
   final String aboutContent;
@@ -18,7 +17,6 @@ class UserModel {
     required this.cpf,
     required this.school,
     required this.course,
-    // required this.tags,
     this.profileImage,
     this.bannerImage,
     required this.aboutContent,
@@ -33,15 +31,13 @@ class UserModel {
       'cpf': cpf,
       'school': school,
       'course': course,
-      // 'tags': ['TECNOLOGY'],
-      'profileImage': profileImage,
-      'bannerImage': bannerImage,
-      // 'aboutContent': aboutContent,
+      'profileImage': '',
+      'bannerImage': '',
+      'aboutContent': aboutContent,
       'accountType': accountType,
     };
   }
 
-  // Método copyWith para criar uma cópia com modificações
   UserModel copyWith({
     String? name,
     String? email,
@@ -49,7 +45,6 @@ class UserModel {
     String? cpf,
     String? school,
     String? course,
-    // List<String>? tags,
     String? profileImage,
     String? bannerImage,
     String? aboutContent,
@@ -62,7 +57,6 @@ class UserModel {
       cpf: cpf ?? this.cpf,
       school: school ?? this.school,
       course: course ?? this.course,
-      // tags: tags ?? this.tags,
       profileImage: profileImage ?? this.profileImage,
       bannerImage: bannerImage ?? this.bannerImage,
       aboutContent: aboutContent ?? this.aboutContent,

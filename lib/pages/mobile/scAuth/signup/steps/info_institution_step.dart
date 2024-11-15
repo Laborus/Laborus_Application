@@ -4,9 +4,14 @@ import 'package:laborus_app/core/model/users/school_model.dart';
 import 'package:laborus_app/core/providers/signup_provider.dart';
 import 'package:provider/provider.dart';
 
-class InfoInstitutionStep extends StatelessWidget {
+class InfoInstitutionStep extends StatefulWidget {
   const InfoInstitutionStep({super.key});
 
+  @override
+  State<InfoInstitutionStep> createState() => _InfoInstitutionStepState();
+}
+
+class _InfoInstitutionStepState extends State<InfoInstitutionStep> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SignupProvider>(context);
@@ -35,16 +40,24 @@ class InfoInstitutionStep extends StatelessWidget {
           future: provider.getSchools(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Column(
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 16),
-                    Text(
-                      'Carregando instituições...',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
+              return Container(
+                height: 200,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'Carregando instituições...',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.onTertiary,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }
@@ -53,17 +66,18 @@ class InfoInstitutionStep extends StatelessWidget {
               return Center(
                 child: Column(
                   children: [
-                    Icon(Icons.error_outline, color: Colors.red, size: 48),
+                    Icon(Icons.error_outline,
+                        color: Theme.of(context).colorScheme.error, size: 48),
                     SizedBox(height: 16),
                     Text(
                       'Erro ao carregar instituições',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.red,
+                            color: Theme.of(context).colorScheme.error,
                           ),
                     ),
                     TextButton(
                       onPressed: () {
-                        // provider.refreshSchools();
+                        setState(() {}); // This will trigger a rebuild
                       },
                       child: Text('Tentar novamente'),
                     ),

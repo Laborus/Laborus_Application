@@ -54,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
               duration: Duration(seconds: 3),
             ),
           );
-
+          print(authProvider.userData);
           AppRouteEnum currentPath = AppRouteEnum.home;
           String routePath = currentPath.name;
           context.go(routePath);

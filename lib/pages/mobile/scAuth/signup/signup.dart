@@ -1,13 +1,12 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/components/navigation/custom_app_bar_introduction.dart';
 import 'package:laborus_app/core/providers/signup_provider.dart';
 import 'package:laborus_app/core/routes/app_route_enum.dart';
+import 'package:laborus_app/core/utils/theme/colors.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/details_account_step.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/info_institution_step.dart';
-import 'package:laborus_app/pages/mobile/scAuth/signup/steps/infos_about.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signup/steps/widgets/build_progress_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -19,83 +18,92 @@ class SignupWrapper extends StatefulWidget {
 }
 
 class _SignupWrapperState extends State<SignupWrapper> {
-  late final Map<String, Widget> _dynamicWidgets;
+  final Map<int, Widget> _steps = {
+    1: DetailsAccountStep(),
+    2: const InfoInstitutionStep(),
+  };
+
+  final Map<int, String> _stepTitles = {
+    1: 'Dados Obrigatórios',
+    2: 'Instituição',
+  };
+
+  int _currentStep = 1;
   late final SignupProvider _signupProvider;
-  int _step = 1;
 
   @override
   void initState() {
     super.initState();
-    _dynamicWidgets = {
-      'Dados Obrigatórios': DetailsAccountStep(),
-      'Perfil': InfosAbout(),
-      'Instituição': const InfoInstitutionStep(),
-    };
     _signupProvider = Provider.of<SignupProvider>(context, listen: false);
   }
 
   Future<void> _handleSubmit() async {
     if (!_signupProvider.validateInstitutionStep()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Por favor, preencha todos os campos obrigatórios.')),
-      );
+      _showErrorSnackBar('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
 
     final success = await _signupProvider.signup();
     if (success) {
-      context.go(AppRouteEnum.signin.name);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Conta criada com sucesso!'),
+            backgroundColor: AppColors.green,
+          ),
+        );
+        _signupProvider.reset();
+        context.go(AppRouteEnum.signin.name);
+      }
     } else {
-      stderr.writeln(_signupProvider.errors['submit']);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(_signupProvider.errors['submit'] ??
-              'Falha ao criar conta. Tente novamente.'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      final errorMessage = _signupProvider.errors['submit'] ??
+          'Falha ao criar conta. Tente novamente.';
+      stderr.writeln(errorMessage);
+      if (mounted) {
+        _showErrorSnackBar(errorMessage);
+      }
     }
   }
 
-  void nextStep() {
-    bool canProceed = false;
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
 
-    switch (_step) {
+  bool _validateCurrentStep() {
+    switch (_currentStep) {
       case 1:
-        canProceed = _signupProvider.validateDetailsStep();
-        break;
+        return _signupProvider.validateDetailsStep();
       case 2:
-        canProceed = _signupProvider.validateProfileStep();
-        break;
-      case 3:
-        canProceed = _signupProvider.validateInstitutionStep();
-        break;
+        return _signupProvider.validateInstitutionStep();
+      default:
+        return false;
     }
+  }
 
-    if (!canProceed) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Por favor, preencha todos os campos obrigatórios.'),
-          backgroundColor: Colors.red,
-        ),
-      );
+  void _handleNextStep() {
+    if (!_validateCurrentStep()) {
+      _showErrorSnackBar('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
 
-    if (_step < _dynamicWidgets.length) {
+    if (_currentStep < _steps.length) {
       setState(() {
-        _step++;
+        _currentStep++;
       });
     } else {
       _handleSubmit();
     }
   }
 
-  void backStep() {
-    if (_step > 1) {
+  void _handleBackStep() {
+    if (_currentStep > 1) {
       setState(() {
-        _step--;
+        _currentStep--;
       });
     } else {
       context.pop();
@@ -109,8 +117,8 @@ class _SignupWrapperState extends State<SignupWrapper> {
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.primary,
           appBar: CustomAppBarIntroduction(
-            title: _dynamicWidgets.keys.elementAt(_step - 1),
-            onBack: backStep,
+            title: _stepTitles[_currentStep] ?? '',
+            onBack: _handleBackStep,
           ),
           body: Stack(
             children: [
@@ -133,7 +141,7 @@ class _SignupWrapperState extends State<SignupWrapper> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Etapa $_step de ${_dynamicWidgets.length}',
+                                  'Etapa $_currentStep de ${_steps.length}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -146,16 +154,15 @@ class _SignupWrapperState extends State<SignupWrapper> {
                                 ),
                                 const SizedBox(height: 8),
                                 BuildProgressIndicator(
-                                  step: _step,
-                                  remainingSteps:
-                                      _dynamicWidgets.length - _step,
+                                  step: _currentStep,
+                                  remainingSteps: _steps.length - _currentStep,
                                 ),
                               ],
                             ),
                           ),
                         ),
                         SliverToBoxAdapter(
-                          child: _dynamicWidgets.values.elementAt(_step - 1),
+                          child: _steps[_currentStep] ?? const SizedBox(),
                         ),
                       ],
                     ),
@@ -193,12 +200,12 @@ class _SignupWrapperState extends State<SignupWrapper> {
             child: Column(
               children: [
                 ElevatedButton(
-                  onPressed: provider.isLoading ? null : nextStep,
+                  onPressed: provider.isLoading ? null : _handleNextStep,
                   child: Container(
                     width: MediaQuery.of(context).size.width * .8,
                     alignment: Alignment.center,
                     child: Text(
-                      _step == _dynamicWidgets.length
+                      _currentStep == _steps.length
                           ? 'Criar Conta'
                           : 'Continuar',
                     ),

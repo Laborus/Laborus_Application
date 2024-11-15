@@ -1,14 +1,10 @@
-// auth_service.dart
 import 'dart:convert';
-import 'dart:io';
-import 'dart:math';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:laborus_app/core/data/auth_database.dart';
 import 'package:laborus_app/core/exceptions/auth_exception.dart';
 import 'package:laborus_app/core/exceptions/signup_exception.dart';
 import 'package:laborus_app/core/model/responses/auth_response.dart';
-import 'package:laborus_app/core/model/users/image_model.dart';
 import 'dart:async';
 
 import 'package:laborus_app/core/model/users/school_model.dart';
@@ -19,7 +15,6 @@ class AuthService {
       dotenv.env['API_URL'] ?? 'https://laborus-backend-api.onrender.com/';
 
   final AuthDatabase _authDatabase = AuthDatabase();
-  Timer? _tokenRefreshTimer;
   final _authStateController = StreamController<bool>.broadcast();
 
   Future<Map<String, dynamic>> signIn(String email, String password) async {
@@ -82,48 +77,17 @@ class AuthService {
     }
   }
 
-  Future<Map<String, dynamic>> signup(
-    UserModel user, {
-    ImageModel? profileImageFile,
-    ImageModel? bannerImageFile,
-  }) async {
+  Future<Map<String, dynamic>> signup(UserModel user) async {
     try {
-      // Criamos um Map separado para os dados do usuário
-      final Map<String, dynamic> userData = user.toJson();
-
-      // Adicionamos as imagens separadamente se existirem
-      if (profileImageFile != null) {
-        // Verificamos se o base64 está completo e válido
-        if (profileImageFile.base64Data != null &&
-            profileImageFile.base64Data!.isNotEmpty) {
-          userData['profileImage'] = profileImageFile.base64Data;
-        }
-      }
-
-      if (bannerImageFile != null) {
-        if (bannerImageFile.base64Data != null &&
-            bannerImageFile.base64Data!.isNotEmpty) {
-          userData['bannerImage'] = bannerImageFile.base64Data;
-        }
-      }
-
-      // Log para debug (remover em produção)
-      print('Request payload size: ${json.encode(userData).length}');
-
       final response = await http.post(
         Uri.parse('$_baseUrl/api/auth/signup'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: json.encode(userData),
+        body: json.encode(user.toJson()),
       );
 
-      // Log para debug (remover em produção)
-      print('Response status code: ${response.statusCode}');
-      print('Response content-type: ${response.headers['content-type']}');
-
-      // Verificação se a resposta é vazia
       if (response.body.isEmpty) {
         throw SignupException(
           'Resposta vazia do servidor',
@@ -133,34 +97,18 @@ class AuthService {
 
       Map<String, dynamic> responseData;
       try {
-        responseData = json.decode(response.body) as Map<String, dynamic>;
+        responseData = json.decode(response.body);
       } catch (e) {
-        // Verifica se o corpo é HTML
-        if (response.body.toLowerCase().contains('<!doctype html>') ||
-            response.body.toLowerCase().contains('<html')) {
+        if (_isHtmlResponse(response.body)) {
           throw SignupException(
-            'Servidor retornou HTML ao invés de JSON',
-            code: 'HTML_RESPONSE',
-            details: {
-              'statusCode': response.statusCode,
-              'contentType': response.headers['content-type'],
-              'bodyPreview':
-                  response.body.substring(0, min(100, response.body.length)),
-            },
+            'Erro interno do servidor',
+            code: 'SERVER_ERROR',
+            details: {'statusCode': response.statusCode},
           );
         }
-
-        // Caso contrário, trata como JSON inválido
         throw SignupException(
-          'Resposta do servidor em formato inválido',
-          code: 'INVALID_JSON',
-          details: {
-            'error': e.toString(),
-            'bodyPreview':
-                response.body.substring(0, min(100, response.body.length)),
-            'statusCode': response.statusCode,
-            'contentType': response.headers['content-type'],
-          },
+          'Formato de resposta inválido',
+          code: 'INVALID_RESPONSE',
         );
       }
 
@@ -168,30 +116,39 @@ class AuthService {
         return responseData;
       }
 
-      // Erro do servidor com JSON válido
       throw SignupException(
         responseData['message'] ?? 'Erro ao criar conta',
-        code: responseData['code'] ?? response.statusCode.toString(),
-        details: responseData['details'] ?? responseData,
+        code: responseData['code'] ?? 'UNKNOWN_ERROR',
+        details: responseData['details'],
       );
     } on http.ClientException catch (e) {
       throw SignupException(
-        'Erro de conexão com o servidor',
+        'Erro de conexão',
         code: 'CONNECTION_ERROR',
         details: {'error': e.toString()},
       );
-    } catch (e) {
-      if (e is SignupException) rethrow;
+    } on TimeoutException {
       throw SignupException(
-        'Erro ao criar conta: ${e.toString()}',
+        'Tempo de conexão esgotado',
+        code: 'TIMEOUT_ERROR',
+      );
+    } on SignupException {
+      rethrow;
+    } catch (e) {
+      throw SignupException(
+        'Erro inesperado',
         code: 'UNKNOWN_ERROR',
-        details: {'originalError': e.toString()},
+        details: {'error': e.toString()},
       );
     }
   }
 
+  bool _isHtmlResponse(String body) {
+    return body.toLowerCase().contains('<!doctype html>') ||
+        body.toLowerCase().contains('<html');
+  }
+
   Future<void> signOut() async {
-    _tokenRefreshTimer?.cancel();
     await _authDatabase.clearAuthData();
     _authStateController.add(false);
   }
@@ -203,10 +160,5 @@ class AuthService {
     } catch (_) {
       return 'Failed to connect to server';
     }
-  }
-
-  Future<void> dispose() async {
-    _tokenRefreshTimer?.cancel();
-    await _authStateController.close();
   }
 }

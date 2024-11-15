@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laborus_app/core/components/forms/text_field_form.dart';
 import 'package:laborus_app/core/providers/signup_provider.dart';
 import 'package:laborus_app/core/utils/constants/signup_validators.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class DetailsAccountStep extends StatefulWidget {
@@ -13,7 +14,11 @@ class _DetailsAccountStepState extends State<DetailsAccountStep> {
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
-  final _confirmPasswordController = TextEditingController();
+
+  final cpfMaskFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +61,7 @@ class _DetailsAccountStepState extends State<DetailsAccountStep> {
             initialValue: provider.cpf,
             validator: SignupValidation.validateCPF,
             keyboardType: TextInputType.number,
+            maskFormatter: cpfMaskFormatter,
           ),
           const SizedBox(height: 15),
           CustomTextField(
@@ -86,28 +92,29 @@ class _DetailsAccountStepState extends State<DetailsAccountStep> {
             ),
           ),
           const SizedBox(height: 15),
-          // CustomTextField(
-          //   labelText: 'Confirme sua senha',
-          //   hintText: 'Digite sua senha novamente',
-          //   obscureText: !_isConfirmPasswordVisible,
-          //   controller: _confirmPasswordController,
-          //   validator: (value) => SignupValidation.validateConfirmPassword(
-          //     value,
-          //     provider.password,
-          //   ),
-          //   suffixIcon: IconButton(
-          //     icon: Icon(
-          //       _isConfirmPasswordVisible
-          //           ? Icons.visibility_off
-          //           : Icons.visibility,
-          //     ),
-          //     onPressed: () {
-          //       setState(() {
-          //         _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-          //       });
-          //     },
-          //   ),
-          // ),
+          CustomTextField(
+            labelText: 'Confirme sua senha',
+            hintText: 'Digite sua senha novamente',
+            obscureText: !_isConfirmPasswordVisible,
+            onChanged: provider.setConfirmPassword,
+            initialValue: provider.confirmPassword,
+            validator: (value) => SignupValidation.validateConfirmPassword(
+              value,
+              provider.password,
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                _isConfirmPasswordVisible
+                    ? Icons.visibility_off
+                    : Icons.visibility,
+              ),
+              onPressed: () {
+                setState(() {
+                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                });
+              },
+            ),
+          ),
         ],
       ),
     );

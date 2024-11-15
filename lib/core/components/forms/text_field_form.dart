@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CustomTextField extends StatelessWidget {
   final String labelText;
@@ -13,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final int? maxLines;
   final String? initialValue;
+  final MaskTextInputFormatter? maskFormatter;
 
   const CustomTextField({
     super.key,
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.maxLines = 1,
     this.initialValue,
+    this.maskFormatter,
   });
 
   @override
@@ -43,6 +46,7 @@ class CustomTextField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          inputFormatters: maskFormatter != null ? [maskFormatter!] : null,
           controller: controller,
           enabled: enabled,
           obscureText: obscureText,

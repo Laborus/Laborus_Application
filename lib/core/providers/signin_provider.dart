@@ -58,10 +58,4 @@ class SigninProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  @override
-  void dispose() {
-    _authService.dispose();
-    super.dispose();
-  }
 }
