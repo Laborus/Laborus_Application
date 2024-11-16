@@ -20,10 +20,10 @@ class _LogicPageState extends State<LogicPage> {
 
   Future<void> _checkTokenStatus() async {
     final authDatabase = AuthDatabase();
-    final token = await authDatabase.getToken();
-    final isValidToken = await authDatabase.isTokenValid();
-
-    if (token != null && isValidToken) {
+    final isValidToken = await authDatabase.validateToken();
+    final id = await authDatabase.getUserId();
+    print('isValidToken: $isValidToken, id: $id');
+    if (isValidToken && id != null) {
       if (mounted) {
         final routePath = AppRouteEnum.home.name;
         context.go(routePath);

@@ -46,7 +46,6 @@ class _SignInPageState extends State<SignInPage> {
 
       if (mounted) {
         if (success) {
-          // Exibe SnackBar de sucesso
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Login realizado com sucesso!'),
@@ -54,17 +53,16 @@ class _SignInPageState extends State<SignInPage> {
               duration: Duration(seconds: 3),
             ),
           );
-          print(authProvider.userData);
           AppRouteEnum currentPath = AppRouteEnum.home;
           String routePath = currentPath.name;
           context.go(routePath);
         } else {
+          // Exibe a mensagem de erro capturada pelo provider
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(authProvider.error ??
-                  'Falha no login. Verifique suas credenciais.'),
-              backgroundColor: AppColors.red,
-              duration: const Duration(seconds: 3),
+              content: Text(authProvider.error ?? 'Erro desconhecido'),
+              backgroundColor: Colors.red,
+              duration: Duration(seconds: 3),
             ),
           );
         }
@@ -133,17 +131,6 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                     ),
                   ),
-                  if (authProvider.error != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text(
-                        authProvider.error!,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
                   const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

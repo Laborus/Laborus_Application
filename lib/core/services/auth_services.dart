@@ -12,12 +12,11 @@ import 'package:laborus_app/core/model/users/user_modell.dart';
 
 class AuthService {
   static final String _baseUrl =
-      dotenv.env['API_URL'] ?? 'https://laborus-backend-api.onrender.com/';
+      dotenv.env['API_URL'] ?? 'https://localhost:3000/';
 
   final AuthDatabase _authDatabase = AuthDatabase();
-  final _authStateController = StreamController<bool>.broadcast();
 
-  Future<Map<String, dynamic>> signIn(String email, String password) async {
+  Future<String> signIn(String email, String password) async {
     try {
       final response = await http.post(
         Uri.parse('$_baseUrl/api/auth/signin'),
@@ -32,11 +31,8 @@ class AuthService {
           final token = authResponse.data['token'];
 
           await _authDatabase.saveToken(token);
-          await _authDatabase.saveUserData(authResponse.data);
-
-          _authStateController.add(true);
-
-          return {'success': true, 'userData': authResponse.data};
+          print(token);
+          return token;
         }
       }
 
@@ -150,7 +146,6 @@ class AuthService {
 
   Future<void> signOut() async {
     await _authDatabase.clearAuthData();
-    _authStateController.add(false);
   }
 
   String _parseErrorMessage(http.Response response) {
