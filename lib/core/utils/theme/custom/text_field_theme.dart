@@ -67,20 +67,20 @@ class LTextFieldTheme {
       ),
     ),
     // Borda do TextField quando há erro
-    errorBorder: OutlineInputBorder(
+    errorBorder: const OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.red),
-      borderRadius: const BorderRadius.all(
+      borderRadius: BorderRadius.all(
         Radius.circular(12),
       ),
     ),
     // Borda do TextField quando há erro e está focado
-    focusedErrorBorder: OutlineInputBorder(
+    focusedErrorBorder: const OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.red),
-      borderRadius: const BorderRadius.all(
+      borderRadius: BorderRadius.all(
         Radius.circular(12),
       ),
     ),
-    errorStyle: TextStyle(
+    errorStyle: const TextStyle(
       color: AppColors.red,
       fontSize: 12,
     ),

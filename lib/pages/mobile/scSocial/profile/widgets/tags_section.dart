@@ -13,7 +13,10 @@ class TagsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          ProfileTag(),
+          ProfileTag(
+            label: 'Tecnologia',
+            iconData: Icons.computer,
+          ),
           SizedBox(width: 5),
           EditTags(),
         ],

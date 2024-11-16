@@ -3,7 +3,8 @@ import 'package:laborus_app/core/utils/theme/font_size.dart';
 
 class TextApp extends StatelessWidget {
   final String label;
-  final List<Color> colors;
+  final List<Color>? colors;
+  final Color color;
   final FontWeight fontWeight;
   final double fontSize;
   final TextAlign alignment;
@@ -11,11 +12,12 @@ class TextApp extends StatelessWidget {
   const TextApp({
     super.key,
     required this.label,
-    required this.colors,
+    required this.color,
     this.fontWeight = FontWeight.w400,
     this.fontSize = AppFontSize.medium,
     this.alignment = TextAlign.left,
     this.overflow = TextOverflow.ellipsis,
+    this.colors,
   });
 
   @override
@@ -26,7 +28,7 @@ class TextApp extends StatelessWidget {
       textAlign: alignment,
       overflow: overflow,
       style: TextStyle(
-        color: isDarkMode ? colors[0] : colors[1],
+        color: colors != null ? (isDarkMode ? colors![0] : colors![1]) : color,
         fontWeight: fontWeight,
         letterSpacing: 0,
         fontSize: fontSize,

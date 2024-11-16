@@ -1,35 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:laborus_app/core/utils/theme/colors.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomDropdownButtonFormField<T> extends StatelessWidget {
   final String labelText;
   final String hintText;
-  final bool obscureText;
+  final T? value;
+  final List<DropdownMenuItem<T>> items;
+  final ValueChanged<T?>? onChanged;
+  final String? errorText;
   final bool enabled;
-  final Widget? suffixIcon;
-  final TextEditingController? controller;
-  final String? Function(String?)? validator;
-  final TextInputType? keyboardType;
-  final void Function(String)? onChanged;
-  final int? maxLines;
-  final String? initialValue;
-  final MaskTextInputFormatter? maskFormatter;
 
-  const CustomTextField({
+  const CustomDropdownButtonFormField({
     super.key,
     required this.labelText,
     required this.hintText,
-    this.obscureText = false,
-    this.enabled = true,
-    this.suffixIcon,
-    this.controller,
-    this.validator,
-    this.keyboardType,
+    required this.items,
+    this.value,
     this.onChanged,
-    this.maxLines = 1,
-    this.initialValue,
-    this.maskFormatter,
+    this.errorText,
+    this.enabled = true,
   });
 
   @override
@@ -45,23 +34,10 @@ class CustomTextField extends StatelessWidget {
               ),
         ),
         const SizedBox(height: 5),
-        TextFormField(
-          inputFormatters: maskFormatter != null ? [maskFormatter!] : null,
-          controller: controller,
-          enabled: enabled,
-          obscureText: obscureText,
-          validator: validator,
-          keyboardType: keyboardType,
-          onChanged: onChanged,
-          initialValue: initialValue,
-          cursorColor: AppColors.darknessPurple,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Theme.of(context).colorScheme.tertiary,
-                fontWeight: FontWeight.bold,
-              ),
+        DropdownButtonFormField<T>(
+          value: value,
           decoration: InputDecoration(
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            hintText: hintText,
+            labelText: hintText,
             hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: enabled
                       ? Theme.of(context).colorScheme.tertiary
@@ -106,6 +82,7 @@ class CustomTextField extends StatelessWidget {
                 color: AppColors.red,
               ),
             ),
+            errorText: errorText,
             errorStyle: const TextStyle(
               color: AppColors.red,
               fontSize: 12,
@@ -120,9 +97,10 @@ class CustomTextField extends StatelessWidget {
                 color: Theme.of(context).colorScheme.tertiary,
               ),
             ),
-            suffixIcon: suffixIcon,
           ),
-          maxLines: maxLines, // Usando maxLines opcional
+          items: items,
+          onChanged: enabled ? onChanged : null,
+          dropdownColor: Theme.of(context).colorScheme.surface,
         ),
       ],
     );

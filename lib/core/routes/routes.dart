@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laborus_app/core/model/laborus/post.dart';
+import 'package:laborus_app/pages/mobile/logic.dart';
 import 'package:laborus_app/pages/mobile/scAuth/signin/signin.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/campus/campus.dart';
 import 'package:laborus_app/pages/mobile/scLaborus/challenge/challenges_page.dart';
@@ -36,8 +37,15 @@ final _router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
-      name: 'Onboarding',
+      name: 'Logic',
       path: '/',
+      builder: (context, state) {
+        return const LogicPage();
+      },
+    ),
+    GoRoute(
+      name: 'Onboarding',
+      path: '/onboarding',
       builder: (context, state) {
         return const OnBoardingPage();
       },
